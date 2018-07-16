@@ -1,0 +1,75 @@
+//
+//  PrefixHeader.pch
+//  RedEnvelope
+//
+//  Created by 袁江 on 2018/7/11.
+//  Copyright © 2018年 Envelope. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#ifndef RGBCOLOR
+#define RGBCOLOR(r,g,b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
+#define RGBCOLORA(r,g,b,a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
+#endif
+
+#define HEXCOLOR(hexString) [UIColor colorWithRed:((float)((hexString & 0xFF0000) >> 16))/255.0 green:((float)((hexString & 0xFF00) >> 8))/255.0 blue:((float)(hexString & 0xFF))/255.0 alpha:1.0]
+#define UICOLOR_RANDOM  [UIColor colorWithRed:(arc4random()%255)/255.0 green:(arc4random()%255)/255.0 blue:(arc4random()%255)/255.0 alpha:1.0]
+
+#define DMSkinColorKeyAppTintColor RGBCOLOR(251, 40, 90)
+#define DMMainTextColor   RGBCOLOR(51, 51, 51)
+#define DM153GRAYCOLOR   RGBCOLOR(153, 153, 153)
+#define DMMainBackgroundColor HEXCOLOR(0xf6f7f9)
+#define DM230GRAYCOLOR RGBCOLOR(230,230,230)
+#define DMButtonDisableColor RGBCOLORA(255, 255, 255, 0.5)
+
+#define DMAppLineHeight (1 / [[UIScreen mainScreen] scale])
+
+#define DMAppBuildNumber            [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]
+#define DMAppVersionNumber          [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
+#define DMAppRunsOnIOS9OrLater      (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_8_4)
+#define DMAppRunsOnIOS10OrLater     (floor(NSFoundationVersionNumber) > 1299)
+#define DMAppRunsOnIOS11OrLater     ([[UIDevice currentDevice].systemVersion floatValue] >= 11.0)
+
+#define DMScreenWidth               [UIScreen mainScreen].bounds.size.width
+#define DMScreenHeight              [UIScreen mainScreen].bounds.size.height
+
+#define DMAppMinimumLoadingTimeInterval(date)   MAX(0, 0.5 - ([NSDate timeIntervalSinceReferenceDate] - [date timeIntervalSinceReferenceDate]))
+
+#define DMAppMinimumLoadingDispatchTime(date)   dispatch_time(DISPATCH_TIME_NOW, (int64_t)(DMAppMinimumLoadingTimeInterval(date) * NSEC_PER_SEC))
+
+#define DMSkinOriginalImage(name) [[UIImage imageNamed:name] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
+#define DMSkinTemplateImage(name) [[UIImage imageNamed:name] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]
+
+#define DMAppCurrentLanguageEnglish [[NSLocale currentLocale].languageCode isEqualToString:@"en"]
+
+
+#define DMWEAKSELFDEFIND  __weak typeof(self) wSelf = self;
+
+#define DMDeviceIsX  ([[UIDevice currentDevice] isX])
+
+#define DMNavigationBarDefaultHeight    44
+#define DMStatusBarHeight       ([UIApplication sharedApplication].statusBarFrame.size.height)
+#define DMTabBarHeight (DMDeviceIsX ? 83 : 49)
+
+
+#import "AFNetworking/AFNetworking.h"
+#import "UIView+Sizes.h"
+#import "DMDataSourceItem.h"
+#import "UIScrollView+EmptyDataSet.h"
+#import "MJRefresh.h"
+#import "YYKit.h"
+#import "DMNavigationViewController.h"
+#import "DMViewController.h"
+#import "DMTableView.h"
+#import "DMResultSet.h"
+#import "DMTableViewController.h"
+#import "DMTableViewCell.h"
+#import "Masonry.h"
+#import "DMModalPresentationViewController.h"
+#import "PNChart.h"
+#import "AAGlobalMacro.h"
+#import "AAChartKit.h"
+
+#endif /* PrefixHeader_pch */
