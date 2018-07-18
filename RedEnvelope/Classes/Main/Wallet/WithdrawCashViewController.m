@@ -7,8 +7,11 @@
 //
 
 #import "WithdrawCashViewController.h"
+#import "WithdrawRecordViewController.h"
 
 @interface WithdrawCashViewController ()
+
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end
 
@@ -16,22 +19,31 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    self.navigationItem.title = @"提现";
+    
+    self.scrollView.contentSize = CGSizeMake(self.view.width, self.view.height);
+    
+    self.scrollView.alwaysBounceVertical = YES;
+    self.scrollView.alwaysBounceHorizontal = NO;
+
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"提现记录" style:UIBarButtonItemStylePlain target:self action:@selector(withdrawRecord:)];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)withdrawRecord:(id)sender
+{
+    WithdrawRecordViewController *vc = [[WithdrawRecordViewController alloc] init];
+    
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)withdrawInfoButtonPressed:(id)sender {
+    
+    PSTAlertController *alter = [PSTAlertController alertWithTitle:@"提现须知" message:@"\n提现资金包含数值不低于1元，可提现至微信。"];
+    [alter addAction:[PSTAlertAction actionWithTitle:@"知道了" style:PSTAlertActionStyleDestructive handler:nil]];
+    
+    [alter showWithSender:self controller:self animated:YES completion:nil];
+    
 }
-*/
 
 @end

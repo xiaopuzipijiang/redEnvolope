@@ -8,6 +8,13 @@
 
 #import "DMViewController.h"
 
+@protocol GuideContainerSubViewProtocol <NSObject>
+
+@property (nonatomic, assign) NSInteger pageIndex;
+
+@end
+
+
 @interface GuideContainerViewController : DMViewController
 
 @end

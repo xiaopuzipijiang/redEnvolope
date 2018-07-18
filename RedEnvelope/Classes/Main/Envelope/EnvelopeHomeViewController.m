@@ -140,21 +140,20 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    OpenDetailViewController *vc = [[OpenDetailViewController alloc] init];
-    vc.hidesBottomBarWhenPushed = YES;
+    DMWEAKSELFDEFIND
     
-    [self.navigationController pushViewController:vc animated:YES];
-    
-    return;
-    /*
-    OpenEnvelopeViewController *vc = [[OpenEnvelopeViewController alloc] init];
+    OpenEnvelopeViewController *vc = [[OpenEnvelopeViewController alloc] initWithCompletionHandler:^(id object) {
+        [DMModalPresentationViewController dismiss];
+        OpenDetailViewController *vc = [[OpenDetailViewController alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [wSelf.navigationController pushViewController:vc animated:NO];
+    }];
     
     CGRect rect = CGRectMake(0, 0, self.view.width - 40, (self.view.width - 40) * 827 / 645);
     rect.origin.x = ([UIScreen mainScreen].bounds.size.width - CGRectGetWidth(rect)) / 2;
     rect.origin.y = ([UIScreen mainScreen].bounds.size.height - CGRectGetHeight(rect)) / 2;
     
     [DMModalPresentationViewController presentModeViewController:vc from:self.tabBarController withContentRect:rect];
-    */
 }
 
 #pragma mark - property

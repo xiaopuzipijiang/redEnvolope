@@ -42,7 +42,7 @@ DMModalPresentationViewController *instance;
     [super viewDidLoad];
     self.backgroundView = [[UIView alloc] init];
     self.backgroundView.backgroundColor = [UIColor blackColor];
-    self.backgroundView.alpha = 0.3;
+    self.backgroundView.alpha = 0.5;
     
     [self.view addSubview:self.backgroundView];
 

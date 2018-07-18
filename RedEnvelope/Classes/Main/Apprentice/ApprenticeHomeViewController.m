@@ -30,6 +30,8 @@
     [super viewDidLoad];
     self.title = @"师徒";
 
+    self.view.backgroundColor = [UIColor whiteColor];
+    
     UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
     [button setTitle:@"如何收徒" forState:UIControlStateNormal];
     button.contentEdgeInsets = UIEdgeInsetsMake(3, 10, 3, 10);
@@ -60,8 +62,8 @@
 - (void)setUpApprenticeExplainView
 {
     self.apprenticeExplainBg = [[UIImageView alloc] init];
-    self.apprenticeExplainBg.backgroundColor = [UIColor redColor];
     self.apprenticeExplainBg.userInteractionEnabled = YES;
+    self.apprenticeExplainBg.image = [UIImage imageNamed:@"收徒说明"];
     [self.scrollView addSubview:self.apprenticeExplainBg];
     
     self.apprenticeExplainTitle = [[UILabel alloc] init];
@@ -97,7 +99,7 @@
     [self.apprenticeExplainBg addSubview:self.apprenticeInvitationCode];
 
     [self.apprenticeExplainTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(@(40));
+        make.top.equalTo(@(110));
         make.centerX.equalTo(self.apprenticeExplainBg);
     }];
     
@@ -122,20 +124,24 @@
     self.apprenticeInvitationCode.centerX = self.apprenticeExplainBg.width / 2;
     self.apprenticeInvitationCode.bottom = self.apprenticeExplainBg.height - 30;
     
+
     [self.apprenticeAwardButton sizeToFit];
     self.apprenticeAwardButton.layer.cornerRadius = self.apprenticeAwardButton.height / 2;
     self.apprenticeAwardButton.integralCenterX = self.view.width / 2;
-    self.apprenticeAwardButton.bottom = self.view.height - 64 - 44 - 20;
+
+    if (@available(iOS 11.0, *)) {
+        self.bottomImageView.frame = CGRectMake(0, self.view.height - self.view.safeAreaInsets.bottom - 20, self.view.width, 20);
+        self.apprenticeAwardButton.bottom = self.view.height - self.view.safeAreaInsets.top - self.view.safeAreaInsets.bottom - self.bottomImageView.height - 20;
+
+    } else {
+        self.bottomImageView.frame = CGRectMake(0, self.view.height - 44 - 20, self.view.width, 20);
+        self.apprenticeAwardButton.bottom = self.view.height - 64 - 44 - self.bottomImageView.height - 20;
+    }
     
     self.apprenticeButton.size = CGSizeMake(self.view.width - 120, 60);
     self.apprenticeButton.integralCenterX = self.view.width / 2;
     self.apprenticeButton.bottom = self.apprenticeAwardButton.top - 20;
 
-    if (@available(iOS 11.0, *)) {
-        self.bottomImageView.frame = CGRectMake(0, self.view.height - self.view.safeAreaInsets.bottom - 20, self.view.width, 20);
-    } else {
-        self.bottomImageView.frame = CGRectMake(0, self.view.height - 44 - 20, self.view.width, 20);
-    }
 }
 
 - (void)rightBarButtonPressed:(id)sender
@@ -153,10 +159,10 @@
     if (!_apprenticeButton)
     {
         _apprenticeButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        _apprenticeButton.titleLabel.font = [UIFont systemFontOfSize:20.0f];
+        _apprenticeButton.titleLabel.font = [UIFont systemFontOfSize:24.0f];
         [_apprenticeButton setTitle:@"立即收徒" forState:UIControlStateNormal];
-        [_apprenticeButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-        _apprenticeButton.backgroundColor = [UIColor yellowColor];
+        [_apprenticeButton setTitleColor:HEXCOLOR(0xe90139) forState:UIControlStateNormal];
+        _apprenticeButton.backgroundColor = HEXCOLOR(0xffce3d);
         _apprenticeButton.layer.cornerRadius = 5;
     }
     
@@ -168,8 +174,9 @@
     if (!_apprenticeAwardButton)
     {
         _apprenticeAwardButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        _apprenticeAwardButton.titleLabel.font = [UIFont systemFontOfSize:16.0f];
-        _apprenticeAwardButton.layer.borderColor = [UIColor grayColor].CGColor;
+        _apprenticeAwardButton.backgroundColor = [UIColor whiteColor];
+        _apprenticeAwardButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+        _apprenticeAwardButton.layer.borderColor = HEXCOLOR(0x666666).CGColor;
         _apprenticeAwardButton.layer.borderWidth = 1;
         _apprenticeAwardButton.contentEdgeInsets = UIEdgeInsetsMake(10, 20, 10, 20);
         NSMutableAttributedString *mAString = [[NSMutableAttributedString alloc] initWithString:@"已获得收徒奖励" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:16.0f]}];
@@ -178,7 +185,6 @@
         NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
         attachment.image = [UIImage imageNamed:@"提现-微信-选择方式箭头"];
         
-//        [mAString appendAttributedString:[NSAttributedString attributedStringWithAttachment:attachment]];
         
         [_apprenticeAwardButton setAttributedTitle:mAString forState:UIControlStateNormal];
         

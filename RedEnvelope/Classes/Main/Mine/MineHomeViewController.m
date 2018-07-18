@@ -9,8 +9,12 @@
 #import "MineHomeViewController.h"
 #import "MineHomeGeneralCell.h"
 #import "MineHomeProfileCell.h"
+#import "GrabRecordViewController.h"
+#import "RewardViewController.h"
 
 @interface MineHomeViewController ()
+
+@property (nonatomic, strong) UIImageView *bottomImageView;
 
 @end
 
@@ -19,15 +23,36 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.backgroundColor = RGBCOLOR(240, 239, 238);
+    self.clearsSelectionOnViewWillAppear = YES;
+    self.tableView.backgroundColor = HEXCOLOR(0xf2f2f2);
     
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+    [self.tableView performSelector:@selector(setTableHeaderBackgroundColor:) withObject:HEXCOLOR(0xfc5b5b) withObject:nil];
+#pragma clang diagnostic pop
+
     if (@available(iOS 11.0, *)) {
         self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     } else {
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
     
+    self.bottomImageView = [[UIImageView alloc] init];
+    self.bottomImageView.image = [UIImage imageNamed:@"底部彩条"];
+    [self.view addSubview:self.bottomImageView];
+    
     [self reloadDataSource];
+}
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    
+    if (@available(iOS 11.0, *)) {
+        self.bottomImageView.frame = CGRectMake(0, self.view.height - self.view.safeAreaInsets.bottom - 20, self.view.width, 20);
+    } else {
+        self.bottomImageView.frame = CGRectMake(0, self.view.height - 44 - 20, self.view.width, 20);
+    }
 }
 
 - (NSArray<Class> *)classesForRegiste
@@ -44,7 +69,7 @@
     DMDataSourceItem *section1 = [[DMDataSourceItem alloc] init];
     
     [section1 addSubitemWithClass:[MineHomeProfileCell class] object:nil configCellBlock:^(MineHomeProfileCell *cell, id object) {
-        cell.backgroundColor = UICOLOR_RANDOM;
+        cell.backgroundColor = HEXCOLOR(0xfc5c5c);
     } didSelectedBlock:^(MineHomeProfileCell *cell, id object) {
         
     }];
@@ -55,14 +80,18 @@
         cell.textLabel.text = @"收到的红包";
         cell.imageView.image = [UIImage imageNamed:@"我的-收到的红包"];
     } didSelectedBlock:^(MineHomeGeneralCell *cell, id object) {
-        
+        GrabRecordViewController *vc = [[GrabRecordViewController alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [wSelf.navigationController pushViewController:vc animated:YES];
     }];
     
     [section2 addSubitemWithClass:[MineHomeGeneralCell class] object:nil configCellBlock:^(MineHomeGeneralCell *cell, id object) {
         cell.textLabel.text = @"收徒奖励";
         cell.imageView.image = [UIImage imageNamed:@"收徒奖励"];
     } didSelectedBlock:^(MineHomeGeneralCell *cell, id object) {
-        
+        RewardViewController *vc = [[RewardViewController alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [wSelf.navigationController pushViewController:vc animated:YES];
     }];
 
     DMDataSourceItem *section3 = [[DMDataSourceItem alloc] init];

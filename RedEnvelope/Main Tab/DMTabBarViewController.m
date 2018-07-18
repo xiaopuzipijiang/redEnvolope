@@ -41,7 +41,7 @@
     self.tabBar.tintColor = DMSkinColorKeyAppTintColor;
     
     self.tabBar.clipsToBounds = YES;
-    self.selectedIndex = 0;
+    self.selectedIndex = 2;
     
     self.delegate = self;
 }

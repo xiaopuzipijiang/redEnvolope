@@ -7,7 +7,12 @@
 //
 
 #import "DMViewController.h"
+#import "GuideContainerViewController.h"
 
-@interface GuideItemViewController : DMViewController
+@interface GuideItemViewController : DMViewController <GuideContainerSubViewProtocol>
+
+@property (nonatomic, strong, readonly) UIImageView *bgView;
+
+@property (nonatomic, assign) NSInteger pageIndex;
 
 @end

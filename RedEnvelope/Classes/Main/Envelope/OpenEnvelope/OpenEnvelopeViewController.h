@@ -10,4 +10,6 @@
 
 @interface OpenEnvelopeViewController : DMViewController
 
+- (instancetype)initWithCompletionHandler:(void (^)(id object))completionHandler;
+
 @end

@@ -10,12 +10,29 @@
 
 @interface OpenEnvelopeViewController ()
 
-@property (nonatomic, strong) UIButton *cancelButton;
 @property (nonatomic, strong) UIImageView *bgView;
+
+@property (nonatomic, strong) UIButton *cancelButton;
+
+@property (nonatomic, strong) UIImageView *iconView;
+@property (nonatomic, strong) UILabel *titleLabel;
+
+@property (nonatomic, strong) UIButton *openButton;
+
+@property (nonatomic, copy) void (^completionHandler) (id object);
 
 @end
 
 @implementation OpenEnvelopeViewController
+
+- (instancetype)initWithCompletionHandler:(void (^)(id object))completionHandler
+{
+    self = [super init];
+    
+    self.completionHandler = completionHandler;
+    
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -31,8 +48,25 @@
     self.cancelButton.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
     [self.cancelButton addTarget:self action:@selector(cancelButtonePressed:) forControlEvents:UIControlEventTouchUpInside];
     
+    self.iconView = [[UIImageView alloc] init];
+    self.iconView.image = [UIImage imageNamed:@"关于天天刷红包"];
+    [self.view addSubview:self.iconView];
+    
+    self.titleLabel = [[UILabel alloc] init];
+    self.titleLabel.font = [UIFont systemFontOfSize:18];
+    self.titleLabel.textColor = HEXCOLOR(0xf6e4bc);
+    self.titleLabel.text = @"天天刷红包\n给您发了一个红包，金额随机";
+    self.titleLabel.numberOfLines = 2;
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:self.titleLabel];
+    
+    self.openButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [self.openButton setBackgroundImage:[UIImage imageNamed:@"开"] forState:UIControlStateNormal];
+    [self.openButton addTarget:self action:@selector(openButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.openButton];
+
     [self.view addSubview:self.cancelButton];
-    // Do any additional setup after loading the view.
+    
 }
 
 - (void)viewDidLayoutSubviews
@@ -41,29 +75,33 @@
     
     self.bgView.frame = self.view.bounds;
     
+    self.iconView.size = CGSizeMake(50, 50);
+    self.iconView.integralCenterX = self.view.width / 2;
+    self.iconView.top = 32;
+    
+    self.titleLabel.size = CGSizeMake(self.view.width, 100);
+    self.titleLabel.top = self.iconView.bottom + 20;
+    
+    self.openButton.size = CGSizeMake(90, 90);
+    self.openButton.integralCenterX = self.view.width / 2;
+    self.openButton.bottom = self.view.height - 105;
+
     [self.cancelButton sizeToFit];
     self.cancelButton.left = 10;
     self.cancelButton.top = 10;
+}
+
+- (void)openButtonPressed:(id)sender
+{
+    if (self.completionHandler)
+    {
+        self.completionHandler(nil);
+    }
 }
 
 - (void)cancelButtonePressed:(id)sender
 {
     [DMModalPresentationViewController dismiss];
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

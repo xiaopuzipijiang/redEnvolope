@@ -14,6 +14,7 @@
 		F2372CD420F5EA4100F3FA81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2372CD320F5EA4100F3FA81 /* Assets.xcassets */; };
 		F2372CD720F5EA4100F3FA81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2372CD520F5EA4100F3FA81 /* LaunchScreen.storyboard */; };
 		F2372CDA20F5EA4100F3FA81 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F2372CD920F5EA4100F3FA81 /* main.m */; };
+		F239CE8F20FF0FB0009BA4B2 /* WechatManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F239CE8E20FF0FB0009BA4B2 /* WechatManager.m */; };
 		F2A99CE820F61CEA00F936A3 /* NetWorkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A99CE720F61CEA00F936A3 /* NetWorkClient.m */; };
 		F2A99CFC20F6F2FD00F936A3 /* DMBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A99CEB20F6F2FD00F936A3 /* DMBaseViewController.m */; };
 		F2A99CFD20F6F2FD00F936A3 /* DMCollectionViewCenterFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A99CED20F6F2FD00F936A3 /* DMCollectionViewCenterFlowLayout.m */; };
@@ -95,8 +96,16 @@
 		F2A99E4320FC5BF300F936A3 /* DetailCountingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A99E4220FC5BF300F936A3 /* DetailCountingCell.m */; };
 		F2A99E4620FC5C1200F936A3 /* RecommendHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A99E4520FC5C1200F936A3 /* RecommendHeaderCell.m */; };
 		F2A99E4920FC5C2D00F936A3 /* DetailRecommendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A99E4820FC5C2D00F936A3 /* DetailRecommendCell.m */; };
-		F2A99E5020FC824A00F936A3 /* WithdrawCashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A99E4E20FC824A00F936A3 /* WithdrawCashViewController.m */; };
-		F2A99E5120FC824A00F936A3 /* WithdrawCashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2A99E4F20FC824A00F936A3 /* WithdrawCashViewController.xib */; };
+		F2A99E5620FC90B600F936A3 /* WithdrawCashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2A99E5420FC90B600F936A3 /* WithdrawCashViewController.xib */; };
+		F2A99E5920FC917300F936A3 /* WithdrawCashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A99E5720FC917200F936A3 /* WithdrawCashViewController.m */; };
+		F2A99E5C20FDB33E00F936A3 /* PSTAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A99E5B20FDB33E00F936A3 /* PSTAlertController.m */; };
+		F2A99E6020FDBD6B00F936A3 /* GrabRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A99E5F20FDBD6B00F936A3 /* GrabRecordCell.m */; };
+		F2A99E6320FDBDF000F936A3 /* GrabRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A99E6220FDBDF000F936A3 /* GrabRecordViewController.m */; };
+		F2A99E6720FDDA6D00F936A3 /* WithdrawRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A99E6620FDDA6D00F936A3 /* WithdrawRecordViewController.m */; };
+		F2A99E6A20FDDA9100F936A3 /* WithdDrawRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A99E6920FDDA9100F936A3 /* WithdDrawRecordCell.m */; };
+		F2A99E6E20FDE2BE00F936A3 /* RewardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A99E6D20FDE2BE00F936A3 /* RewardViewController.m */; };
+		F2A99E7120FDE4A100F936A3 /* PrenticeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A99E7020FDE4A100F936A3 /* PrenticeCell.m */; };
+		F2A99E7420FDE4DC00F936A3 /* RewardHeadToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A99E7320FDE4DC00F936A3 /* RewardHeadToolBar.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -113,6 +122,8 @@
 		F2372CD620F5EA4100F3FA81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F2372CD820F5EA4100F3FA81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F2372CD920F5EA4100F3FA81 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F239CE8D20FF0FB0009BA4B2 /* WechatManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WechatManager.h; sourceTree = "<group>"; };
+		F239CE8E20FF0FB0009BA4B2 /* WechatManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WechatManager.m; sourceTree = "<group>"; };
 		F2A99CE420F6028400F936A3 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		F2A99CE620F61CEA00F936A3 /* NetWorkClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetWorkClient.h; sourceTree = "<group>"; };
 		F2A99CE720F61CEA00F936A3 /* NetWorkClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetWorkClient.m; sourceTree = "<group>"; };
@@ -273,9 +284,25 @@
 		F2A99E4520FC5C1200F936A3 /* RecommendHeaderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecommendHeaderCell.m; sourceTree = "<group>"; };
 		F2A99E4720FC5C2D00F936A3 /* DetailRecommendCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailRecommendCell.h; sourceTree = "<group>"; };
 		F2A99E4820FC5C2D00F936A3 /* DetailRecommendCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailRecommendCell.m; sourceTree = "<group>"; };
-		F2A99E4D20FC824A00F936A3 /* WithdrawCashViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WithdrawCashViewController.h; sourceTree = "<group>"; };
-		F2A99E4E20FC824A00F936A3 /* WithdrawCashViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WithdrawCashViewController.m; sourceTree = "<group>"; };
-		F2A99E4F20FC824A00F936A3 /* WithdrawCashViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WithdrawCashViewController.xib; sourceTree = "<group>"; };
+		F2A99E5420FC90B600F936A3 /* WithdrawCashViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WithdrawCashViewController.xib; sourceTree = "<group>"; };
+		F2A99E5720FC917200F936A3 /* WithdrawCashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WithdrawCashViewController.m; sourceTree = "<group>"; };
+		F2A99E5820FC917300F936A3 /* WithdrawCashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WithdrawCashViewController.h; sourceTree = "<group>"; };
+		F2A99E5A20FDB33E00F936A3 /* PSTAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTAlertController.h; sourceTree = "<group>"; };
+		F2A99E5B20FDB33E00F936A3 /* PSTAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTAlertController.m; sourceTree = "<group>"; };
+		F2A99E5E20FDBD6B00F936A3 /* GrabRecordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GrabRecordCell.h; sourceTree = "<group>"; };
+		F2A99E5F20FDBD6B00F936A3 /* GrabRecordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GrabRecordCell.m; sourceTree = "<group>"; };
+		F2A99E6120FDBDF000F936A3 /* GrabRecordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GrabRecordViewController.h; sourceTree = "<group>"; };
+		F2A99E6220FDBDF000F936A3 /* GrabRecordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GrabRecordViewController.m; sourceTree = "<group>"; };
+		F2A99E6520FDDA6D00F936A3 /* WithdrawRecordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WithdrawRecordViewController.h; sourceTree = "<group>"; };
+		F2A99E6620FDDA6D00F936A3 /* WithdrawRecordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WithdrawRecordViewController.m; sourceTree = "<group>"; };
+		F2A99E6820FDDA9100F936A3 /* WithdDrawRecordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WithdDrawRecordCell.h; sourceTree = "<group>"; };
+		F2A99E6920FDDA9100F936A3 /* WithdDrawRecordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WithdDrawRecordCell.m; sourceTree = "<group>"; };
+		F2A99E6C20FDE2BE00F936A3 /* RewardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RewardViewController.h; sourceTree = "<group>"; };
+		F2A99E6D20FDE2BE00F936A3 /* RewardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RewardViewController.m; sourceTree = "<group>"; };
+		F2A99E6F20FDE4A100F936A3 /* PrenticeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrenticeCell.h; sourceTree = "<group>"; };
+		F2A99E7020FDE4A100F936A3 /* PrenticeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrenticeCell.m; sourceTree = "<group>"; };
+		F2A99E7220FDE4DC00F936A3 /* RewardHeadToolBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RewardHeadToolBar.h; sourceTree = "<group>"; };
+		F2A99E7320FDE4DC00F936A3 /* RewardHeadToolBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RewardHeadToolBar.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -328,6 +355,7 @@
 		F2372CC920F5EA4100F3FA81 /* RedEnvelope */ = {
 			isa = PBXGroup;
 			children = (
+				F239CE8C20FF0F98009BA4B2 /* WechatManager */,
 				F2A99DD620FB4EB700F936A3 /* vendors */,
 				F2A99D3D20F706C200F936A3 /* Main Tab */,
 				F2A99D0D20F6F7E500F936A3 /* Base */,
@@ -348,6 +376,15 @@
 				F2372CD920F5EA4100F3FA81 /* main.m */,
 			);
 			path = RedEnvelope;
+			sourceTree = "<group>";
+		};
+		F239CE8C20FF0F98009BA4B2 /* WechatManager */ = {
+			isa = PBXGroup;
+			children = (
+				F239CE8D20FF0FB0009BA4B2 /* WechatManager.h */,
+				F239CE8E20FF0FB0009BA4B2 /* WechatManager.m */,
+			);
+			path = WechatManager;
 			sourceTree = "<group>";
 		};
 		F2A99CE520F61CC400F936A3 /* NetWork */ = {
@@ -396,6 +433,8 @@
 		F2A99D0920F6F5C700F936A3 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				F2A99E5A20FDB33E00F936A3 /* PSTAlertController.h */,
+				F2A99E5B20FDB33E00F936A3 /* PSTAlertController.m */,
 				F2A99D0B20F6F62400F936A3 /* UIView+Sizes.h */,
 				F2A99D0A20F6F62400F936A3 /* UIView+Sizes.m */,
 			);
@@ -543,11 +582,12 @@
 		F2A99DA120F98B1C00F936A3 /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
+				F2A99E6420FDD91300F936A3 /* Record */,
 				F2A99DA620F98B5B00F936A3 /* WalletHomeViewController.h */,
 				F2A99DA720F98B5B00F936A3 /* WalletHomeViewController.m */,
-				F2A99E4D20FC824A00F936A3 /* WithdrawCashViewController.h */,
-				F2A99E4E20FC824A00F936A3 /* WithdrawCashViewController.m */,
-				F2A99E4F20FC824A00F936A3 /* WithdrawCashViewController.xib */,
+				F2A99E5820FC917300F936A3 /* WithdrawCashViewController.h */,
+				F2A99E5720FC917200F936A3 /* WithdrawCashViewController.m */,
+				F2A99E5420FC90B600F936A3 /* WithdrawCashViewController.xib */,
 				F2A99DC920FB316000F936A3 /* Cell */,
 			);
 			path = Wallet;
@@ -556,6 +596,8 @@
 		F2A99DA220F98B3100F936A3 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				F2A99E6B20FDE28B00F936A3 /* Reward */,
+				F2A99E5D20FDBD3200F936A3 /* record */,
 				F2A99DA320F98B4A00F936A3 /* MineHomeViewController.h */,
 				F2A99DA420F98B4A00F936A3 /* MineHomeViewController.m */,
 				F2A99DB520F99C9F00F936A3 /* MineHomeProfileCell.h */,
@@ -704,6 +746,41 @@
 			path = AAOptionsModel;
 			sourceTree = "<group>";
 		};
+		F2A99E5D20FDBD3200F936A3 /* record */ = {
+			isa = PBXGroup;
+			children = (
+				F2A99E5E20FDBD6B00F936A3 /* GrabRecordCell.h */,
+				F2A99E5F20FDBD6B00F936A3 /* GrabRecordCell.m */,
+				F2A99E6120FDBDF000F936A3 /* GrabRecordViewController.h */,
+				F2A99E6220FDBDF000F936A3 /* GrabRecordViewController.m */,
+			);
+			path = record;
+			sourceTree = "<group>";
+		};
+		F2A99E6420FDD91300F936A3 /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				F2A99E6520FDDA6D00F936A3 /* WithdrawRecordViewController.h */,
+				F2A99E6620FDDA6D00F936A3 /* WithdrawRecordViewController.m */,
+				F2A99E6820FDDA9100F936A3 /* WithdDrawRecordCell.h */,
+				F2A99E6920FDDA9100F936A3 /* WithdDrawRecordCell.m */,
+			);
+			path = Record;
+			sourceTree = "<group>";
+		};
+		F2A99E6B20FDE28B00F936A3 /* Reward */ = {
+			isa = PBXGroup;
+			children = (
+				F2A99E6C20FDE2BE00F936A3 /* RewardViewController.h */,
+				F2A99E6D20FDE2BE00F936A3 /* RewardViewController.m */,
+				F2A99E6F20FDE4A100F936A3 /* PrenticeCell.h */,
+				F2A99E7020FDE4A100F936A3 /* PrenticeCell.m */,
+				F2A99E7220FDE4DC00F936A3 /* RewardHeadToolBar.h */,
+				F2A99E7320FDE4DC00F936A3 /* RewardHeadToolBar.m */,
+			);
+			path = Reward;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -770,7 +847,7 @@
 				F2A99E2220FB4EEA00F936A3 /* AAHighcharts-3d.js in Resources */,
 				F2372CD420F5EA4100F3FA81 /* Assets.xcassets in Resources */,
 				F2A99E2020FB4EEA00F936A3 /* AAChartView.html in Resources */,
-				F2A99E5120FC824A00F936A3 /* WithdrawCashViewController.xib in Resources */,
+				F2A99E5620FC90B600F936A3 /* WithdrawCashViewController.xib in Resources */,
 				F2372CD220F5EA4100F3FA81 /* Main.storyboard in Resources */,
 				F2A99E2320FB4EEA00F936A3 /* AAHighchartsLib.js in Resources */,
 			);
@@ -826,16 +903,20 @@
 			files = (
 				F2A99DCC20FB317F00F936A3 /* WalletHeaderCell.m in Sources */,
 				F2A99D3420F6F7E500F936A3 /* DMModalPresentationViewController.m in Sources */,
+				F2A99E6020FDBD6B00F936A3 /* GrabRecordCell.m in Sources */,
 				F2A99E2C20FB4EEA00F936A3 /* AADataLabels.m in Sources */,
 				F2A99E3820FB4EEA00F936A3 /* AAStyle.m in Sources */,
+				F2A99E7120FDE4A100F936A3 /* PrenticeCell.m in Sources */,
 				F2A99DBE20FA07F700F936A3 /* OpenEnvelopeViewController.m in Sources */,
 				F2A99DAE20F98B8000F936A3 /* EnvelopeHomeViewController.m in Sources */,
 				F2A99DD520FB322B00F936A3 /* WalletRuleCell.m in Sources */,
 				F2372CCF20F5EA4100F3FA81 /* ViewController.m in Sources */,
 				F2A99CFC20F6F2FD00F936A3 /* DMBaseViewController.m in Sources */,
+				F2A99E6320FDBDF000F936A3 /* GrabRecordViewController.m in Sources */,
 				F2A99E1D20FB4EEA00F936A3 /* AAChartView.m in Sources */,
 				F2A99D0220F6F2FD00F936A3 /* DMTableViewController.m in Sources */,
 				F2A99D3720F6F7E500F936A3 /* MJChiBaoZiFooter.m in Sources */,
+				F2A99E6A20FDDA9100F936A3 /* WithdDrawRecordCell.m in Sources */,
 				F2A99DC820FB30E900F936A3 /* OpenDetailViewController.m in Sources */,
 				F2A99D3820F6F7E500F936A3 /* MJChiBaoZiFooter2.m in Sources */,
 				F2A99DAB20F98B7200F936A3 /* ApprenticeHomeViewController.m in Sources */,
@@ -871,17 +952,21 @@
 				F2A99D9720F89F7500F936A3 /* LoginViewController.m in Sources */,
 				F2A99E3520FB4EEA00F936A3 /* AAPlotOptions.m in Sources */,
 				F2A99D3C20F6F7E500F936A3 /* MJDIYHeader.m in Sources */,
-				F2A99E5020FC824A00F936A3 /* WithdrawCashViewController.m in Sources */,
+				F2A99E5920FC917300F936A3 /* WithdrawCashViewController.m in Sources */,
 				F2A99E1C20FB4EEA00F936A3 /* AAChartModel.m in Sources */,
+				F2A99E5C20FDB33E00F936A3 /* PSTAlertController.m in Sources */,
 				F2A99D3B20F6F7E500F936A3 /* MJDIYBackFooter.m in Sources */,
 				F2A99E3D20FB4EEA00F936A3 /* AAYAxis.m in Sources */,
 				F2A99E2E20FB4EEA00F936A3 /* AALabels.m in Sources */,
 				F2A99E1F20FB4EEA00F936A3 /* AASeriesElement.m in Sources */,
+				F2A99E6E20FDE2BE00F936A3 /* RewardViewController.m in Sources */,
 				F2A99DCF20FB31E500F936A3 /* WalletCountingCell.m in Sources */,
 				F2A99D9B20F8B30300F936A3 /* GuideItemViewController.m in Sources */,
 				F2A99E4620FC5C1200F936A3 /* RecommendHeaderCell.m in Sources */,
 				F2A99DA520F98B4A00F936A3 /* MineHomeViewController.m in Sources */,
 				F2A99E3620FB4EEA00F936A3 /* AASeries.m in Sources */,
+				F2A99E7420FDE4DC00F936A3 /* RewardHeadToolBar.m in Sources */,
+				F239CE8F20FF0FB0009BA4B2 /* WechatManager.m in Sources */,
 				F2A99D0120F6F2FD00F936A3 /* DMTableViewCell.m in Sources */,
 				F2A99E3220FB4EEA00F936A3 /* AAOptions3d.m in Sources */,
 				F2A99DD220FB320400F936A3 /* WalletIncomingChartCell.m in Sources */,
@@ -898,6 +983,7 @@
 				F2A99E2F20FB4EEA00F936A3 /* AALegend.m in Sources */,
 				F2A99E3020FB4EEA00F936A3 /* AALine.m in Sources */,
 				F2A99D3320F6F7E500F936A3 /* DMResultSet.m in Sources */,
+				F2A99E6720FDDA6D00F936A3 /* WithdrawRecordViewController.m in Sources */,
 				F2A99D3120F6F7E500F936A3 /* DMScrollTabButton.m in Sources */,
 				F2A99E2820FB4EEA00F936A3 /* AABar.m in Sources */,
 				F2A99E2B20FB4EEA00F936A3 /* AACrosshair.m in Sources */,

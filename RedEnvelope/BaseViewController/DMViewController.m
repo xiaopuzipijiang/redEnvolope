@@ -54,7 +54,7 @@ static NSInteger DMViewControllerCurrentUniqueCode = 0;
     if ([self.navigationController.viewControllers containsObject:self] &&
         [self.navigationController.viewControllers firstObject] != self)
     {
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navbar_back"] style:UIBarButtonItemStylePlain target:self action:@selector(backBarButtonPressed:)];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:DMSkinOriginalImage(@"返回") style:UIBarButtonItemStylePlain target:self action:@selector(backBarButtonPressed:)];
         self.navigationItem.leftBarButtonItem.imageInsets = UIEdgeInsetsMake(0, -10, 0, 0);
         self.navigationItem.leftBarButtonItem.tintColor = DMSkinColorKeyAppTintColor;
         self.navigationController.navigationBar.tintColor = DMSkinColorKeyAppTintColor;

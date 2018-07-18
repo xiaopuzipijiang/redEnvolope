@@ -11,6 +11,7 @@
 #import "WalletCountingCell.h"
 #import "WalletIncomingChartCell.h"
 #import "WalletRuleCell.h"
+#import "WithdrawCashViewController.h"
 
 @interface WalletHomeViewController ()
 
@@ -58,8 +59,11 @@
     
     DMDataSourceItem *section = [[DMDataSourceItem alloc] init];
     
-    [section addSubitemWithClass:[WalletHeaderCell class] object:nil configCellBlock:^(id cell, id object) {
-        
+    DMWEAKSELFDEFIND
+    
+    [section addSubitemWithClass:[WalletHeaderCell class] object:nil configCellBlock:^(WalletHeaderCell *cell, id object) {
+        [cell.withdrawCashButton removeAllTargets];
+        [cell.withdrawCashButton addTarget:wSelf action:@selector(withdrawCashButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     }];
     
     [section addSubitemWithClass:[WalletCountingCell class] object:nil configCellBlock:^(id cell, id object) {
@@ -82,6 +86,12 @@
     [self.tableView reloadData];
 }
 
+- (void)withdrawCashButtonPressed:(id)sender
+{
+    WithdrawCashViewController *vc = [[WithdrawCashViewController alloc] initWithNibName:@"WithdrawCashViewController" bundle:nil];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 - (DMNavigationBarStyle)navigationBarStyle
 {

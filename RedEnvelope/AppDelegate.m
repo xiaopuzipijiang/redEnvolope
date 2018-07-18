@@ -9,8 +9,9 @@
 #import "AppDelegate.h"
 #import "GuideContainerViewController.h"
 #import "DMTabBarViewController.h"
+#import "WechatManager.h"
 
-@interface AppDelegate ()
+@interface AppDelegate () 
 
 @end
 
@@ -19,7 +20,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-    [self showMainViewContorller];
+    [WXApi registerApp:@"wx18bf772064f24985"];
+    
+    [self showGuide];
     
     return YES;
 }
@@ -66,6 +69,16 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    return [[WechatManager sharedManager] handleURL:url];
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
+{
+    return [[WechatManager sharedManager] handleURL:url];
 }
 
 

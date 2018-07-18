@@ -10,4 +10,6 @@
 
 @interface WalletHeaderCell : DMTableViewCell
 
+@property (nonatomic, strong, readonly) UIButton *withdrawCashButton;
+
 @end
