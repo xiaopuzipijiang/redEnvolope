@@ -7,6 +7,7 @@
 //
 
 #import "GrabRecordCell.h"
+#import "GrabRecord.h"
 
 @interface GrabRecordCell ()
 
@@ -23,6 +24,7 @@
     if ([super initWithStyle:style reuseIdentifier:reuseIdentifier])
     {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.
         
         self.titleLabel = [[UILabel alloc] init];
         self.titleLabel.font = [UIFont systemFontOfSize:15.0f];
@@ -67,6 +69,13 @@
     return self;
 }
 
-
+- (void)setRecord:(GrabRecord *)record
+{
+    _record = record;
+    
+    self.titleLabel.text = record.text;
+    self.amountLabel.text = record.amount;
+    self.timeLabel.text = record.time;
+}
 
 @end

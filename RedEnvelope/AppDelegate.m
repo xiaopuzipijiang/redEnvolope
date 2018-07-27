@@ -10,6 +10,8 @@
 #import "GuideContainerViewController.h"
 #import "DMTabBarViewController.h"
 #import "WechatManager.h"
+#import "ShareActionSheetViewController.h"
+#import "WechatManager.h"
 
 @interface AppDelegate () 
 
@@ -22,7 +24,18 @@
 
     [WXApi registerApp:@"wx18bf772064f24985"];
     
-    [self showGuide];
+    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
+    [SVProgressHUD setMinimumDismissTimeInterval:2];
+    
+    if ([UserAccount currentUserAccount])
+    {
+        [self showMainViewContorller];
+    }
+    else
+    {
+        [self showGuide];
+    }
     
     return YES;
 }
@@ -44,6 +57,25 @@
     
     [self.window makeKeyAndVisible];
 }
+
+- (void)shareActionWithCode:(NSString *)code
+{
+    [ShareActionSheetViewController showShareActionSheetWithCompletionHandler:^(NSInteger type) {
+        switch (type) {
+            case 0:
+                [[WechatManager sharedManager] shareToSessionWithImage:[UIImage imageNamed:@"关于天天刷红包"]];
+                break;
+            case 1:
+                [[WechatManager sharedManager] shareToTimelineWithImage:[UIImage imageNamed:@"关于天天刷红包"]];
+                break;
+            case 2:
+                break;
+            default:
+                break;
+        }
+    }];
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

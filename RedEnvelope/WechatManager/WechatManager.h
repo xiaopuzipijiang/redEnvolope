@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void(^WeChatSignInCompletionHandler)(BOOL success, NSError *error);
+typedef void(^WeChatSignInCompletionHandler)(BOOL success, NSString* codeString, NSError *error);
 
 @interface WechatManager : NSObject
 
@@ -17,5 +17,8 @@ typedef void(^WeChatSignInCompletionHandler)(BOOL success, NSError *error);
 - (BOOL)handleURL:(NSURL *)url;
 
 - (void)signInWithCompletionHandler:(WeChatSignInCompletionHandler)completionHandler;
+
+- (void)shareToSessionWithImage:(UIImage *)image;
+- (void)shareToTimelineWithImage:(UIImage *)image;
 
 @end

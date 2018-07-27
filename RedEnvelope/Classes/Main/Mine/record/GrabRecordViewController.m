@@ -8,9 +8,12 @@
 
 #import "GrabRecordViewController.h"
 #import "GrabRecordCell.h"
-
+#import "ServiceManager.h"
+#import "GrabRecord.h"
 
 @interface GrabRecordViewController ()
+
+@property (nonatomic, strong) DMResultSet *resultSet;
 
 @end
 
@@ -21,15 +24,52 @@
     
     self.tableView.backgroundColor = [UIColor whiteColor];
     
+    self.resultSet = [[DMResultSet alloc] init];
+    
     self.title = @"收到的红包";
     
-    [self reloadDataSource];
-    // Do any additional setup after loading the view.
+    [self setUpRefreshControls];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    if (self.firstAppearance)
+    {
+        [self.tableView.mj_header beginRefreshing];
+    }
 }
 
 - (NSArray<Class> *)classesForRegiste
 {
     return @[[GrabRecordCell class]];
+}
+
+- (void)setUpRefreshControls
+{
+    DMWEAKSELFDEFIND
+    
+    self.tableView.mj_header = [RERefreshHeader headerWithRefreshingBlock:^{
+        [wSelf.resultSet removeAllItems];
+        wSelf.resultSet.currentPage = 1;
+        [[ServiceManager sharedManager] grabRecordListWithResult:self.resultSet CompletionHandler:^(BOOL success, NSString *errorMessage) {
+            [wSelf.tableView.mj_header endRefreshing];
+            wSelf.tableView.mj_footer.hidden = !self.resultSet.hasMore;
+            
+            [wSelf reloadDataSource];
+        }];
+    }];
+    
+    self.tableView.mj_footer = [RERefreshFooter footerWithRefreshingBlock:^{
+        wSelf.resultSet.currentPage += 1;
+        [[ServiceManager sharedManager] grabRecordListWithResult:self.resultSet CompletionHandler:^(BOOL success, NSString *errorMessage) {
+            [wSelf.tableView.mj_header endRefreshing];
+            wSelf.tableView.mj_footer.hidden = !self.resultSet.hasMore;
+            
+            [wSelf reloadDataSource];
+        }];
+    }];
 }
 
 - (void)reloadDataSource
@@ -38,9 +78,9 @@
     
     DMDataSourceItem *section = [[DMDataSourceItem alloc] init];
     
-    for (int i = 0; i < 10; i++)
+    for (GrabRecord *record in self.resultSet.items)
     {
-        [section addSubitemWithClass:[GrabRecordCell class] object:nil configCellBlock:^(id cell, id object) {
+        [section addSubitemWithClass:[GrabRecordCell class] object:record configCellBlock:^(GrabRecordCell *cell, GrabRecord *object) {
             
         }];
     }

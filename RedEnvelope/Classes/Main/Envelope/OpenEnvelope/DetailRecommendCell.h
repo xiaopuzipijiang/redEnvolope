@@ -8,6 +8,18 @@
 
 #import "DMTableViewCell.h"
 
+@class DetailRecommendCell;
+
+@protocol DetailRecommendCellDelegate <NSObject>
+
+- (void)updateCellHeight:(DetailRecommendCell *)cell height:(CGFloat)height;
+
+- (void)detailRecommendCell:(DetailRecommendCell *)cell navigate:(NSString *)url;
+
+@end
+
 @interface DetailRecommendCell : DMTableViewCell
+
+@property (nonatomic, weak) id <DetailRecommendCellDelegate> delegate;
 
 @end

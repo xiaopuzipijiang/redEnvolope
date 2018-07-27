@@ -9,7 +9,10 @@
 #import "RewardViewController.h"
 #import "RewardHeadToolBar.h"
 #import "PrenticeCell.h"
-#import "GrabRecordCell.h"
+#import "PrenticeRewardCell.h"
+#import "ServiceManager.h"
+#import "UserInfo.h"
+#import "REPrenticeResultSet.h"
 
 typedef NS_ENUM(NSInteger, RewardViewListType)
 {
@@ -22,8 +25,11 @@ typedef NS_ENUM(NSInteger, RewardViewListType)
 @interface RewardViewController ()
 
 @property (nonatomic, strong) RewardHeadToolBar *toolBar;
-
 @property (nonatomic, assign) RewardViewListType listType;
+
+@property (nonatomic, strong) DMResultSet *rewardResultSet;
+@property (nonatomic, strong) REPrenticeResultSet *prenticeResultSet;
+@property (nonatomic, strong) REPrenticeResultSet *discipleResultSet;
 
 @end
 
@@ -31,7 +37,7 @@ typedef NS_ENUM(NSInteger, RewardViewListType)
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     self.title = @"收徒奖励";
     
     self.toolBar = [[RewardHeadToolBar alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 64)];
@@ -42,17 +48,24 @@ typedef NS_ENUM(NSInteger, RewardViewListType)
     
     [self.toolBar.buttonII setTitle:@"我的徒弟\n2人" forState:UIControlStateNormal];
     [self.toolBar.buttonII addTarget:self action:@selector(showPrentice:) forControlEvents:UIControlEventTouchUpInside];
-
+    
     [self.toolBar.buttonIII setTitle:@"我的徒孙\n3人" forState:UIControlStateNormal];
     [self.toolBar.buttonIII addTarget:self action:@selector(showPrenticePrentice:) forControlEvents:UIControlEventTouchUpInside];
-
-
+    
     self.tableView.tableHeaderView = self.toolBar;
+    
+    self.rewardResultSet = [[DMResultSet alloc] init];
+    self.prenticeResultSet = [[REPrenticeResultSet alloc] init];
+    self.discipleResultSet = [[REPrenticeResultSet alloc] init];
+    
+    [self setUpRefreshControls];
+    
+    [self showReward:nil];
 }
 
 - (NSArray<Class> *)classesForRegiste
 {
-    return @[[GrabRecordCell class], [PrenticeCell class]];
+    return @[[PrenticeRewardCell class], [PrenticeCell class]];
 }
 
 - (void)showReward:(UIButton *)sender
@@ -62,7 +75,14 @@ typedef NS_ENUM(NSInteger, RewardViewListType)
     self.toolBar.buttonII.selected = NO;
     self.toolBar.buttonIII.selected = NO;
     
-    [self reloadDataSource];
+    if (self.rewardResultSet.countOfItems == 0)
+    {
+        [self.tableView.mj_header beginRefreshing];
+    }
+    else
+    {
+        [self reloadDataSource];
+    }
 }
 
 - (void)showPrentice:(UIButton *)sender
@@ -71,7 +91,15 @@ typedef NS_ENUM(NSInteger, RewardViewListType)
     self.toolBar.buttonI.selected = NO;
     self.toolBar.buttonII.selected = YES;
     self.toolBar.buttonIII.selected = NO;
-    [self reloadDataSource];
+    
+    if (self.prenticeResultSet.countOfItems == 0)
+    {
+        [self.tableView.mj_header beginRefreshing];
+    }
+    else
+    {
+        [self reloadDataSource];
+    }
 }
 
 - (void)showPrenticePrentice:(UIButton *)sender
@@ -80,28 +108,125 @@ typedef NS_ENUM(NSInteger, RewardViewListType)
     self.toolBar.buttonI.selected = NO;
     self.toolBar.buttonII.selected = NO;
     self.toolBar.buttonIII.selected = YES;
-    [self reloadDataSource];
+    
+    if (self.discipleResultSet.countOfItems == 0)
+    {
+        [self.tableView.mj_header beginRefreshing];
+    }
+    else
+    {
+        [self reloadDataSource];
+    }
+}
+
+- (void)setUpRefreshControls
+{
+    DMWEAKSELFDEFIND
+    
+    self.tableView.mj_header = [RERefreshHeader headerWithRefreshingBlock:^{
+        switch (wSelf.listType)
+        {
+            case RewardViewListTypeReward:
+            {
+                [wSelf.rewardResultSet removeAllItems];
+                wSelf.rewardResultSet.currentPage = 1;
+                [[ServiceManager sharedManager] requestApprenticeRewardListWithResultSet:wSelf.rewardResultSet completionHandler:^(BOOL success, NSString *errorMessage) {
+                    wSelf.tableView.mj_footer.hidden = !wSelf.rewardResultSet.hasMore;
+                    [wSelf.tableView.mj_header endRefreshing];
+                    [wSelf reloadDataSource];
+                }];
+                break;
+            }
+            case RewardViewListTypePrentice:
+            {
+                [wSelf.prenticeResultSet removeAllItems];
+                [[ServiceManager sharedManager] requestPrenticeListWithResultSet:wSelf.prenticeResultSet completionHandler:^(BOOL success, id object, NSString *errorMessage) {
+                    wSelf.tableView.mj_footer.hidden = !wSelf.prenticeResultSet.hasMore;
+                    [wSelf.tableView.mj_header endRefreshing];
+                    [wSelf reloadDataSource];
+                }];
+                break;
+            }
+            case RewardViewListTypePrenticePrentice:
+            {
+                [wSelf.discipleResultSet removeAllItems];
+                [[ServiceManager sharedManager] requestDiscipleListWithResultSet:wSelf.discipleResultSet completionHandler:^(BOOL success, id object, NSString *errorMessage) {
+                    wSelf.tableView.mj_footer.hidden = !wSelf.prenticeResultSet.hasMore;
+                    [wSelf.tableView.mj_header endRefreshing];
+                    [wSelf reloadDataSource];
+                }];
+                break;
+            }
+            default:
+                break;
+        }
+    }];
+    
+    self.tableView.mj_footer = [RERefreshFooter footerWithRefreshingBlock:^{
+        switch (self.listType)
+        {
+            case RewardViewListTypeReward:
+            {
+                
+                break;
+            }
+            case RewardViewListTypePrentice:
+            {
+                [[ServiceManager sharedManager] requestPrenticeListWithResultSet:self.prenticeResultSet completionHandler:^(BOOL success, id object, NSString *errorMessage) {
+                    wSelf.tableView.mj_footer.hidden = !wSelf.prenticeResultSet.hasMore;
+                    [wSelf.tableView.mj_footer endRefreshing];
+                    [wSelf reloadDataSource];
+                }];
+                break;
+            }
+            case RewardViewListTypePrenticePrentice:
+            {
+                [self.prenticeResultSet removeAllItems];
+                [[ServiceManager sharedManager] requestDiscipleListWithResultSet:self.discipleResultSet completionHandler:^(BOOL success, id object, NSString *errorMessage) {
+                    wSelf.tableView.mj_footer.hidden = !wSelf.prenticeResultSet.hasMore;
+                    [wSelf.tableView.mj_footer endRefreshing];
+                    [wSelf reloadDataSource];
+                }];
+                break;
+            }
+            default:
+                break;
+        }
+    }];
 }
 
 - (void)reloadDataSource
 {
     [self.viewDataSource removeAllSubitems];
     
-    DMWEAKSELFDEFIND
     DMDataSourceItem *section = [[DMDataSourceItem alloc] init];
     
-    for (int i = 0; i < 10; i ++)
+    if (self.listType == RewardViewListTypeReward)
     {
-        if (self.listType == RewardViewListTypeReward)
+        for (GrabRecord *recordInfo in self.rewardResultSet.items)
         {
-            [section addSubitemWithClass:[GrabRecordCell class] object:nil configCellBlock:^(id cell, id object) {
-                
+            [section addSubitemWithClass:[PrenticeRewardCell class] object:recordInfo configCellBlock:^(PrenticeRewardCell *cell, GrabRecord *object) {
+                cell.record = object;
             }];
         }
-        else
+    }
+    else if (self.listType == RewardViewListTypePrentice)
+    {
+        for (UserInfo *userInfo in self.prenticeResultSet.items)
         {
-            [section addSubitemWithClass:[PrenticeCell class] object:nil configCellBlock:^(id cell, id object) {
-                
+            [section addSubitemWithClass:[PrenticeCell class] object:userInfo configCellBlock:^(PrenticeCell *cell, UserInfo *object) {
+                [cell.avatar sd_setImageWithURL:[NSURL URLWithString:object.headimgurl]];
+                cell.nameLabel.text = object.nickname;
+            }];
+        }
+    }
+    else if (self.listType == RewardViewListTypePrenticePrentice)
+    {
+        for (UserInfo *userInfo in self.discipleResultSet.items)
+        {
+            [section addSubitemWithClass:[PrenticeCell class] object:userInfo configCellBlock:^(PrenticeCell *cell, UserInfo *object) {
+                [cell.avatar sd_setImageWithURL:[NSURL URLWithString:object.headimgurl]];
+                cell.nameLabel.text = object.nickname;
             }];
         }
     }

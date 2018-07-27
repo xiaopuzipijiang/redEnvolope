@@ -7,6 +7,7 @@
 //
 
 #import "OpenEnvelopeViewController.h"
+#import "RedEnvelope.h"
 
 @interface OpenEnvelopeViewController ()
 
@@ -21,15 +22,18 @@
 
 @property (nonatomic, copy) void (^completionHandler) (id object);
 
+@property (nonatomic, strong) RedEnvelope *redEnvelope;
+
 @end
 
 @implementation OpenEnvelopeViewController
 
-- (instancetype)initWithCompletionHandler:(void (^)(id object))completionHandler
+- (instancetype)initWithRedEnvelope:(RedEnvelope *)redEnvelope CompletionHandler:(void (^)(id object))completionHandler
 {
     self = [super init];
     
     self.completionHandler = completionHandler;
+    self.redEnvelope = redEnvelope;
     
     return self;
 }
@@ -93,10 +97,13 @@
 
 - (void)openButtonPressed:(id)sender
 {
-    if (self.completionHandler)
-    {
-        self.completionHandler(nil);
-    }
+    DMWEAKSELFDEFIND
+    [[ServiceManager sharedManager] openEnvelopeWithId:self.redEnvelope.redEnvelopeId completionHandler:^(BOOL success, id object, NSString *errorMessage) {
+        if (wSelf.completionHandler)
+        {
+            wSelf.completionHandler(object);
+        }
+    }];
 }
 
 - (void)cancelButtonePressed:(id)sender

@@ -7,7 +7,10 @@
 //
 
 #import "DMTableViewCell.h"
+#import "BalanceInfo.h"
 
 @interface WalletCountingCell : DMTableViewCell
+
+@property (nonatomic, strong) BalanceInfo *balanceInfo;
 
 @end

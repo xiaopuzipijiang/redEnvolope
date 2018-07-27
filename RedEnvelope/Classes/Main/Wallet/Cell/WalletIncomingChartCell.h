@@ -8,8 +8,10 @@
 
 #import "DMTableViewCell.h"
 
+@class TrendInfo;
+
 @interface WalletIncomingChartCell : DMTableViewCell
 
-- (void)setupData;
+@property (nonatomic, strong) TrendInfo *trendInfo;
 
 @end

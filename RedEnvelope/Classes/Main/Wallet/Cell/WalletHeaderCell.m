@@ -26,18 +26,20 @@
     {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
+        self.contentView.backgroundColor = HEXCOLOR(0xfafafa);
+        
         self.balanceTitleLabel = [[UILabel alloc] init];
         self.balanceTitleLabel.font = [UIFont systemFontOfSize:16.0f];
         self.balanceTitleLabel.textColor = DM153GRAYCOLOR;
         self.balanceTitleLabel.text = @"我的票票价值";
         
         self.balanceLabel = [[UILabel alloc] init];
-        self.balanceLabel.text = @"$122121";
         
         self.withdrawCashButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        self.withdrawCashButton.contentEdgeInsets = UIEdgeInsetsMake(5, 20, 5, 20);
+        self.withdrawCashButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+        self.withdrawCashButton.layer.cornerRadius = 13.0f;
         [self.withdrawCashButton setTitle:@"提现" forState:UIControlStateNormal];
-        self.withdrawCashButton.backgroundColor = HEXCOLOR(0xe06f54);
+        self.withdrawCashButton.backgroundColor = HEXCOLOR(0xe26f4f);
         [self.withdrawCashButton setTitleColor:HEXCOLOR(0xffffff) forState:UIControlStateNormal];
         
         self.exchangeRuleLabel = [[UILabel alloc] init];
@@ -51,17 +53,19 @@
         [self.contentView addSubview:self.exchangeRuleLabel];
         
         [self.balanceTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(@40);
+            make.top.equalTo(@20);
             make.centerX.equalTo(self.contentView);
         }];
 
         [self.balanceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.balanceTitleLabel.mas_bottom).with.offset(10);
+            make.top.equalTo(self.balanceTitleLabel.mas_bottom).with.offset(5);
             make.centerX.equalTo(self.contentView);
         }];
 
         [self.withdrawCashButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.balanceLabel.mas_bottom).with.offset(20);
+            make.width.mas_equalTo(70);
+            make.height.mas_equalTo(26);
             make.centerX.equalTo(self.contentView);
         }];
 
@@ -76,5 +80,12 @@
     return self;
 }
 
+- (void)setBalance:(NSString *)balacne
+{
+    NSMutableAttributedString *mAString = [[NSMutableAttributedString alloc] initWithString:@"¥" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:13.0f]}];
+    [mAString appendAttributedString:[[NSAttributedString alloc] initWithString:balacne ? : @"" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:40.0f]}]];
+    self.balanceLabel.attributedText = mAString;
+    [self.balanceLabel sizeToFit];
+}
 
 @end

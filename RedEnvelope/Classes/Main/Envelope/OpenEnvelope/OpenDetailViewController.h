@@ -10,4 +10,6 @@
 
 @interface OpenDetailViewController : DMTableViewController
 
+@property (nonatomic, strong) NSDictionary *info;
+
 @end

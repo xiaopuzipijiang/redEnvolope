@@ -26,20 +26,18 @@
     {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
 
-        self.contentView.backgroundColor = HEXCOLOR(0xf7f1f8);
-        
+        self.contentView.backgroundColor = HEXCOLOR(0xffffff);
+
         self.exchangePriceLabel = [[UILabel alloc] init];
         self.exchangePriceLabel.numberOfLines = 2;
-        self.exchangePriceLabel.text = @"0.9232\n今日体现价";
         self.exchangePriceLabel.textAlignment = NSTextAlignmentCenter;
         
         self.ticketCountLabel = [[UILabel alloc] init];
         self.ticketCountLabel.numberOfLines = 2;
-        self.ticketCountLabel.text = @"9.9232\n我的票票数";
         self.ticketCountLabel.textAlignment = NSTextAlignmentCenter;
 
         self.seperatorLine = [[UIView alloc] init];
-        self.seperatorLine.backgroundColor = [UIColor whiteColor];
+        self.seperatorLine.backgroundColor = HEXCOLOR(0xf5f5f5);
         
         [self.contentView addSubview:self.exchangePriceLabel];
         [self.contentView addSubview:self.ticketCountLabel];
@@ -61,8 +59,8 @@
         }];
         
         [self.seperatorLine mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(@20);
-            make.bottom.equalTo(@-20);
+            make.top.equalTo(@18);
+            make.bottom.equalTo(@-18);
             make.centerX.equalTo(self.contentView);
             make.width.mas_equalTo(1);
         }];
@@ -72,6 +70,28 @@
     return self;
 }
 
+- (void)setBalanceInfo:(BalanceInfo *)balanceInfo
+{
+    NSMutableAttributedString *mAString = [[NSMutableAttributedString alloc] initWithString:balanceInfo.price ? : @"" attributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:17.0f], NSForegroundColorAttributeName : HEXCOLOR(0x333333)}];
+    
+    [mAString appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n今日提现价" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:12.0f], NSForegroundColorAttributeName : HEXCOLOR(0x888888)}]];
 
+    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+    style.lineSpacing = 5;
+    style.alignment = NSTextAlignmentCenter;
+    
+    [mAString addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, mAString.length)];
+    
+    self.exchangePriceLabel.attributedText = mAString;
+    
+    mAString = [[NSMutableAttributedString alloc] initWithString:balanceInfo.amount ? : @"" attributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:17.0f], NSForegroundColorAttributeName : HEXCOLOR(0x333333)}];
+
+    [mAString appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n我的票票数" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:12.0f], NSForegroundColorAttributeName : HEXCOLOR(0x888888)}]];
+
+    [mAString addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, mAString.length)];
+
+    self.ticketCountLabel.attributedText = mAString;
+
+}
 
 @end

@@ -18,7 +18,7 @@
     self.button.tintColor = [UIColor whiteColor];
     self.button.titleLabel.font = [UIFont systemFontOfSize:18.0f];
     
-    [self.button setTitle:@"获取更多红包" forState:UIControlStateNormal];
+    [self.button setTitle:@"分享获取更多红包" forState:UIControlStateNormal];
     self.button.backgroundColor = HEXCOLOR(0xd75b45);
     [self addSubview:self.button];
     

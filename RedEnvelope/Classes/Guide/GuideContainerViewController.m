@@ -8,6 +8,8 @@
 
 #import "GuideContainerViewController.h"
 #import "GuideItemViewController.h"
+#import "ServiceManager.h"
+#import "WechatManager.h"
 
 #define kPageCount 3
 
@@ -77,22 +79,21 @@
 
 - (void)loginByWeiXin:(id)sender
 {
-    bool is = [WXApi isWXAppInstalled];
-    
-    if (!is)
-    {
-        
-    }
-    
-    //构造SendAuthReq结构体
-    SendAuthReq* req = [[SendAuthReq alloc]init];
-    req.scope = @"snsapi_userinfo";
-    req.state = @"123";
-    
-    //第三方向微信终端发送一个SendAuthReq消息结构
-    [WXApi sendReq:req];
+    [SVProgressHUD show];
+    [[WechatManager sharedManager] signInWithCompletionHandler:^(BOOL success, NSString* codeString, NSError *error) {
+        [[ServiceManager sharedManager] loginWithToken:codeString completionHandler:^(BOOL success, id object, NSString *errorMessage) {
+            if (success)
+            {
+                [SVProgressHUD dismiss];
+                [kAPPDelegate showMainViewContorller];
+            }
+            else
+            {
+                [SVProgressHUD showErrorWithStatus:errorMessage];
+            }
+        }];
+    }];
 }
-
 
 - (nullable UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {

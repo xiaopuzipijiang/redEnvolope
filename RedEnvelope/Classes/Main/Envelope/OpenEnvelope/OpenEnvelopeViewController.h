@@ -8,8 +8,10 @@
 
 #import "DMViewController.h"
 
+@class RedEnvelope;
+
 @interface OpenEnvelopeViewController : DMViewController
 
-- (instancetype)initWithCompletionHandler:(void (^)(id object))completionHandler;
+- (instancetype)initWithRedEnvelope:(RedEnvelope *)redEnvelope CompletionHandler:(void (^)(id object))completionHandler;
 
 @end

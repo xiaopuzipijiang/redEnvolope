@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RedEnvelope.h"
 
 @interface EnvelopeCollectionViewCell : UICollectionViewCell
 
+@property (nonatomic, assign) NSInteger comingTime;
 
 @end

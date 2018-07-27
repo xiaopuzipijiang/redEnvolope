@@ -24,7 +24,7 @@
         self.ruleLabel.text = @"票票规则";
         self.ruleLabel.textAlignment = NSTextAlignmentCenter;
         self.ruleLabel.backgroundColor = HEXCOLOR(0xe9e9e9);
-        self.ruleLabel.font = [UIFont systemFontOfSize:16.0f];
+        self.ruleLabel.font = [UIFont systemFontOfSize:14.0f];
         self.ruleLabel.textColor = DM153GRAYCOLOR;
         [self.contentView addSubview:self.ruleLabel];
         

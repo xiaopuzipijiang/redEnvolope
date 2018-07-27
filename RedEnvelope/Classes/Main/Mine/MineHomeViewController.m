@@ -11,10 +11,14 @@
 #import "MineHomeProfileCell.h"
 #import "GrabRecordViewController.h"
 #import "RewardViewController.h"
+#import "ServiceManager.h"
+#import "UserInfo.h"
 
 @interface MineHomeViewController ()
 
 @property (nonatomic, strong) UIImageView *bottomImageView;
+
+@property (nonatomic, strong) UserInfo *userInfo;
 
 @end
 
@@ -31,17 +35,24 @@
     [self.tableView performSelector:@selector(setTableHeaderBackgroundColor:) withObject:HEXCOLOR(0xfc5b5b) withObject:nil];
 #pragma clang diagnostic pop
 
-    if (@available(iOS 11.0, *)) {
-        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-    } else {
-        self.automaticallyAdjustsScrollViewInsets = NO;
-    }
+//    if (@available(iOS 11.0, *)) {
+//        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+//    } else {
+//        self.automaticallyAdjustsScrollViewInsets = NO;
+//    }
     
     self.bottomImageView = [[UIImageView alloc] init];
     self.bottomImageView.image = [UIImage imageNamed:@"底部彩条"];
     [self.view addSubview:self.bottomImageView];
     
     [self reloadDataSource];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self loadUserInfo];
 }
 
 - (void)viewDidLayoutSubviews
@@ -53,6 +64,18 @@
     } else {
         self.bottomImageView.frame = CGRectMake(0, self.view.height - 44 - 20, self.view.width, 20);
     }
+}
+
+- (void)loadUserInfo
+{
+    [[ServiceManager sharedManager] requestUserInfoWithCompletionHandler:^(BOOL success, UserInfo *object, NSString *errorMessage) {
+        if (success)
+        {
+            self.userInfo = object;
+            
+            [self reloadDataSource];
+        }
+    }];
 }
 
 - (NSArray<Class> *)classesForRegiste
@@ -70,6 +93,8 @@
     
     [section1 addSubitemWithClass:[MineHomeProfileCell class] object:nil configCellBlock:^(MineHomeProfileCell *cell, id object) {
         cell.backgroundColor = HEXCOLOR(0xfc5c5c);
+        [cell.avatar sd_setImageWithURL:[NSURL URLWithString:wSelf.userInfo.headimgurl]];
+        cell.nameLabel.text = wSelf.userInfo.nickname;
     } didSelectedBlock:^(MineHomeProfileCell *cell, id object) {
         
     }];
@@ -121,6 +146,7 @@
     [self.viewDataSource addSubitem:section2];
     [self.viewDataSource addSubitem:section3];
 
+    [self.tableView reloadData];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

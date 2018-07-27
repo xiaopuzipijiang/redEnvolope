@@ -12,10 +12,14 @@
 #import "WalletIncomingChartCell.h"
 #import "WalletRuleCell.h"
 #import "WithdrawCashViewController.h"
+#import "ServiceManager.h"
+#import "WalletInfo.h"
 
 @interface WalletHomeViewController ()
 
 @property (nonatomic, strong) UIImageView *bottomImageView;
+
+@property (nonatomic, strong) WalletInfo *walletInfo;
 
 @end
 
@@ -24,17 +28,29 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if (@available(iOS 11.0, *)) {
-        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-    } else {
-        self.automaticallyAdjustsScrollViewInsets = NO;
-    }
+    self.extendedLayoutIncludesOpaqueBars = YES;
+    
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+    [self.tableView performSelector:@selector(setTableHeaderBackgroundColor:) withObject:HEXCOLOR(0xfafafa) withObject:nil];
+#pragma clang diagnostic pop
+
+    self.tableView.backgroundColor = [UIColor whiteColor];
     
     self.bottomImageView = [[UIImageView alloc] init];
     self.bottomImageView.image = [UIImage imageNamed:@"底部彩条"];
     [self.view addSubview:self.bottomImageView];
 
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 20, 0);
+    
     [self reloadDataSource];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self loadData];
 }
 
 - (void)viewDidLayoutSubviews
@@ -53,6 +69,18 @@
     return @[[WalletHeaderCell class], [WalletCountingCell class], [WalletIncomingChartCell class], [WalletRuleCell class]];
 }
 
+- (void)loadData
+{
+    DMWEAKSELFDEFIND
+    
+    [[ServiceManager sharedManager] requestWalletInfoWithCompletionHandler:^(BOOL success, id object, NSString *errorMessage) {
+        
+        wSelf.walletInfo = object;
+        [wSelf reloadDataSource];
+        
+    }];
+}
+
 - (void)reloadDataSource
 {
     [self.viewDataSource removeAllSubitems];
@@ -62,17 +90,18 @@
     DMWEAKSELFDEFIND
     
     [section addSubitemWithClass:[WalletHeaderCell class] object:nil configCellBlock:^(WalletHeaderCell *cell, id object) {
+        [cell setBalance:self.walletInfo.balance.balance];
         [cell.withdrawCashButton removeAllTargets];
         [cell.withdrawCashButton addTarget:wSelf action:@selector(withdrawCashButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     }];
     
-    [section addSubitemWithClass:[WalletCountingCell class] object:nil configCellBlock:^(id cell, id object) {
-        
+    [section addSubitemWithClass:[WalletCountingCell class] object:nil configCellBlock:^(WalletCountingCell *cell, id object) {
+        cell.balanceInfo = wSelf.walletInfo.balance;
     }];
 
     [section addSubitemWithClass:[WalletIncomingChartCell class] object:nil configCellBlock:^(WalletIncomingChartCell *cell, id object) {
         
-        [cell setupData];
+        cell.trendInfo = self.walletInfo.trendInfo;
         
     }];
 

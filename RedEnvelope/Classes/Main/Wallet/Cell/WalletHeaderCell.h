@@ -10,6 +10,12 @@
 
 @interface WalletHeaderCell : DMTableViewCell
 
+@property (nonatomic, strong, readonly) UILabel *balanceTitleLabel;
+@property (nonatomic, strong, readonly) UILabel *balanceLabel;
+
 @property (nonatomic, strong, readonly) UIButton *withdrawCashButton;
+@property (nonatomic, strong, readonly) UILabel *exchangeRuleLabel;
+
+- (void)setBalance:(NSString *)balacne;
 
 @end

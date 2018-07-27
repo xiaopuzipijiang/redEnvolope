@@ -43,13 +43,11 @@
         self.nameLabel = [[UILabel alloc] init];
         self.nameLabel.font = [UIFont systemFontOfSize:16.0f];
         self.nameLabel.textColor = DMMainTextColor;
-        self.nameLabel.text = @"时时红包";
         [self.contentView addSubview:self.nameLabel];
 
         self.amountLabel = [[UILabel alloc] init];
         self.amountLabel.font = [UIFont systemFontOfSize:16.0f];
         self.amountLabel.textColor = DMMainTextColor;
-        self.amountLabel.text = @"1.2222元";
         [self.contentView addSubview:self.amountLabel];
 
         self.descLabel = [[UILabel alloc] init];
@@ -59,10 +57,10 @@
         [self.contentView addSubview:self.descLabel];
         
         self.ticketButton = [[UIButton alloc] init];
-        [self.ticketButton setTitle:@"+0.61233票票" forState:UIControlStateNormal];
+        [self.ticketButton setTitle:@"xxx" forState:UIControlStateNormal];
         self.ticketButton.titleLabel.font = [UIFont systemFontOfSize:13.0f];
-        self.ticketButton.backgroundColor = [UIColor orangeColor];
         self.ticketButton.contentEdgeInsets = UIEdgeInsetsMake(3, 20, 3, 5);
+        [self.ticketButton setBackgroundImage:[DMSkinOriginalImage(@"CombinedShape") stretchableImageByCenter] forState:UIControlStateNormal];
         [self.contentView addSubview:self.ticketButton];
         
         [self.headerBg mas_makeConstraints:^(MASConstraintMaker *make) {

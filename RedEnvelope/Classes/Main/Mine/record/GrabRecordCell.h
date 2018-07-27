@@ -8,6 +8,10 @@
 
 #import "DMTableViewCell.h"
 
+@class GrabRecord;
+
 @interface GrabRecordCell : DMTableViewCell
+
+@property (nonatomic, strong) GrabRecord *record;
 
 @end

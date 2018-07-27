@@ -11,14 +11,20 @@
 #import "EnvelopeRefreshReusableView.h"
 #import "OpenEnvelopeViewController.h"
 #import "OpenDetailViewController.h"
+#import "ServiceManager.h"
+#import "HomeInfo.h"
+#import "ShareActionSheetViewController.h"
 
 #define kContentInsets UIEdgeInsetsMake(20, 40, 50, 40)
+#define kMaxCount 10
 
 @interface EnvelopeHomeViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 
 @property (nonatomic, strong) UIImageView *bottomImageView;
+
+@property (nonatomic, strong) HomeInfo *homeInfo;
 
 @end
 
@@ -44,7 +50,17 @@
     
     [self.view sendSubviewToBack:self.bottomImageView];
     
-    [self updateTiele];
+    [self setUpRefreshControls];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    if (self.homeInfo.redEnvelopList.count == 0)
+    {
+        [self.collectionView.mj_header beginRefreshing];
+    }
 }
 
 - (void)viewDidLayoutSubviews
@@ -70,29 +86,48 @@
     }
     
     NSMutableAttributedString *mAString = [[NSMutableAttributedString alloc] initWithString:@"¥" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:12.0f]}];
-    [mAString appendAttributedString:[[NSAttributedString alloc] initWithString:@"1.100023" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:28.0f]}]];
+    [mAString appendAttributedString:[[NSAttributedString alloc] initWithString:self.homeInfo.balanceInfo.balance ? : @"" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:28.0f]}]];
     
     titleLabel.attributedText = mAString;
     
     [titleLabel sizeToFit];
 }
 
+- (void)setUpRefreshControls
+{
+    DMWEAKSELFDEFIND
+    self.collectionView.mj_header = [RERefreshHeader headerWithRefreshingBlock:^{
+        [[ServiceManager sharedManager] requestHomerInfoWithCompletionHandler:^(BOOL success, HomeInfo *object, NSString *errorMessage) {
+            [self.collectionView.mj_header endRefreshing];
+            
+            wSelf.homeInfo = object;
+            [wSelf.collectionView reloadData];
+            [wSelf updateTiele];
+        }];
+    }];
+}
 
 #pragma mark - UICollectionViewDelegate / Datasource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 1;
+    return self.homeInfo ? 1 : 0;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 6;
+    return MIN(self.homeInfo.redEnvelopList.count + 1, kMaxCount);
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     EnvelopeCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+    
+    if (self.homeInfo.redEnvelopList.count < kMaxCount && indexPath.row == (self.homeInfo.redEnvelopList.count))
+    {
+        cell.comingTime = self.homeInfo.nextTime;
+    }
+    
     return cell;
 }
 
@@ -101,6 +136,9 @@
     if ([kind isEqualToString:UICollectionElementKindSectionFooter])
     {
         EnvelopeRefreshReusableView *footer = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footer" forIndexPath:indexPath];
+        
+        [footer.button removeAllTargets];
+        [footer.button addTarget:self action:@selector(shareEvent:) forControlEvents:UIControlEventTouchUpInside];
         
         return footer;
     }
@@ -140,11 +178,25 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    OpenDetailViewController *vc1 = [[OpenDetailViewController alloc] init];
+    
+    [self.navigationController pushViewController:vc1 animated:YES];
+    
+    return;
+    
+    if (self.homeInfo.redEnvelopList.count < kMaxCount && indexPath.row == (self.homeInfo.redEnvelopList.count))
+    {
+        return;
+    }
+
     DMWEAKSELFDEFIND
     
-    OpenEnvelopeViewController *vc = [[OpenEnvelopeViewController alloc] initWithCompletionHandler:^(id object) {
+    RedEnvelope *redEnvelope = [self.homeInfo.redEnvelopList objectAtIndex:indexPath.row];
+    
+    OpenEnvelopeViewController *vc = [[OpenEnvelopeViewController alloc] initWithRedEnvelope:redEnvelope CompletionHandler:^(id object) {
         [DMModalPresentationViewController dismiss];
         OpenDetailViewController *vc = [[OpenDetailViewController alloc] init];
+        vc.info = object;
         vc.hidesBottomBarWhenPushed = YES;
         [wSelf.navigationController pushViewController:vc animated:NO];
     }];
@@ -154,6 +206,11 @@
     rect.origin.y = ([UIScreen mainScreen].bounds.size.height - CGRectGetHeight(rect)) / 2;
     
     [DMModalPresentationViewController presentModeViewController:vc from:self.tabBarController withContentRect:rect];
+}
+
+- (void)shareEvent:(id)sender
+{
+    [kAPPDelegate shareActionWithCode:nil];
 }
 
 #pragma mark - property

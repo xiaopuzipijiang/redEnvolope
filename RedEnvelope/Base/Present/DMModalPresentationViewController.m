@@ -42,14 +42,27 @@ DMModalPresentationViewController *instance;
     [super viewDidLoad];
     self.backgroundView = [[UIView alloc] init];
     self.backgroundView.backgroundColor = [UIColor blackColor];
-    self.backgroundView.alpha = 0.5;
+    self.backgroundView.alpha = 0.0;
     
     [self.view addSubview:self.backgroundView];
 
+//    [UIView animateWithDuration:3 animations:^{
+//        self.backgroundView.alpha = 0.5;
+//    }];
+//
     [self.view addSubview:self.dmPresentingViewController.view];
     
 //    [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapBlank:)]];
 //    [self.dmPresentingViewController.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:nil action:nil]];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        self.backgroundView.alpha = 0.5;
+    }];
 }
 
 - (void)viewDidLayoutSubviews

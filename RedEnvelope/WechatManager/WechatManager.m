@@ -30,7 +30,38 @@
 
 - (void)signInWithCompletionHandler:(WeChatSignInCompletionHandler)completionHandler
 {
+    self.signCompletionHandler = completionHandler;
     
+    SendAuthReq* req = [[SendAuthReq alloc]init];
+    req.scope = @"snsapi_userinfo";
+    req.state = @"123";
+    [WXApi sendReq:req];
+}
+
+- (void)shareToSessionWithImage:(UIImage *)image
+{
+    [self shareWithImage:image scene:WXSceneSession];
+}
+
+- (void)shareToTimelineWithImage:(UIImage *)image
+{
+    [self shareWithImage:image scene:WXSceneTimeline];
+}
+
+- (void)shareWithImage:(UIImage *)image scene:(int)scene
+{
+    WXMediaMessage *message = [WXMediaMessage message];
+    [message setThumbImage:image];
+    
+    WXImageObject *imageObject = [WXImageObject object];
+    imageObject.imageData = [image imageDataRepresentation];
+    message.mediaObject = imageObject;
+    
+    SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];
+    req.bText = NO;
+    req.message = message;
+    req.scene = scene;
+    [WXApi sendReq:req];
 }
 
 - (BOOL)handleURL:(NSURL *)url;
@@ -60,7 +91,10 @@
         }
         
         if (authResp.errCode == 0){
-            
+            if (self.signCompletionHandler)
+            {
+                self.signCompletionHandler(YES, authResp.code, nil);
+            }
         }
     }
 }

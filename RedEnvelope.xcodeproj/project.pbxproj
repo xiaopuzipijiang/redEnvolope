@@ -8,13 +8,31 @@
 
 /* Begin PBXBuildFile section */
 		5EDCA284C7276A506F2F337B /* libPods-RedEnvelope.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27AFC4B15A41AF39FFE19FB9 /* libPods-RedEnvelope.a */; };
+		F20C8E232109CFE300522E04 /* TrendInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F20C8E222109CFE300522E04 /* TrendInfo.m */; };
+		F20C8E262109CFF600522E04 /* TrendItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F20C8E252109CFF600522E04 /* TrendItem.m */; };
+		F20C8E29210AD03F00522E04 /* UIImage+Stretch.m in Sources */ = {isa = PBXBuildFile; fileRef = F20C8E28210AD03F00522E04 /* UIImage+Stretch.m */; };
+		F20C8E2D210AE1E200522E04 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F20C8E2C210AE1E200522E04 /* WebViewController.m */; };
+		F2203A2F21018A80004DA014 /* ServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F2203A2E21018A80004DA014 /* ServiceManager.m */; };
+		F2355A3B21087CD70013B17F /* GrabRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = F2355A3A21087CD70013B17F /* GrabRecord.m */; };
+		F2355A3E21097A980013B17F /* WalletInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F2355A3D21097A980013B17F /* WalletInfo.m */; };
+		F2355A43210982740013B17F /* ShareActionSheetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2355A42210982740013B17F /* ShareActionSheetViewController.m */; };
 		F2372CCC20F5EA4100F3FA81 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F2372CCB20F5EA4100F3FA81 /* AppDelegate.m */; };
-		F2372CCF20F5EA4100F3FA81 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2372CCE20F5EA4100F3FA81 /* ViewController.m */; };
 		F2372CD220F5EA4100F3FA81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2372CD020F5EA4100F3FA81 /* Main.storyboard */; };
 		F2372CD420F5EA4100F3FA81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2372CD320F5EA4100F3FA81 /* Assets.xcassets */; };
 		F2372CD720F5EA4100F3FA81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2372CD520F5EA4100F3FA81 /* LaunchScreen.storyboard */; };
 		F2372CDA20F5EA4100F3FA81 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F2372CD920F5EA4100F3FA81 /* main.m */; };
 		F239CE8F20FF0FB0009BA4B2 /* WechatManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F239CE8E20FF0FB0009BA4B2 /* WechatManager.m */; };
+		F28C388D2102CB2F00D2F37A /* UserAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = F28C388C2102CB2F00D2F37A /* UserAccount.m */; };
+		F28C38902103936400D2F37A /* NSDictionary+KeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = F28C388F2103936400D2F37A /* NSDictionary+KeyValue.m */; };
+		F28C38932103939D00D2F37A /* NSString+SimpleMatching.m in Sources */ = {isa = PBXBuildFile; fileRef = F28C38912103939D00D2F37A /* NSString+SimpleMatching.m */; };
+		F28C389721039A2D00D2F37A /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F28C389621039A2D00D2F37A /* UserInfo.m */; };
+		F28C389B2103A27B00D2F37A /* RedEnvelope.m in Sources */ = {isa = PBXBuildFile; fileRef = F28C389A2103A27B00D2F37A /* RedEnvelope.m */; };
+		F28C389E2104121200D2F37A /* PrenticeRewardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F28C389D2104121200D2F37A /* PrenticeRewardCell.m */; };
+		F28C38A2210416A900D2F37A /* RERefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F28C38A1210416A900D2F37A /* RERefreshHeader.m */; };
+		F28C38A52104176D00D2F37A /* RERefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = F28C38A42104176D00D2F37A /* RERefreshFooter.m */; };
+		F28C38A821041ECA00D2F37A /* REPrenticeResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = F28C38A721041ECA00D2F37A /* REPrenticeResultSet.m */; };
+		F28C38AB21044FC000D2F37A /* HomeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F28C38AA21044FC000D2F37A /* HomeInfo.m */; };
+		F28C38AE2104528C00D2F37A /* BalanceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F28C38AD2104528C00D2F37A /* BalanceInfo.m */; };
 		F2A99CE820F61CEA00F936A3 /* NetWorkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A99CE720F61CEA00F936A3 /* NetWorkClient.m */; };
 		F2A99CFC20F6F2FD00F936A3 /* DMBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A99CEB20F6F2FD00F936A3 /* DMBaseViewController.m */; };
 		F2A99CFD20F6F2FD00F936A3 /* DMCollectionViewCenterFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A99CED20F6F2FD00F936A3 /* DMCollectionViewCenterFlowLayout.m */; };
@@ -112,11 +130,25 @@
 		0677D949C85155BFD39C54FC /* Pods-RedEnvelope.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RedEnvelope.release.xcconfig"; path = "Pods/Target Support Files/Pods-RedEnvelope/Pods-RedEnvelope.release.xcconfig"; sourceTree = "<group>"; };
 		27AFC4B15A41AF39FFE19FB9 /* libPods-RedEnvelope.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RedEnvelope.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF175D8011146237AED5A797 /* Pods-RedEnvelope.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RedEnvelope.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RedEnvelope/Pods-RedEnvelope.debug.xcconfig"; sourceTree = "<group>"; };
+		F20C8E212109CFE300522E04 /* TrendInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrendInfo.h; sourceTree = "<group>"; };
+		F20C8E222109CFE300522E04 /* TrendInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrendInfo.m; sourceTree = "<group>"; };
+		F20C8E242109CFF600522E04 /* TrendItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrendItem.h; sourceTree = "<group>"; };
+		F20C8E252109CFF600522E04 /* TrendItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrendItem.m; sourceTree = "<group>"; };
+		F20C8E27210AD03F00522E04 /* UIImage+Stretch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Stretch.h"; sourceTree = "<group>"; };
+		F20C8E28210AD03F00522E04 /* UIImage+Stretch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Stretch.m"; sourceTree = "<group>"; };
+		F20C8E2B210AE1E200522E04 /* WebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		F20C8E2C210AE1E200522E04 /* WebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		F2203A2D21018A80004DA014 /* ServiceManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ServiceManager.h; sourceTree = "<group>"; };
+		F2203A2E21018A80004DA014 /* ServiceManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ServiceManager.m; sourceTree = "<group>"; };
+		F2355A3921087CD70013B17F /* GrabRecord.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GrabRecord.h; sourceTree = "<group>"; };
+		F2355A3A21087CD70013B17F /* GrabRecord.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GrabRecord.m; sourceTree = "<group>"; };
+		F2355A3C21097A980013B17F /* WalletInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WalletInfo.h; sourceTree = "<group>"; };
+		F2355A3D21097A980013B17F /* WalletInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WalletInfo.m; sourceTree = "<group>"; };
+		F2355A41210982740013B17F /* ShareActionSheetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareActionSheetViewController.h; sourceTree = "<group>"; };
+		F2355A42210982740013B17F /* ShareActionSheetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareActionSheetViewController.m; sourceTree = "<group>"; };
 		F2372CC720F5EA4100F3FA81 /* RedEnvelope.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedEnvelope.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2372CCA20F5EA4100F3FA81 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F2372CCB20F5EA4100F3FA81 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		F2372CCD20F5EA4100F3FA81 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		F2372CCE20F5EA4100F3FA81 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		F2372CD120F5EA4100F3FA81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F2372CD320F5EA4100F3FA81 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F2372CD620F5EA4100F3FA81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -124,6 +156,28 @@
 		F2372CD920F5EA4100F3FA81 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F239CE8D20FF0FB0009BA4B2 /* WechatManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WechatManager.h; sourceTree = "<group>"; };
 		F239CE8E20FF0FB0009BA4B2 /* WechatManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WechatManager.m; sourceTree = "<group>"; };
+		F28C388B2102CB2F00D2F37A /* UserAccount.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserAccount.h; sourceTree = "<group>"; };
+		F28C388C2102CB2F00D2F37A /* UserAccount.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserAccount.m; sourceTree = "<group>"; };
+		F28C388E2103936400D2F37A /* NSDictionary+KeyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+KeyValue.h"; sourceTree = "<group>"; };
+		F28C388F2103936400D2F37A /* NSDictionary+KeyValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+KeyValue.m"; sourceTree = "<group>"; };
+		F28C38912103939D00D2F37A /* NSString+SimpleMatching.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SimpleMatching.m"; sourceTree = "<group>"; };
+		F28C38922103939D00D2F37A /* NSString+SimpleMatching.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SimpleMatching.h"; sourceTree = "<group>"; };
+		F28C389521039A2D00D2F37A /* UserInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
+		F28C389621039A2D00D2F37A /* UserInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
+		F28C38992103A27B00D2F37A /* RedEnvelope.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RedEnvelope.h; sourceTree = "<group>"; };
+		F28C389A2103A27B00D2F37A /* RedEnvelope.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RedEnvelope.m; sourceTree = "<group>"; };
+		F28C389C2104121200D2F37A /* PrenticeRewardCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrenticeRewardCell.h; sourceTree = "<group>"; };
+		F28C389D2104121200D2F37A /* PrenticeRewardCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrenticeRewardCell.m; sourceTree = "<group>"; };
+		F28C38A0210416A900D2F37A /* RERefreshHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RERefreshHeader.h; sourceTree = "<group>"; };
+		F28C38A1210416A900D2F37A /* RERefreshHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RERefreshHeader.m; sourceTree = "<group>"; };
+		F28C38A32104176D00D2F37A /* RERefreshFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RERefreshFooter.h; sourceTree = "<group>"; };
+		F28C38A42104176D00D2F37A /* RERefreshFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RERefreshFooter.m; sourceTree = "<group>"; };
+		F28C38A621041ECA00D2F37A /* REPrenticeResultSet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = REPrenticeResultSet.h; sourceTree = "<group>"; };
+		F28C38A721041ECA00D2F37A /* REPrenticeResultSet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = REPrenticeResultSet.m; sourceTree = "<group>"; };
+		F28C38A921044FC000D2F37A /* HomeInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeInfo.h; sourceTree = "<group>"; };
+		F28C38AA21044FC000D2F37A /* HomeInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeInfo.m; sourceTree = "<group>"; };
+		F28C38AC2104528C00D2F37A /* BalanceInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BalanceInfo.h; sourceTree = "<group>"; };
+		F28C38AD2104528C00D2F37A /* BalanceInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BalanceInfo.m; sourceTree = "<group>"; };
 		F2A99CE420F6028400F936A3 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		F2A99CE620F61CEA00F936A3 /* NetWorkClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetWorkClient.h; sourceTree = "<group>"; };
 		F2A99CE720F61CEA00F936A3 /* NetWorkClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetWorkClient.m; sourceTree = "<group>"; };
@@ -334,6 +388,37 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		F20C8E2A210AE1CA00522E04 /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				F20C8E2B210AE1E200522E04 /* WebViewController.h */,
+				F20C8E2C210AE1E200522E04 /* WebViewController.m */,
+			);
+			path = WebView;
+			sourceTree = "<group>";
+		};
+		F2355A3F21097AA40013B17F /* model */ = {
+			isa = PBXGroup;
+			children = (
+				F2355A3C21097A980013B17F /* WalletInfo.h */,
+				F2355A3D21097A980013B17F /* WalletInfo.m */,
+				F20C8E212109CFE300522E04 /* TrendInfo.h */,
+				F20C8E222109CFE300522E04 /* TrendInfo.m */,
+				F20C8E242109CFF600522E04 /* TrendItem.h */,
+				F20C8E252109CFF600522E04 /* TrendItem.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		F2355A402109824D0013B17F /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				F2355A41210982740013B17F /* ShareActionSheetViewController.h */,
+				F2355A42210982740013B17F /* ShareActionSheetViewController.m */,
+			);
+			path = Share;
+			sourceTree = "<group>";
+		};
 		F2372CBE20F5EA4100F3FA81 = {
 			isa = PBXGroup;
 			children = (
@@ -355,6 +440,7 @@
 		F2372CC920F5EA4100F3FA81 /* RedEnvelope */ = {
 			isa = PBXGroup;
 			children = (
+				F28C389F210415C700D2F37A /* RERefresh */,
 				F239CE8C20FF0F98009BA4B2 /* WechatManager */,
 				F2A99DD620FB4EB700F936A3 /* vendors */,
 				F2A99D3D20F706C200F936A3 /* Main Tab */,
@@ -362,12 +448,11 @@
 				F2A99D0920F6F5C700F936A3 /* Utils */,
 				F2A99D0520F6F33800F936A3 /* Data Source */,
 				F2A99CE920F6F2FD00F936A3 /* BaseViewController */,
+				F28C388A2102CAF000D2F37A /* UserAccount */,
 				F2A99CE520F61CC400F936A3 /* NetWork */,
 				F2A99D4120F7088200F936A3 /* Classes */,
 				F2372CCA20F5EA4100F3FA81 /* AppDelegate.h */,
 				F2372CCB20F5EA4100F3FA81 /* AppDelegate.m */,
-				F2372CCD20F5EA4100F3FA81 /* ViewController.h */,
-				F2372CCE20F5EA4100F3FA81 /* ViewController.m */,
 				F2372CD020F5EA4100F3FA81 /* Main.storyboard */,
 				F2372CD320F5EA4100F3FA81 /* Assets.xcassets */,
 				F2372CD520F5EA4100F3FA81 /* LaunchScreen.storyboard */,
@@ -387,11 +472,59 @@
 			path = WechatManager;
 			sourceTree = "<group>";
 		};
+		F28C388A2102CAF000D2F37A /* UserAccount */ = {
+			isa = PBXGroup;
+			children = (
+				F28C388B2102CB2F00D2F37A /* UserAccount.h */,
+				F28C388C2102CB2F00D2F37A /* UserAccount.m */,
+			);
+			path = UserAccount;
+			sourceTree = "<group>";
+		};
+		F28C389421039A1400D2F37A /* model */ = {
+			isa = PBXGroup;
+			children = (
+				F28C389521039A2D00D2F37A /* UserInfo.h */,
+				F28C389621039A2D00D2F37A /* UserInfo.m */,
+				F2355A3921087CD70013B17F /* GrabRecord.h */,
+				F2355A3A21087CD70013B17F /* GrabRecord.m */,
+				F28C38A621041ECA00D2F37A /* REPrenticeResultSet.h */,
+				F28C38A721041ECA00D2F37A /* REPrenticeResultSet.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		F28C38982103A26300D2F37A /* model */ = {
+			isa = PBXGroup;
+			children = (
+				F28C38992103A27B00D2F37A /* RedEnvelope.h */,
+				F28C389A2103A27B00D2F37A /* RedEnvelope.m */,
+				F28C38A921044FC000D2F37A /* HomeInfo.h */,
+				F28C38AA21044FC000D2F37A /* HomeInfo.m */,
+				F28C38AC2104528C00D2F37A /* BalanceInfo.h */,
+				F28C38AD2104528C00D2F37A /* BalanceInfo.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		F28C389F210415C700D2F37A /* RERefresh */ = {
+			isa = PBXGroup;
+			children = (
+				F28C38A0210416A900D2F37A /* RERefreshHeader.h */,
+				F28C38A1210416A900D2F37A /* RERefreshHeader.m */,
+				F28C38A32104176D00D2F37A /* RERefreshFooter.h */,
+				F28C38A42104176D00D2F37A /* RERefreshFooter.m */,
+			);
+			path = RERefresh;
+			sourceTree = "<group>";
+		};
 		F2A99CE520F61CC400F936A3 /* NetWork */ = {
 			isa = PBXGroup;
 			children = (
 				F2A99CE620F61CEA00F936A3 /* NetWorkClient.h */,
 				F2A99CE720F61CEA00F936A3 /* NetWorkClient.m */,
+				F2203A2D21018A80004DA014 /* ServiceManager.h */,
+				F2203A2E21018A80004DA014 /* ServiceManager.m */,
 			);
 			path = NetWork;
 			sourceTree = "<group>";
@@ -433,6 +566,12 @@
 		F2A99D0920F6F5C700F936A3 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				F20C8E27210AD03F00522E04 /* UIImage+Stretch.h */,
+				F20C8E28210AD03F00522E04 /* UIImage+Stretch.m */,
+				F28C38922103939D00D2F37A /* NSString+SimpleMatching.h */,
+				F28C38912103939D00D2F37A /* NSString+SimpleMatching.m */,
+				F28C388E2103936400D2F37A /* NSDictionary+KeyValue.h */,
+				F28C388F2103936400D2F37A /* NSDictionary+KeyValue.m */,
 				F2A99E5A20FDB33E00F936A3 /* PSTAlertController.h */,
 				F2A99E5B20FDB33E00F936A3 /* PSTAlertController.m */,
 				F2A99D0B20F6F62400F936A3 /* UIView+Sizes.h */,
@@ -444,6 +583,7 @@
 		F2A99D0D20F6F7E500F936A3 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				F20C8E2A210AE1CA00522E04 /* WebView */,
 				F2A99D1120F6F7E500F936A3 /* DMScrollTabBar */,
 				F2A99D1620F6F7E500F936A3 /* Model */,
 				F2A99D1B20F6F7E500F936A3 /* Present */,
@@ -518,6 +658,7 @@
 		F2A99D4120F7088200F936A3 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				F2355A402109824D0013B17F /* Share */,
 				F2A99D9820F8A52800F936A3 /* Guide */,
 				F2A99D4320F7092700F936A3 /* Main */,
 				F2A99D4220F7091800F936A3 /* Login */,
@@ -559,6 +700,7 @@
 		F2A99D9F20F98A8700F936A3 /* Envelope */ = {
 			isa = PBXGroup;
 			children = (
+				F28C38982103A26300D2F37A /* model */,
 				F2A99DAC20F98B8000F936A3 /* EnvelopeHomeViewController.h */,
 				F2A99DAD20F98B8000F936A3 /* EnvelopeHomeViewController.m */,
 				F2A99DAF20F98ED600F936A3 /* EnvelopeCollectionViewCell.h */,
@@ -582,6 +724,7 @@
 		F2A99DA120F98B1C00F936A3 /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
+				F2355A3F21097AA40013B17F /* model */,
 				F2A99E6420FDD91300F936A3 /* Record */,
 				F2A99DA620F98B5B00F936A3 /* WalletHomeViewController.h */,
 				F2A99DA720F98B5B00F936A3 /* WalletHomeViewController.m */,
@@ -596,6 +739,7 @@
 		F2A99DA220F98B3100F936A3 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				F28C389421039A1400D2F37A /* model */,
 				F2A99E6B20FDE28B00F936A3 /* Reward */,
 				F2A99E5D20FDBD3200F936A3 /* record */,
 				F2A99DA320F98B4A00F936A3 /* MineHomeViewController.h */,
@@ -773,6 +917,8 @@
 			children = (
 				F2A99E6C20FDE2BE00F936A3 /* RewardViewController.h */,
 				F2A99E6D20FDE2BE00F936A3 /* RewardViewController.m */,
+				F28C389C2104121200D2F37A /* PrenticeRewardCell.h */,
+				F28C389D2104121200D2F37A /* PrenticeRewardCell.m */,
 				F2A99E6F20FDE4A100F936A3 /* PrenticeCell.h */,
 				F2A99E7020FDE4A100F936A3 /* PrenticeCell.m */,
 				F2A99E7220FDE4DC00F936A3 /* RewardHeadToolBar.h */,
@@ -907,24 +1053,32 @@
 				F2A99E2C20FB4EEA00F936A3 /* AADataLabels.m in Sources */,
 				F2A99E3820FB4EEA00F936A3 /* AAStyle.m in Sources */,
 				F2A99E7120FDE4A100F936A3 /* PrenticeCell.m in Sources */,
+				F28C389B2103A27B00D2F37A /* RedEnvelope.m in Sources */,
 				F2A99DBE20FA07F700F936A3 /* OpenEnvelopeViewController.m in Sources */,
 				F2A99DAE20F98B8000F936A3 /* EnvelopeHomeViewController.m in Sources */,
 				F2A99DD520FB322B00F936A3 /* WalletRuleCell.m in Sources */,
-				F2372CCF20F5EA4100F3FA81 /* ViewController.m in Sources */,
+				F28C38A821041ECA00D2F37A /* REPrenticeResultSet.m in Sources */,
+				F28C38932103939D00D2F37A /* NSString+SimpleMatching.m in Sources */,
 				F2A99CFC20F6F2FD00F936A3 /* DMBaseViewController.m in Sources */,
 				F2A99E6320FDBDF000F936A3 /* GrabRecordViewController.m in Sources */,
+				F20C8E262109CFF600522E04 /* TrendItem.m in Sources */,
+				F28C389E2104121200D2F37A /* PrenticeRewardCell.m in Sources */,
 				F2A99E1D20FB4EEA00F936A3 /* AAChartView.m in Sources */,
 				F2A99D0220F6F2FD00F936A3 /* DMTableViewController.m in Sources */,
 				F2A99D3720F6F7E500F936A3 /* MJChiBaoZiFooter.m in Sources */,
 				F2A99E6A20FDDA9100F936A3 /* WithdDrawRecordCell.m in Sources */,
 				F2A99DC820FB30E900F936A3 /* OpenDetailViewController.m in Sources */,
 				F2A99D3820F6F7E500F936A3 /* MJChiBaoZiFooter2.m in Sources */,
+				F28C38AB21044FC000D2F37A /* HomeInfo.m in Sources */,
+				F28C38902103936400D2F37A /* NSDictionary+KeyValue.m in Sources */,
 				F2A99DAB20F98B7200F936A3 /* ApprenticeHomeViewController.m in Sources */,
 				F2A99CFD20F6F2FD00F936A3 /* DMCollectionViewCenterFlowLayout.m in Sources */,
 				F2A99E4920FC5C2D00F936A3 /* DetailRecommendCell.m in Sources */,
+				F20C8E2D210AE1E200522E04 /* WebViewController.m in Sources */,
 				F2A99E3A20FB4EEA00F936A3 /* AATitle.m in Sources */,
 				F2A99E4020FC5B8200F936A3 /* DetailHeaderCell.m in Sources */,
 				F2A99DB420F98F5400F936A3 /* EnvelopeRefreshReusableView.m in Sources */,
+				F28C389721039A2D00D2F37A /* UserInfo.m in Sources */,
 				F2A99E2920FB4EEA00F936A3 /* AAChart.m in Sources */,
 				F2A99E3B20FB4EEA00F936A3 /* AATooltip.m in Sources */,
 				F2A99E2D20FB4EEA00F936A3 /* AAItemStyle.m in Sources */,
@@ -936,7 +1090,9 @@
 				F2A99E3920FB4EEA00F936A3 /* AASubtitle.m in Sources */,
 				F2A99E2A20FB4EEA00F936A3 /* AAColumn.m in Sources */,
 				F2A99E2720FB4EEA00F936A3 /* AAAreaspline.m in Sources */,
+				F28C388D2102CB2F00D2F37A /* UserAccount.m in Sources */,
 				F2A99DB720F99C9F00F936A3 /* MineHomeProfileCell.m in Sources */,
+				F2355A43210982740013B17F /* ShareActionSheetViewController.m in Sources */,
 				F2372CCC20F5EA4100F3FA81 /* AppDelegate.m in Sources */,
 				F2A99E4320FC5BF300F936A3 /* DetailCountingCell.m in Sources */,
 				F2A99E2620FB4EEA00F936A3 /* AAArea.m in Sources */,
@@ -958,9 +1114,12 @@
 				F2A99D3B20F6F7E500F936A3 /* MJDIYBackFooter.m in Sources */,
 				F2A99E3D20FB4EEA00F936A3 /* AAYAxis.m in Sources */,
 				F2A99E2E20FB4EEA00F936A3 /* AALabels.m in Sources */,
+				F2203A2F21018A80004DA014 /* ServiceManager.m in Sources */,
 				F2A99E1F20FB4EEA00F936A3 /* AASeriesElement.m in Sources */,
+				F2355A3E21097A980013B17F /* WalletInfo.m in Sources */,
 				F2A99E6E20FDE2BE00F936A3 /* RewardViewController.m in Sources */,
 				F2A99DCF20FB31E500F936A3 /* WalletCountingCell.m in Sources */,
+				F28C38A2210416A900D2F37A /* RERefreshHeader.m in Sources */,
 				F2A99D9B20F8B30300F936A3 /* GuideItemViewController.m in Sources */,
 				F2A99E4620FC5C1200F936A3 /* RecommendHeaderCell.m in Sources */,
 				F2A99DA520F98B4A00F936A3 /* MineHomeViewController.m in Sources */,
@@ -974,7 +1133,9 @@
 				F2A99E3420FB4EEA00F936A3 /* AAPlotLinesElement.m in Sources */,
 				F2A99D3020F6F7E500F936A3 /* DMScrollTabBar.m in Sources */,
 				F2A99CFF20F6F2FD00F936A3 /* DMNavigationViewController.m in Sources */,
+				F28C38A52104176D00D2F37A /* RERefreshFooter.m in Sources */,
 				F2A99D3220F6F7E500F936A3 /* DMModelObject.m in Sources */,
+				F28C38AE2104528C00D2F37A /* BalanceInfo.m in Sources */,
 				F2A99D3520F6F7E500F936A3 /* DMGifRefreshHeader.m in Sources */,
 				F2A99DBA20F99CBE00F936A3 /* MineHomeGeneralCell.m in Sources */,
 				F2A99D3620F6F7E500F936A3 /* DMRefreshFooter.m in Sources */,
@@ -983,6 +1144,8 @@
 				F2A99E2F20FB4EEA00F936A3 /* AALegend.m in Sources */,
 				F2A99E3020FB4EEA00F936A3 /* AALine.m in Sources */,
 				F2A99D3320F6F7E500F936A3 /* DMResultSet.m in Sources */,
+				F20C8E232109CFE300522E04 /* TrendInfo.m in Sources */,
+				F2355A3B21087CD70013B17F /* GrabRecord.m in Sources */,
 				F2A99E6720FDDA6D00F936A3 /* WithdrawRecordViewController.m in Sources */,
 				F2A99D3120F6F7E500F936A3 /* DMScrollTabButton.m in Sources */,
 				F2A99E2820FB4EEA00F936A3 /* AABar.m in Sources */,
@@ -990,6 +1153,7 @@
 				F2A99D0C20F6F62400F936A3 /* UIView+Sizes.m in Sources */,
 				F2A99D0320F6F2FD00F936A3 /* DMTableViewHeaderFooterView.m in Sources */,
 				F2A99E3C20FB4EEA00F936A3 /* AAXAxis.m in Sources */,
+				F20C8E29210AD03F00522E04 /* UIImage+Stretch.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

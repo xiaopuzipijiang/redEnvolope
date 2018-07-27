@@ -23,11 +23,13 @@
 {
     if ([super initWithStyle:style reuseIdentifier:reuseIdentifier])
     {
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.contentView.backgroundColor = [UIColor clearColor];
         self.backgroundColor = [UIColor clearColor];
         
         [self.contentView addSubview:self.avatar];
-        
+        [self.contentView addSubview:self.nameLabel];
+
         [self.avatar mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(@(15));
             make.top.equalTo(@(50));
@@ -35,7 +37,10 @@
             make.width.height.mas_equalTo(kAvatarWidth);
         }];
         
-        self.avatar.backgroundColor = UICOLOR_RANDOM;
+        [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.avatar.mas_right).with.offset(10);
+            make.centerY.equalTo(self.avatar);
+        }];
     }
     
     return self;
@@ -52,5 +57,19 @@
     
     return _avatar;
 }
+
+- (UILabel *)nameLabel
+{
+    if (!_nameLabel)
+    {
+        _nameLabel = [[UILabel alloc] init];
+        _nameLabel.textColor = [UIColor whiteColor];
+    }
+    
+    return _nameLabel;
+}
+
+
+
 
 @end

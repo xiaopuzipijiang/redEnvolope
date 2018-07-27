@@ -53,7 +53,8 @@
 #define DMStatusBarHeight       ([UIApplication sharedApplication].statusBarFrame.size.height)
 #define DMTabBarHeight (DMDeviceIsX ? 83 : 49)
 
-
+#import "ServiceManager.h"
+#import "AppDelegate.h"
 #import "AFNetworking/AFNetworking.h"
 #import "UIView+Sizes.h"
 #import "DMDataSourceItem.h"
@@ -74,6 +75,11 @@
 #import "PSTAlertController.h"
 #import "WXApi.h"
 #import "SVProgressHUD.h"
-
+#import "NSDictionary+KeyValue.h"
+#import "UserAccount.h"
+#import "UIImageView+WebCache.h"
+#import "RERefreshHeader.h"
+#import "RERefreshFooter.h"
+#import "UIImage+Stretch.h"
 
 #endif /* PrefixHeader_pch */

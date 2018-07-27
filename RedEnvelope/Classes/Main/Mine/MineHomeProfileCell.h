@@ -10,4 +10,7 @@
 
 @interface MineHomeProfileCell : DMTableViewCell
 
+@property (nonatomic, strong, readonly) UIImageView *avatar;
+@property (nonatomic, strong, readonly) UILabel *nameLabel;
+
 @end

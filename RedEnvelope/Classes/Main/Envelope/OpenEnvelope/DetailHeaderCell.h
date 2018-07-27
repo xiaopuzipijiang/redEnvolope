@@ -10,4 +10,10 @@
 
 @interface DetailHeaderCell : DMTableViewCell
 
+@property (nonatomic, strong, readonly) UILabel *nameLabel;
+@property (nonatomic, strong, readonly) UILabel *amountLabel;
+@property (nonatomic, strong, readonly) UILabel *descLabel;
+
+@property (nonatomic, strong, readonly) UIButton *ticketButton;
+
 @end

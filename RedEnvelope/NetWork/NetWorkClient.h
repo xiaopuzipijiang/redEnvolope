@@ -8,12 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-//typedef void(^HttpRequestCompletionHandler)(BOOL success, NSError *error);
-//typedef void(^HttpRequestCompletionObjectHandler)(BOOL success, id object, NSError *error);
-
+typedef void(^NetWorkClientCompletionHandler)(BOOL success, id responseObject, NSString *errorMessage);
 
 @interface NetWorkClient : NSObject
 
-- (void)requestWithPath:(NSString *)path params:(NSDictionary *)params completionHandler:(nullable void (^)(NSURLResponse *response, id _Nullable responseObject,  NSError * _Nullable error))completionHandler;
++ (NetWorkClient *)sharedClient;
+
+//- (void)requestWithPath:(NSString *_Nullable)path params:(NSDictionary *_Nullable)params completionHandler:(nullable void (^)(NSURLResponse * _Nullable response, id _Nullable responseObject,  NSError * _Nullable error))completionHandler;
+
+- (void)postWithPath:(NSString *)path params:(NSDictionary *)params completionHandler:(NetWorkClientCompletionHandler)completionHandler;
 
 @end

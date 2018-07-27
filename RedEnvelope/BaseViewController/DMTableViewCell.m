@@ -140,11 +140,14 @@ NSString * const DMTableViewCellIdentifier = @"DMTableViewCellIdentifier";
     DMTableViewCellPosition cellPosition = self.cellPosition;
     if (cellPosition == DMTableViewCellPositionTop || cellPosition == DMTableViewCellPositionMiddle)
     {
-        self.bottomSeparatorColor = DM230GRAYCOLOR;
-    }
-    else
-    {
-        self.bottomSeparatorColor = [UIColor clearColor];
+        if (self.bottomSeparatorColor)
+        {
+            self.bottomSeparatorColor = self.bottomSeparatorColor;
+        }
+        else
+        {
+            self.bottomSeparatorColor = DM230GRAYCOLOR;
+        }
     }
 }
 
