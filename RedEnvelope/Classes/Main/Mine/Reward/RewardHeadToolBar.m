@@ -59,6 +59,8 @@
 - (UIButton *)button
 {
     UIButton *button = [[UIButton alloc] init];
+    button.titleLabel.font = [UIFont systemFontOfSize:16.0];
+    button.titleLabel.adjustsFontSizeToFitWidth = YES;
     [button setBackgroundImage:[UIImage imageWithColor:HEXCOLOR(0xf5f5f5)] forState:UIControlStateNormal];
     [button setBackgroundImage:[UIImage imageWithColor:HEXCOLOR(0xe06f54)] forState:UIControlStateSelected];
     [button setTitleColor:HEXCOLOR(0x333333) forState:UIControlStateNormal];

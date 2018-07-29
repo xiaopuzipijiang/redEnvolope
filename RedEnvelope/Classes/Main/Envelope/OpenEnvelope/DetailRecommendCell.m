@@ -11,12 +11,7 @@
 
 @interface DetailRecommendCell () <WKNavigationDelegate, WKUIDelegate>
 
-
 @property (nonatomic, strong) WKWebView *webView;
-//@property (nonatomic, strong) UILabel *titleLabel;
-//@property (nonatomic, strong) UIButton *typeIcon;
-//@property (nonatomic, strong) UILabel *descLabel;
-//@property (nonatomic, strong) UIImageView *coverImageView;
 
 @end
 
@@ -28,6 +23,8 @@
     {
         WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
         
+        self.separatorMode = DMTableViewCellSeparatorModeNone;
+        
         self.webView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:config];
         self.webView.scrollView.contentInset = UIEdgeInsetsZero;
         self.webView.scrollView.scrollIndicatorInsets = UIEdgeInsetsZero;
@@ -35,62 +32,12 @@
         self.webView.UIDelegate = self;
         self.webView.allowsBackForwardNavigationGestures = YES;
         self.webView.backgroundColor = [UIColor whiteColor];
-        [self.contentView addSubview:self.webView];
-
+        self.webView.scrollView.scrollEnabled = NO;
+        
         NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://hongbao.kanqibao.com/feed"]];
         [self.webView loadRequest:request];
         
-        
-//        self.titleLabel = [[UILabel alloc] init];
-//        self.titleLabel.font = [UIFont systemFontOfSize:16.0f];
-//        self.titleLabel.textColor = DMMainTextColor;
-//        [self.contentView addSubview:self.titleLabel];
-//        self.titleLabel.text = @"点击啊链家分；阿法\nflajf;af短发";
-//        self.titleLabel.numberOfLines = 2;
-//
-//        self.typeIcon = [[UIButton alloc] init];
-//        [self.typeIcon setTitle:@"广告" forState:UIControlStateNormal];
-//        self.typeIcon.titleLabel.font = [UIFont systemFontOfSize:14.0f];
-//
-//        self.descLabel = [[UILabel alloc] init];
-//        self.descLabel.font = [UIFont systemFontOfSize:14.0f];
-//        self.descLabel.textColor = DM153GRAYCOLOR;
-//        [self.contentView addSubview:self.titleLabel];
-//        self.descLabel.text = @"小字典";
-//
-//        self.coverImageView = [[UIImageView alloc] init];
-//        self.coverImageView.backgroundColor = [UIColor greenColor];
-//
-//        [self.contentView addSubview:self.titleLabel];
-//        [self.contentView addSubview:self.typeIcon];
-//        [self.contentView addSubview:self.descLabel];
-//        [self.contentView addSubview:self.coverImageView];
-//
-//        [self.coverImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.right.equalTo(@-15);
-//            make.top.equalTo(@10);
-//            make.bottom.equalTo(@-10);
-//            make.width.mas_equalTo(120);
-//            make.height.mas_equalTo(70);
-//        }];
-//
-//        [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.left.equalTo(@15);
-//            make.top.equalTo(@10);
-//            make.right.equalTo(@-180);
-//        }];
-//
-//        [self.typeIcon mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.left.equalTo(@15);
-//            make.bottom.equalTo(@-10);
-//        }];
-//
-//        [self.descLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.left.equalTo(self.typeIcon.mas_right).with.offset(10);
-//            make.centerY.equalTo(self.typeIcon);
-//        }];
-
-        
+        [self.contentView addSubview:self.webView];
     }
     
     return self;
@@ -100,13 +47,19 @@
 {
     [super layoutSubviews];
     self.webView.frame = self.bounds;
+    self.webView.height = self.height + 500;
 }
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation
 {
     if (self.delegate)
     {
-        [self.delegate updateCellHeight:self height:self.webView.scrollView.contentSize.height];
+        [webView evaluateJavaScript:@"document.body.offsetHeight" completionHandler:^(id data, NSError * _Nullable error) {
+            CGFloat height = [data floatValue];
+            //ps:js可以是上面所写，也可以是document.body.scrollHeight;在WKWebView中前者offsetHeight获取自己加载的html片段，高度获取是相对准确的，但是若是加载的是原网站内容，用这个获取，会不准确，改用后者之后就可以正常显示，这个情况是我尝试了很多次方法才正常显示的
+            [self.delegate updateCellHeight:self height:height];
+            
+        }];
     }
 }
 
@@ -119,7 +72,7 @@
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name = 'type'"];
         NSURLQueryItem *type = (NSURLQueryItem *)[[components.queryItems filteredArrayUsingPredicate:predicate] firstObject];
         
-        if ([type.value isEqualToString:@"webview"])
+        if ([type.value containsString:@"webview"])
         {
             predicate = [NSPredicate predicateWithFormat:@"name = 'url'"];
             NSURLQueryItem *url = (NSURLQueryItem *)[[components.queryItems filteredArrayUsingPredicate:predicate] firstObject];
@@ -129,7 +82,6 @@
                 [self.delegate detailRecommendCell:self navigate:url.value];
             }
         }
-        
     }
     
     decisionHandler(WKNavigationActionPolicyAllow);

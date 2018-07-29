@@ -12,6 +12,8 @@
 
 @property (nonatomic, strong) UILabel *ruleLabel;
 
+@property (nonatomic, strong) UIImageView *ruleImageView;
+
 @end
 
 @implementation WalletRuleCell
@@ -20,6 +22,8 @@
 {
     if ([super initWithStyle:style reuseIdentifier:reuseIdentifier])
     {
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        
         self.ruleLabel = [[UILabel alloc] init];
         self.ruleLabel.text = @"票票规则";
         self.ruleLabel.textAlignment = NSTextAlignmentCenter;
@@ -28,9 +32,25 @@
         self.ruleLabel.textColor = DM153GRAYCOLOR;
         [self.contentView addSubview:self.ruleLabel];
         
+        self.separatorMode = DMTableViewCellSeparatorModeNone;
+        
+        self.ruleImageView = [[UIImageView alloc] init];
+        self.ruleImageView.image = [UIImage imageNamed:@"票票规则"];
+        [self.contentView addSubview:self.ruleImageView];
+        
         [self.ruleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.contentView).insets(UIEdgeInsetsMake(0, 0, 0, 0));
+            make.top.equalTo(@0);
+            make.left.equalTo(@0);
+            make.right.equalTo(@0);
             make.height.mas_equalTo(40);
+        }];
+        
+        [self.ruleImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.ruleLabel.mas_top);
+            make.left.equalTo(@0);
+            make.right.equalTo(@0);
+            make.height.equalTo(self.ruleImageView.mas_width).with.multipliedBy(828.0 / 750.0);
+            make.bottom.equalTo(@0);
         }];
     }
     

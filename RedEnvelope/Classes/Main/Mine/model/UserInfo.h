@@ -15,5 +15,4 @@
 @property (nonatomic, strong) NSString *phone;
 @property (nonatomic, strong) NSString *userId;
 
-
 @end

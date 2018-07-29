@@ -29,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.heightForWebView = 10;
+    self.heightForWebView = 0;
     
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wundeclared-selector"
@@ -56,20 +56,21 @@
     self.customerBar.items = @[item];
     [self.view addSubview:self.customerBar];
 
-//    self.countDown = 5;
-    [self updateBackButton:5 canBack:YES];
-//    DMWEAKSELFDEFIND
-//    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 block:^(NSTimer * _Nonnull timer) {
-//        wSelf.countDown -= 1;
-//        BOOL is = NO;
-//        if (wSelf.countDown <= 0)
-//        {
-//            is = YES;
-//            [wSelf.timer invalidate];
-//        }
-//        [wSelf updateBackButton:wSelf.countDown canBack:is];
-//        
-//    } repeats:YES];
+    self.countDown = 5;
+    [self updateBackButton:self.countDown canBack:NO];
+    DMWEAKSELFDEFIND
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 block:^(NSTimer * _Nonnull timer) {
+        wSelf.countDown -= 1;
+        BOOL is = NO;
+        if (wSelf.countDown <= 0)
+        {
+            is = YES;
+            [wSelf.timer invalidate];
+            self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+        }
+        [wSelf updateBackButton:wSelf.countDown canBack:is];
+        
+    } repeats:YES];
     
     [self reloadDataSource];
 }
@@ -78,7 +79,10 @@
 {
     [super viewDidAppear:animated];
     
-//    self.navigationController.interactivePopGestureRecognizer.enabled = false;
+    if (self.firstAppearance)
+    {
+        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    }
 }
 
 - (void)updateBackButton:(NSInteger)countdown canBack:(BOOL)canBack
@@ -108,8 +112,8 @@
     
     [section addSubitemWithClass:[DetailHeaderCell class] object:nil configCellBlock:^(DetailHeaderCell *cell, id object) {
         cell.nameLabel.text = [wSelf.info stringForKey:@"nickname"];
-        cell.amountLabel.text = [wSelf.info stringForKey:@"value"];
-        [cell.ticketButton setTitle:[wSelf.info stringForKey:@"amount"] forState:UIControlStateNormal];
+        cell.amountLabel.text = [NSString stringWithFormat:@"%@元", [wSelf.info stringForKey:@"value"]];
+        [cell.ticketButton setTitle:[NSString stringWithFormat:@"+%@票票", [wSelf.info stringForKey:@"amount"]] forState:UIControlStateNormal];
     }];
     
     [section addSubitemWithClass:[DetailCountingCell class] object:nil configCellBlock:^(id cell, id object) {

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class InvitationInfo;
+
 #define kAPPDelegate  (AppDelegate *)([UIApplication sharedApplication].delegate)
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
@@ -18,7 +20,7 @@
 
 - (void)showGuide;
 
-- (void)shareActionWithCode:(NSString *)code;
+- (void)shareActionWithCode:(InvitationInfo *)invitationInfo;
 
 @end
 

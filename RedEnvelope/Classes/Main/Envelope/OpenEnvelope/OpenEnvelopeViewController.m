@@ -20,7 +20,7 @@
 
 @property (nonatomic, strong) UIButton *openButton;
 
-@property (nonatomic, copy) void (^completionHandler) (id object);
+@property (nonatomic, copy) void (^completionHandler) (BOOL success, id object);
 
 @property (nonatomic, strong) RedEnvelope *redEnvelope;
 
@@ -28,7 +28,7 @@
 
 @implementation OpenEnvelopeViewController
 
-- (instancetype)initWithRedEnvelope:(RedEnvelope *)redEnvelope CompletionHandler:(void (^)(id object))completionHandler
+- (instancetype)initWithRedEnvelope:(RedEnvelope *)redEnvelope CompletionHandler:(void (^)(BOOL success, id object))completionHandler
 {
     self = [super init];
     
@@ -45,6 +45,7 @@
     
     self.bgView = [[UIImageView alloc] init];
     self.bgView.image = [UIImage imageNamed:@"红包弹出"];
+    self.bgView.userInteractionEnabled = YES;
     [self.view addSubview:self.bgView];
     
     self.cancelButton = [UIButton buttonWithType:UIButtonTypeSystem];
@@ -64,45 +65,81 @@
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:self.titleLabel];
     
-    self.openButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    self.openButton = [[UIButton alloc] init];
     [self.openButton setBackgroundImage:[UIImage imageNamed:@"开"] forState:UIControlStateNormal];
     [self.openButton addTarget:self action:@selector(openButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.openButton];
+    [self.bgView addSubview:self.openButton];
 
     [self.view addSubview:self.cancelButton];
     
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    if (self.firstAppearance)
+    {
+        self.bgView.frame = self.view.bounds;
+
+        self.iconView.size = CGSizeMake(60, 60);
+        self.iconView.integralCenterX = self.view.width / 2;
+        self.iconView.top = 32;
+        
+        self.titleLabel.size = CGSizeMake(self.view.width, 100);
+        self.titleLabel.top = self.iconView.bottom + 20;
+        
+        self.openButton.size = CGSizeMake(90, 90);
+        self.openButton.integralCenterX = self.view.width / 2;
+        self.openButton.bottom = self.view.height - 105;
+        
+        [self.cancelButton sizeToFit];
+        self.cancelButton.left = 10;
+        self.cancelButton.top = 10;
+    }
 }
 
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
     
-    self.bgView.frame = self.view.bounds;
-    
-    self.iconView.size = CGSizeMake(50, 50);
-    self.iconView.integralCenterX = self.view.width / 2;
-    self.iconView.top = 32;
-    
-    self.titleLabel.size = CGSizeMake(self.view.width, 100);
-    self.titleLabel.top = self.iconView.bottom + 20;
-    
-    self.openButton.size = CGSizeMake(90, 90);
-    self.openButton.integralCenterX = self.view.width / 2;
-    self.openButton.bottom = self.view.height - 105;
-
-    [self.cancelButton sizeToFit];
-    self.cancelButton.left = 10;
-    self.cancelButton.top = 10;
 }
 
 - (void)openButtonPressed:(id)sender
 {
     DMWEAKSELFDEFIND
+    self.cancelButton.enabled = NO;
+    self.openButton.enabled = NO;
+    
+    CABasicAnimation* rotationAnimation;
+    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.y"];
+    rotationAnimation.toValue = [NSNumber numberWithFloat: 2 * M_PI];
+    rotationAnimation.duration = 1;
+    rotationAnimation.cumulative = YES;
+    rotationAnimation.repeatCount = NSIntegerMax;
+    self.openButton.layer.anchorPoint = CGPointMake(0.5, 0.5);
+
+    [self.openButton.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
+
+    
     [[ServiceManager sharedManager] openEnvelopeWithId:self.redEnvelope.redEnvelopeId completionHandler:^(BOOL success, id object, NSString *errorMessage) {
-        if (wSelf.completionHandler)
+
+        if (!success)
         {
-            wSelf.completionHandler(object);
+            wSelf.cancelButton.enabled = YES;
+            [wSelf.openButton.layer removeAllAnimations];
+            [SVProgressHUD showErrorWithStatus:errorMessage];
         }
+
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            wSelf.cancelButton.enabled = YES;
+            [wSelf.openButton.layer removeAllAnimations];
+                if (wSelf.completionHandler)
+                {
+                    wSelf.completionHandler(success, object);
+                }
+        });
+
     }];
 }
 

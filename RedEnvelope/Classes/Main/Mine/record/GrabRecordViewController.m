@@ -64,7 +64,7 @@
     self.tableView.mj_footer = [RERefreshFooter footerWithRefreshingBlock:^{
         wSelf.resultSet.currentPage += 1;
         [[ServiceManager sharedManager] grabRecordListWithResult:self.resultSet CompletionHandler:^(BOOL success, NSString *errorMessage) {
-            [wSelf.tableView.mj_header endRefreshing];
+            [wSelf.tableView.mj_footer endRefreshing];
             wSelf.tableView.mj_footer.hidden = !self.resultSet.hasMore;
             
             [wSelf reloadDataSource];

@@ -12,6 +12,9 @@
 #import "WechatManager.h"
 #import "ShareActionSheetViewController.h"
 #import "WechatManager.h"
+#import "InvitationInfo.h"
+#import "ShareView.h"
+#import "SaveImageViewController.h"
 
 @interface AppDelegate () 
 
@@ -58,21 +61,37 @@
     [self.window makeKeyAndVisible];
 }
 
-- (void)shareActionWithCode:(NSString *)code
+- (void)shareActionWithCode:(InvitationInfo *)invitationInfo
 {
+    ShareView *shareView = [[ShareView alloc] initWithFrame:CGRectMake(0, 0, 250, 400)];
+    shareView.invitationInfo = invitationInfo;
+    
+    
+
+    
     [ShareActionSheetViewController showShareActionSheetWithCompletionHandler:^(NSInteger type) {
-        switch (type) {
-            case 0:
-                [[WechatManager sharedManager] shareToSessionWithImage:[UIImage imageNamed:@"关于天天刷红包"]];
-                break;
-            case 1:
-                [[WechatManager sharedManager] shareToTimelineWithImage:[UIImage imageNamed:@"关于天天刷红包"]];
-                break;
-            case 2:
-                break;
-            default:
-                break;
-        }
+
+        [SVProgressHUD show];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+            
+            UIImage *shareImage = [shareView makeImage];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [SVProgressHUD dismiss];
+                switch (type) {
+                    case 0:
+                        [[WechatManager sharedManager] shareToSessionWithImage:shareImage];
+                        break;
+                    case 1:
+                        [[WechatManager sharedManager] shareToTimelineWithImage:shareImage];
+                        break;
+                    case 2:
+                        [SaveImageViewController showSaveImageViewControllerWithImage:shareImage];
+                        break;
+                    default:
+                        break;
+                }
+            });
+        });
     }];
 }
 

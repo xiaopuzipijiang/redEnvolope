@@ -28,7 +28,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.extendedLayoutIncludesOpaqueBars = YES;
+//    self.extendedLayoutIncludesOpaqueBars = YES;
+//    self.automaticallyAdjustsScrollViewInsets = NO;
     
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wundeclared-selector"
@@ -41,9 +42,15 @@
     self.bottomImageView.image = [UIImage imageNamed:@"底部彩条"];
     [self.view addSubview:self.bottomImageView];
 
+    if (@available(iOS 11.0, *)){
+        self.tableView.estimatedRowHeight = 0;
+//        self.tableView.rowHeight = UITableViewAutomaticDimension;
+        self.tableView.estimatedSectionHeaderHeight = 0;
+        self.tableView.estimatedSectionFooterHeight = 0;
+    }
+    
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 20, 0);
     
-    [self reloadDataSource];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -72,12 +79,12 @@
 - (void)loadData
 {
     DMWEAKSELFDEFIND
-    
     [[ServiceManager sharedManager] requestWalletInfoWithCompletionHandler:^(BOOL success, id object, NSString *errorMessage) {
-        
-        wSelf.walletInfo = object;
-        [wSelf reloadDataSource];
-        
+        if (success)
+        {
+            wSelf.walletInfo = object;
+            [wSelf reloadDataSource];
+        }
     }];
 }
 
@@ -100,13 +107,13 @@
     }];
 
     [section addSubitemWithClass:[WalletIncomingChartCell class] object:nil configCellBlock:^(WalletIncomingChartCell *cell, id object) {
-        
+
         cell.trendInfo = self.walletInfo.trendInfo;
-        
+
     }];
 
     [section addSubitemWithClass:[WalletRuleCell class] object:nil configCellBlock:^(id cell, id object) {
-        
+
     }];
 
     
@@ -115,9 +122,28 @@
     [self.tableView reloadData];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (indexPath.row)
+    {
+        case 0:
+            return 190;
+        case 1:
+            return 80;
+        case 2:
+            return 300;
+        case 3:
+            return self.tableView.width * 828.0 / 750.0 + 40;
+        default:
+            break;
+    }
+    return 0;
+}
+
 - (void)withdrawCashButtonPressed:(id)sender
 {
     WithdrawCashViewController *vc = [[WithdrawCashViewController alloc] initWithNibName:@"WithdrawCashViewController" bundle:nil];
+    vc.balanceInfo = self.walletInfo.balance;
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }

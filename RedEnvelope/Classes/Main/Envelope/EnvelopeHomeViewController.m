@@ -16,7 +16,7 @@
 #import "ShareActionSheetViewController.h"
 
 #define kContentInsets UIEdgeInsetsMake(20, 40, 50, 40)
-#define kMaxCount 10
+#define kMaxCount 9
 
 @interface EnvelopeHomeViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -41,14 +41,13 @@
     [self.collectionView registerClass:[EnvelopeRefreshReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footer"];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
+    self.collectionView.contentInset = UIEdgeInsetsMake(0, 0, 20, 0);
     
     [self.view addSubview:self.collectionView];
     
     self.bottomImageView = [[UIImageView alloc] init];
     self.bottomImageView.image = [UIImage imageNamed:@"底部彩条"];
     [self.view addSubview:self.bottomImageView];
-    
-    [self.view sendSubviewToBack:self.bottomImageView];
     
     [self setUpRefreshControls];
 }
@@ -57,10 +56,7 @@
 {
     [super viewWillAppear:animated];
 
-    if (self.homeInfo.redEnvelopList.count == 0)
-    {
-        [self.collectionView.mj_header beginRefreshing];
-    }
+    [self loadData];
 }
 
 - (void)viewDidLayoutSubviews
@@ -97,13 +93,18 @@
 {
     DMWEAKSELFDEFIND
     self.collectionView.mj_header = [RERefreshHeader headerWithRefreshingBlock:^{
-        [[ServiceManager sharedManager] requestHomerInfoWithCompletionHandler:^(BOOL success, HomeInfo *object, NSString *errorMessage) {
-            [self.collectionView.mj_header endRefreshing];
-            
-            wSelf.homeInfo = object;
-            [wSelf.collectionView reloadData];
-            [wSelf updateTiele];
-        }];
+        [wSelf loadData];
+    }];
+}
+
+- (void)loadData
+{
+    DMWEAKSELFDEFIND
+    [[ServiceManager sharedManager] requestHomerInfoWithCompletionHandler:^(BOOL success, HomeInfo *object, NSString *errorMessage) {
+        [self.collectionView.mj_header endRefreshing];
+        wSelf.homeInfo = object;
+        [wSelf.collectionView reloadData];
+        [wSelf updateTiele];
     }];
 }
 
@@ -178,12 +179,6 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    OpenDetailViewController *vc1 = [[OpenDetailViewController alloc] init];
-    
-    [self.navigationController pushViewController:vc1 animated:YES];
-    
-    return;
-    
     if (self.homeInfo.redEnvelopList.count < kMaxCount && indexPath.row == (self.homeInfo.redEnvelopList.count))
     {
         return;
@@ -193,15 +188,24 @@
     
     RedEnvelope *redEnvelope = [self.homeInfo.redEnvelopList objectAtIndex:indexPath.row];
     
-    OpenEnvelopeViewController *vc = [[OpenEnvelopeViewController alloc] initWithRedEnvelope:redEnvelope CompletionHandler:^(id object) {
-        [DMModalPresentationViewController dismiss];
-        OpenDetailViewController *vc = [[OpenDetailViewController alloc] init];
-        vc.info = object;
-        vc.hidesBottomBarWhenPushed = YES;
-        [wSelf.navigationController pushViewController:vc animated:NO];
+    OpenEnvelopeViewController *vc = [[OpenEnvelopeViewController alloc] initWithRedEnvelope:redEnvelope CompletionHandler:^(BOOL success, id object) {
+        
+        if (success)
+        {
+            [DMModalPresentationViewController dismiss];
+            OpenDetailViewController *vc = [[OpenDetailViewController alloc] init];
+            vc.info = object;
+            vc.hidesBottomBarWhenPushed = YES;
+            [wSelf.navigationController pushViewController:vc animated:NO];
+        }
+        else
+        {
+//            [self loadData];
+        }
     }];
     
-    CGRect rect = CGRectMake(0, 0, self.view.width - 40, (self.view.width - 40) * 827 / 645);
+    CGFloat ofset = 60;
+    CGRect rect = CGRectMake(0, 0, self.view.width - ofset, (self.view.width - ofset) * 827 / 645);
     rect.origin.x = ([UIScreen mainScreen].bounds.size.width - CGRectGetWidth(rect)) / 2;
     rect.origin.y = ([UIScreen mainScreen].bounds.size.height - CGRectGetHeight(rect)) / 2;
     
@@ -210,7 +214,7 @@
 
 - (void)shareEvent:(id)sender
 {
-    [kAPPDelegate shareActionWithCode:nil];
+    [kAPPDelegate shareActionWithCode:self.homeInfo.invitationInfo];
 }
 
 #pragma mark - property

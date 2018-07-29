@@ -27,6 +27,7 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
         self.contentView.backgroundColor = HEXCOLOR(0xfafafa);
+        self.bottomSeparatorInsets = UIEdgeInsetsZero;
         
         self.balanceTitleLabel = [[UILabel alloc] init];
         self.balanceTitleLabel.font = [UIFont systemFontOfSize:16.0f];
@@ -54,11 +55,13 @@
         
         [self.balanceTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(@20);
+            make.height.mas_equalTo(17);
             make.centerX.equalTo(self.contentView);
         }];
 
         [self.balanceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.balanceTitleLabel.mas_bottom).with.offset(5);
+            make.top.equalTo(self.balanceTitleLabel.mas_bottom).with.offset(10);
+            make.height.mas_equalTo(35);
             make.centerX.equalTo(self.contentView);
         }];
 
@@ -72,6 +75,7 @@
         [self.exchangeRuleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.withdrawCashButton.mas_bottom).with.offset(15);
             make.centerX.equalTo(self.contentView);
+            make.height.mas_equalTo(16);
             make.bottom.equalTo(@-20);
         }];
 
@@ -84,6 +88,7 @@
 {
     NSMutableAttributedString *mAString = [[NSMutableAttributedString alloc] initWithString:@"¥" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:13.0f]}];
     [mAString appendAttributedString:[[NSAttributedString alloc] initWithString:balacne ? : @"" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:40.0f]}]];
+    [mAString appendAttributedString:[[NSMutableAttributedString alloc] initWithString:@"元" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:20.0f]}]];
     self.balanceLabel.attributedText = mAString;
     [self.balanceLabel sizeToFit];
 }

@@ -50,6 +50,7 @@ DMModalPresentationViewController *instance;
 //        self.backgroundView.alpha = 0.5;
 //    }];
 //
+    [self addChildViewController:self.dmPresentingViewController];
     [self.view addSubview:self.dmPresentingViewController.view];
     
 //    [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapBlank:)]];
@@ -88,10 +89,15 @@ DMModalPresentationViewController *instance;
 
 + (void)dismiss
 {
-    [instance dismissViewControllerAnimated:NO completion:^{
+    DMModalPresentationViewController *toRelease = instance;
+    
+    [toRelease dismissViewControllerAnimated:NO completion:^{
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            instance = nil;
+            if (instance == toRelease)
+            {
+                instance = nil;
+            }
         });
     }];
 }

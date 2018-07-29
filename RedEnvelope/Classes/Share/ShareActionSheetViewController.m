@@ -55,7 +55,7 @@
     
     self.cancelButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [self.cancelButton setImage:DMSkinOriginalImage(@"关闭-1") forState:UIControlStateNormal];
-    [self.cancelButton addTarget:self action:@selector(shareButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.cancelButton addTarget:self action:@selector(cancelButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     self.weixinSessionButton = [self buttonWithImage:DMSkinOriginalImage(@"微信")];
     self.weixinSessionButton.tag = 0;

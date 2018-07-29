@@ -10,6 +10,7 @@
 #import "REPrenticeResultSet.h"
 
 @class NetWorkClient;
+@class HomeInfo;
 
 typedef void(^DMHttpRequestCompletionHandler)(BOOL success, NSString *errorMessage);
 typedef void(^DMHttpRequestCompletionObjectHandler)(BOOL success, id object, NSString *errorMessage);
@@ -17,6 +18,8 @@ typedef void(^DMHttpRequestCompletionObjectHandler)(BOOL success, id object, NSS
 @interface ServiceManager : NSObject
 
 @property (nonatomic, strong, readonly) NetWorkClient *networkClient;
+
+@property (nonatomic, strong, readonly) HomeInfo *homeInfo;
 
 + (instancetype)sharedManager;
 
@@ -39,8 +42,6 @@ typedef void(^DMHttpRequestCompletionObjectHandler)(BOOL success, id object, NSS
 - (void)requestApprenticeRewardListWithResultSet:(DMResultSet *)resultSet completionHandler:(DMHttpRequestCompletionHandler)completionHandler;
 
 
-- (void)bigRequest:(DMHttpRequestCompletionObjectHandler)completionHandler;
-
 //收到的红包接口
 - (void)grabRecordListWithResult:(DMResultSet *)resultSet CompletionHandler:(DMHttpRequestCompletionHandler)completionHandler;
 
@@ -49,5 +50,12 @@ typedef void(^DMHttpRequestCompletionObjectHandler)(BOOL success, id object, NSS
 
 //钱包详情
 - (void)requestWalletInfoWithCompletionHandler:(DMHttpRequestCompletionObjectHandler)completionHandler;
+
+//提现
+- (void)requestWithdrawWithCount:(NSInteger)amount completionHandler:(DMHttpRequestCompletionHandler)completionHandler;
+
+//提现记录
+- (void)requestWithdrawRecordListWithResult:(DMResultSet *)resultSet completionHandler:(DMHttpRequestCompletionHandler)completionHandler;
+
 
 @end

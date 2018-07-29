@@ -12,6 +12,12 @@
 		F20C8E262109CFF600522E04 /* TrendItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F20C8E252109CFF600522E04 /* TrendItem.m */; };
 		F20C8E29210AD03F00522E04 /* UIImage+Stretch.m in Sources */ = {isa = PBXBuildFile; fileRef = F20C8E28210AD03F00522E04 /* UIImage+Stretch.m */; };
 		F20C8E2D210AE1E200522E04 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F20C8E2C210AE1E200522E04 /* WebViewController.m */; };
+		F20C8E30210B23EE00522E04 /* InvitationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F20C8E2F210B23EE00522E04 /* InvitationInfo.m */; };
+		F20C8E33210B7B1A00522E04 /* NSString+trim.m in Sources */ = {isa = PBXBuildFile; fileRef = F20C8E31210B7B1900522E04 /* NSString+trim.m */; };
+		F20C8E36210B7B2E00522E04 /* NSString+Check.m in Sources */ = {isa = PBXBuildFile; fileRef = F20C8E35210B7B2E00522E04 /* NSString+Check.m */; };
+		F20C8E39210C5C9900522E04 /* ShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = F20C8E38210C5C9900522E04 /* ShareView.m */; };
+		F20C8E3C210CC80600522E04 /* SaveImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F20C8E3B210CC80600522E04 /* SaveImageViewController.m */; };
+		F20C8E40210CCB2300522E04 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F20C8E3F210CCB2300522E04 /* Photos.framework */; };
 		F2203A2F21018A80004DA014 /* ServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F2203A2E21018A80004DA014 /* ServiceManager.m */; };
 		F2355A3B21087CD70013B17F /* GrabRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = F2355A3A21087CD70013B17F /* GrabRecord.m */; };
 		F2355A3E21097A980013B17F /* WalletInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F2355A3D21097A980013B17F /* WalletInfo.m */; };
@@ -138,6 +144,18 @@
 		F20C8E28210AD03F00522E04 /* UIImage+Stretch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Stretch.m"; sourceTree = "<group>"; };
 		F20C8E2B210AE1E200522E04 /* WebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		F20C8E2C210AE1E200522E04 /* WebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		F20C8E2E210B23EE00522E04 /* InvitationInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InvitationInfo.h; sourceTree = "<group>"; };
+		F20C8E2F210B23EE00522E04 /* InvitationInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InvitationInfo.m; sourceTree = "<group>"; };
+		F20C8E31210B7B1900522E04 /* NSString+trim.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+trim.m"; sourceTree = "<group>"; };
+		F20C8E32210B7B1A00522E04 /* NSString+trim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+trim.h"; sourceTree = "<group>"; };
+		F20C8E34210B7B2D00522E04 /* NSString+Check.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Check.h"; sourceTree = "<group>"; };
+		F20C8E35210B7B2E00522E04 /* NSString+Check.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Check.m"; sourceTree = "<group>"; };
+		F20C8E37210C5C9900522E04 /* ShareView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareView.h; sourceTree = "<group>"; };
+		F20C8E38210C5C9900522E04 /* ShareView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareView.m; sourceTree = "<group>"; };
+		F20C8E3A210CC80600522E04 /* SaveImageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SaveImageViewController.h; sourceTree = "<group>"; };
+		F20C8E3B210CC80600522E04 /* SaveImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SaveImageViewController.m; sourceTree = "<group>"; };
+		F20C8E3D210CCAEF00522E04 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		F20C8E3F210CCB2300522E04 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		F2203A2D21018A80004DA014 /* ServiceManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ServiceManager.h; sourceTree = "<group>"; };
 		F2203A2E21018A80004DA014 /* ServiceManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ServiceManager.m; sourceTree = "<group>"; };
 		F2355A3921087CD70013B17F /* GrabRecord.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GrabRecord.h; sourceTree = "<group>"; };
@@ -364,6 +382,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F20C8E40210CCB2300522E04 /* Photos.framework in Frameworks */,
 				5EDCA284C7276A506F2F337B /* libPods-RedEnvelope.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -374,6 +393,8 @@
 		A72365A306FD21D178F04585 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F20C8E3F210CCB2300522E04 /* Photos.framework */,
+				F20C8E3D210CCAEF00522E04 /* AssetsLibrary.framework */,
 				27AFC4B15A41AF39FFE19FB9 /* libPods-RedEnvelope.a */,
 			);
 			name = Frameworks;
@@ -415,6 +436,10 @@
 			children = (
 				F2355A41210982740013B17F /* ShareActionSheetViewController.h */,
 				F2355A42210982740013B17F /* ShareActionSheetViewController.m */,
+				F20C8E37210C5C9900522E04 /* ShareView.h */,
+				F20C8E38210C5C9900522E04 /* ShareView.m */,
+				F20C8E3A210CC80600522E04 /* SaveImageViewController.h */,
+				F20C8E3B210CC80600522E04 /* SaveImageViewController.m */,
 			);
 			path = Share;
 			sourceTree = "<group>";
@@ -503,6 +528,8 @@
 				F28C38AA21044FC000D2F37A /* HomeInfo.m */,
 				F28C38AC2104528C00D2F37A /* BalanceInfo.h */,
 				F28C38AD2104528C00D2F37A /* BalanceInfo.m */,
+				F20C8E2E210B23EE00522E04 /* InvitationInfo.h */,
+				F20C8E2F210B23EE00522E04 /* InvitationInfo.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -566,6 +593,10 @@
 		F2A99D0920F6F5C700F936A3 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				F20C8E34210B7B2D00522E04 /* NSString+Check.h */,
+				F20C8E35210B7B2E00522E04 /* NSString+Check.m */,
+				F20C8E32210B7B1A00522E04 /* NSString+trim.h */,
+				F20C8E31210B7B1900522E04 /* NSString+trim.m */,
 				F20C8E27210AD03F00522E04 /* UIImage+Stretch.h */,
 				F20C8E28210AD03F00522E04 /* UIImage+Stretch.m */,
 				F28C38922103939D00D2F37A /* NSString+SimpleMatching.h */,
@@ -1103,6 +1134,7 @@
 				F2A99D0020F6F2FD00F936A3 /* DMTableView.m in Sources */,
 				F2A99E3720FB4EEA00F936A3 /* AASpline.m in Sources */,
 				F2A99E3120FB4EEA00F936A3 /* AAMarker.m in Sources */,
+				F20C8E30210B23EE00522E04 /* InvitationInfo.m in Sources */,
 				F2A99D4020F706C300F936A3 /* DMTabBarViewController.m in Sources */,
 				F2A99E3320FB4EEA00F936A3 /* AAPie.m in Sources */,
 				F2A99D9720F89F7500F936A3 /* LoginViewController.m in Sources */,
@@ -1110,10 +1142,12 @@
 				F2A99D3C20F6F7E500F936A3 /* MJDIYHeader.m in Sources */,
 				F2A99E5920FC917300F936A3 /* WithdrawCashViewController.m in Sources */,
 				F2A99E1C20FB4EEA00F936A3 /* AAChartModel.m in Sources */,
+				F20C8E39210C5C9900522E04 /* ShareView.m in Sources */,
 				F2A99E5C20FDB33E00F936A3 /* PSTAlertController.m in Sources */,
 				F2A99D3B20F6F7E500F936A3 /* MJDIYBackFooter.m in Sources */,
 				F2A99E3D20FB4EEA00F936A3 /* AAYAxis.m in Sources */,
 				F2A99E2E20FB4EEA00F936A3 /* AALabels.m in Sources */,
+				F20C8E3C210CC80600522E04 /* SaveImageViewController.m in Sources */,
 				F2203A2F21018A80004DA014 /* ServiceManager.m in Sources */,
 				F2A99E1F20FB4EEA00F936A3 /* AASeriesElement.m in Sources */,
 				F2355A3E21097A980013B17F /* WalletInfo.m in Sources */,
@@ -1123,6 +1157,7 @@
 				F2A99D9B20F8B30300F936A3 /* GuideItemViewController.m in Sources */,
 				F2A99E4620FC5C1200F936A3 /* RecommendHeaderCell.m in Sources */,
 				F2A99DA520F98B4A00F936A3 /* MineHomeViewController.m in Sources */,
+				F20C8E33210B7B1A00522E04 /* NSString+trim.m in Sources */,
 				F2A99E3620FB4EEA00F936A3 /* AASeries.m in Sources */,
 				F2A99E7420FDE4DC00F936A3 /* RewardHeadToolBar.m in Sources */,
 				F239CE8F20FF0FB0009BA4B2 /* WechatManager.m in Sources */,
@@ -1149,6 +1184,7 @@
 				F2A99E6720FDDA6D00F936A3 /* WithdrawRecordViewController.m in Sources */,
 				F2A99D3120F6F7E500F936A3 /* DMScrollTabButton.m in Sources */,
 				F2A99E2820FB4EEA00F936A3 /* AABar.m in Sources */,
+				F20C8E36210B7B2E00522E04 /* NSString+Check.m in Sources */,
 				F2A99E2B20FB4EEA00F936A3 /* AACrosshair.m in Sources */,
 				F2A99D0C20F6F62400F936A3 /* UIView+Sizes.m in Sources */,
 				F2A99D0320F6F2FD00F936A3 /* DMTableViewHeaderFooterView.m in Sources */,

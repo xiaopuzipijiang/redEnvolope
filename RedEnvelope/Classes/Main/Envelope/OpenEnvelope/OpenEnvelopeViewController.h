@@ -12,6 +12,6 @@
 
 @interface OpenEnvelopeViewController : DMViewController
 
-- (instancetype)initWithRedEnvelope:(RedEnvelope *)redEnvelope CompletionHandler:(void (^)(id object))completionHandler;
+- (instancetype)initWithRedEnvelope:(RedEnvelope *)redEnvelope CompletionHandler:(void (^)(BOOL success, id object))completionHandler;
 
 @end

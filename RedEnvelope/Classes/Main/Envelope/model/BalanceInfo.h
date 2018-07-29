@@ -13,5 +13,6 @@
 @property (nonatomic, strong) NSString *amount;
 @property (nonatomic, strong) NSString *balance;
 @property (nonatomic, strong) NSString *price;
+@property (nonatomic, strong) NSString *histricInvitedAmount;
 
 @end

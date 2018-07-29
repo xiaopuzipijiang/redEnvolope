@@ -13,6 +13,7 @@
 #import "ServiceManager.h"
 #import "UserInfo.h"
 #import "REPrenticeResultSet.h"
+#import "HomeInfo.h"
 
 typedef NS_ENUM(NSInteger, RewardViewListType)
 {
@@ -42,14 +43,14 @@ typedef NS_ENUM(NSInteger, RewardViewListType)
     
     self.toolBar = [[RewardHeadToolBar alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 64)];
     
-    [self.toolBar.buttonI setTitle:@"收徒奖励\n0.84038票票" forState:UIControlStateNormal];
+    [self.toolBar.buttonI setTitle:[NSString stringWithFormat:@"收徒奖励\n%@票票", [ServiceManager sharedManager].homeInfo.balanceInfo.histricInvitedAmount] forState:UIControlStateNormal];
     self.toolBar.buttonI.selected = YES;
     [self.toolBar.buttonI addTarget:self action:@selector(showReward:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.toolBar.buttonII setTitle:@"我的徒弟\n2人" forState:UIControlStateNormal];
+
+    [self.toolBar.buttonII setTitle:[NSString stringWithFormat:@"我的徒弟\n%zi人", [ServiceManager sharedManager].homeInfo.invitationInfo.inviteChildCount] forState:UIControlStateNormal];
     [self.toolBar.buttonII addTarget:self action:@selector(showPrentice:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.toolBar.buttonIII setTitle:@"我的徒孙\n3人" forState:UIControlStateNormal];
+    [self.toolBar.buttonIII setTitle:[NSString stringWithFormat:@"我的徒孙\n%zi人", [ServiceManager sharedManager].homeInfo.invitationInfo.inviteGrandCount] forState:UIControlStateNormal];
     [self.toolBar.buttonIII addTarget:self action:@selector(showPrenticePrentice:) forControlEvents:UIControlEventTouchUpInside];
     
     self.tableView.tableHeaderView = self.toolBar;
@@ -62,6 +63,16 @@ typedef NS_ENUM(NSInteger, RewardViewListType)
     
     [self showReward:nil];
 }
+
+- (NSAttributedString *)titleWithText:(NSString *)text value:(NSString *)value sufix:(NSString *)sufix
+{
+    NSMutableAttributedString *mAString = [[NSMutableAttributedString alloc] initWithString:[text stringByAppendingString:@"\n"] attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14.0f]}];
+    [mAString appendAttributedString:[[NSAttributedString alloc] initWithString:value ? : @"" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:12.0f]}]];
+    [mAString appendAttributedString:[[NSMutableAttributedString alloc] initWithString:sufix attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:12.0f]}]];
+    
+    return mAString;
+}
+
 
 - (NSArray<Class> *)classesForRegiste
 {

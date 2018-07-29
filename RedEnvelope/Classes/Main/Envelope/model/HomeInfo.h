@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "RedEnvelope.h"
 #import "BalanceInfo.h"
+#import "InvitationInfo.h"
 
 @interface HomeInfo : NSObject
 
@@ -18,5 +19,7 @@
 @property (nonatomic, strong) NSArray <RedEnvelope *> *redEnvelopList;
 
 @property (nonatomic, strong) BalanceInfo *balanceInfo;
+
+@property (nonatomic, strong) InvitationInfo *invitationInfo;
 
 @end

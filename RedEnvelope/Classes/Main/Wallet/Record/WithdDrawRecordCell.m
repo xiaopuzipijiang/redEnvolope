@@ -27,17 +27,14 @@
         self.titleLabel = [[UILabel alloc] init];
         self.titleLabel.font = [UIFont systemFontOfSize:15.0f];
         self.titleLabel.textColor = HEXCOLOR(0x333333);
-        self.titleLabel.text = @"提现状态";
         
         self.timeLabel = [[UILabel alloc] init];
         self.timeLabel.font = [UIFont systemFontOfSize:12.0f];
         self.timeLabel.textColor = HEXCOLOR(0x999999);
-        self.timeLabel.text = @"2018-04-17 11:32";
         
         self.amountLabel = [[UILabel alloc] init];
         self.amountLabel.font = [UIFont systemFontOfSize:14.0f];
         self.amountLabel.textColor = DM153GRAYCOLOR;
-        self.amountLabel.text = @"+ 0.1223";
         
         [self.contentView addSubview:self.timeLabel];
         [self.contentView addSubview:self.titleLabel];
@@ -67,7 +64,14 @@
     return self;
 }
 
-
+- (void)setRecord:(GrabRecord *)record
+{
+    _record = record;
+    
+    self.titleLabel.text = record.text;
+    self.amountLabel.text = record.amount;
+    self.timeLabel.text = record.time;
+}
 
 @end
 

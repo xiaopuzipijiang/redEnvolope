@@ -7,7 +7,10 @@
 //
 
 #import "DMViewController.h"
+#import "BalanceInfo.h"
 
 @interface WithdrawCashViewController : DMViewController
+
+@property (nonatomic, strong) BalanceInfo *balanceInfo;
 
 @end

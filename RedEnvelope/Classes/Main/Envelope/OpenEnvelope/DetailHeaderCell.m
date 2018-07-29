@@ -59,7 +59,7 @@
         self.ticketButton = [[UIButton alloc] init];
         [self.ticketButton setTitle:@"xxx" forState:UIControlStateNormal];
         self.ticketButton.titleLabel.font = [UIFont systemFontOfSize:13.0f];
-        self.ticketButton.contentEdgeInsets = UIEdgeInsetsMake(3, 20, 3, 5);
+        self.ticketButton.contentEdgeInsets = UIEdgeInsetsMake(3, 10, 3, 10);
         [self.ticketButton setBackgroundImage:[DMSkinOriginalImage(@"CombinedShape") stretchableImageByCenter] forState:UIControlStateNormal];
         [self.contentView addSubview:self.ticketButton];
         
@@ -71,7 +71,7 @@
         }];
         
         [self.redEnvelopeView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.height.width.mas_equalTo(70);
+            make.height.width.mas_equalTo(60);
             make.centerX.equalTo(self.contentView);
             make.top.equalTo(self.headerBg.mas_bottom).with.offset(-35);
         }];
@@ -83,18 +83,18 @@
 
         [self.amountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self.contentView);
-            make.top.equalTo(self.nameLabel.mas_bottom).with.offset(10);
+            make.top.equalTo(self.nameLabel.mas_bottom).with.offset(15);
         }];
         
         [self.ticketButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(self.amountLabel.mas_top).with.offset(5);
-            make.left.equalTo(self.amountLabel.mas_right).with.offset(-5);
+            make.left.equalTo(self.amountLabel.mas_right).with.offset(5);
         }];
 
         [self.descLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self.contentView);
             make.top.equalTo(self.amountLabel.mas_bottom).with.offset(10);
-            make.bottom.equalTo(@-30);
+            make.bottom.equalTo(@-20);
         }];
 
     }

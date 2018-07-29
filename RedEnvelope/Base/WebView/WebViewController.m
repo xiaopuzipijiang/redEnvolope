@@ -30,13 +30,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"加载中...";
+    
     WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
 
     self.webView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:config];
     self.webView.scrollView.contentInset = UIEdgeInsetsZero;
     self.webView.navigationDelegate = self;
     self.webView.scrollView.scrollIndicatorInsets = UIEdgeInsetsZero;
-    self.webView.allowsBackForwardNavigationGestures = YES;
+    self.webView.allowsBackForwardNavigationGestures = NO;
     self.webView.backgroundColor = [UIColor whiteColor];
     [self loadUrl:self.url];
     
@@ -61,6 +63,5 @@
 {
     self.title = self.webView.title;
 }
-
 
 @end

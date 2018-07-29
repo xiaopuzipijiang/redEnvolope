@@ -7,6 +7,10 @@
 //
 
 #import "ApprenticeHomeViewController.h"
+#import "RewardViewController.h"
+#import "ServiceManager.h"
+#import "HomeInfo.h"
+#import "WebViewController.h"
 
 @interface ApprenticeHomeViewController ()
 
@@ -21,6 +25,8 @@
 
 @property (nonatomic, strong) UIButton *apprenticeButton;
 @property (nonatomic, strong) UIButton *apprenticeAwardButton;
+
+@property (nonatomic, strong) HomeInfo *homeInfo;
 
 @end
 
@@ -42,10 +48,6 @@
     button.layer.cornerRadius = button.height / 2;
     [button addTarget:self action:@selector(rightBarButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
-
-    self.bottomImageView = [[UIImageView alloc] init];
-    self.bottomImageView.image = [UIImage imageNamed:@"底部彩条"];
-    [self.view addSubview:self.bottomImageView];
     
     self.scrollView = [[UIScrollView alloc] init];
     self.scrollView.alwaysBounceVertical = YES;
@@ -56,7 +58,13 @@
     
     [self.scrollView addSubview:self.apprenticeAwardButton];
     [self.scrollView addSubview:self.apprenticeButton];
-
+    self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 25, 0);
+    
+    self.bottomImageView = [[UIImageView alloc] init];
+    self.bottomImageView.image = [UIImage imageNamed:@"底部彩条"];
+    [self.view addSubview:self.bottomImageView];
+    
+    [self updateInfo];
 }
 
 - (void)setUpApprenticeExplainView
@@ -84,17 +92,8 @@
 
     self.apprenticeInvitationCode = [YYLabel new];
     self.apprenticeInvitationCode.font = [UIFont systemFontOfSize:14];
-    NSMutableAttributedString *one = [[NSMutableAttributedString alloc] initWithString:@"我的邀请码：xxxxx"];
-    one.font = [UIFont boldSystemFontOfSize:13];
-    one.underlineStyle = NSUnderlineStyleSingle;
-    [one setTextHighlightRange:one.rangeOfAll
-                         color:[UIColor whiteColor]
-               backgroundColor:[UIColor colorWithWhite:0.000 alpha:0.220]
-                     tapAction:^(UIView *containerView, NSAttributedString *text, NSRange range, CGRect rect) {
-
-                     }];
-    
-    self.apprenticeInvitationCode.attributedText = one;
+    self.apprenticeInvitationCode.textAlignment = NSTextAlignmentCenter;
+  
     self.apprenticeInvitationCode.textAlignment = NSTextAlignmentCenter;
     [self.apprenticeExplainBg addSubview:self.apprenticeInvitationCode];
 
@@ -144,14 +143,60 @@
 
 }
 
-- (void)rightBarButtonPressed:(id)sender
+- (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     
+    [self loadInfo];
 }
 
-- (void)ApprenticeButtonPressed:(id)sender
+- (void)loadInfo
 {
+    DMWEAKSELFDEFIND
+    [[ServiceManager sharedManager]  requestHomerInfoWithCompletionHandler:^(BOOL success, HomeInfo *homeInfo, NSString *errorMessage) {
+        wSelf.homeInfo = homeInfo;
+        [wSelf updateInfo];
+    }];
+}
+
+- (void)updateInfo
+{
+    NSMutableAttributedString *one = [[NSMutableAttributedString alloc] initWithString:@"我的邀请码："];
+    one.color = [UIColor whiteColor];
+    one.font = [UIFont boldSystemFontOfSize:13];
+    NSMutableAttributedString *tow = [[NSMutableAttributedString alloc] initWithString:self.homeInfo.invitationInfo.inviteCode ? : @""];
+    tow.font = [UIFont boldSystemFontOfSize:13];
+    tow.underlineStyle = NSUnderlineStyleSingle;
+    DMWEAKSELFDEFIND
+    [tow setTextHighlightRange:tow.rangeOfAll
+                         color:[UIColor whiteColor]
+               backgroundColor:[UIColor colorWithWhite:0.000 alpha:0.220]
+                     tapAction:^(UIView *containerView, NSAttributedString *text, NSRange range, CGRect rect) {
+                         [wSelf showCopy];
+                     }];
+    [one appendAttributedString:tow];
+    one.alignment = NSTextAlignmentCenter;
+    self.apprenticeInvitationCode.attributedText = one;
     
+    NSMutableAttributedString *mAString = [[NSMutableAttributedString alloc] initWithString:@"已获得收徒奖励" attributes:@{NSForegroundColorAttributeName : HEXCOLOR(0x666666), NSFontAttributeName : [UIFont systemFontOfSize:16.0f]}];
+    [mAString appendAttributedString:[[NSAttributedString alloc] initWithString:self.homeInfo.balanceInfo.histricInvitedAmount ? : @"" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:16.0f], NSForegroundColorAttributeName : HEXCOLOR(0xe90139)}]];
+    [mAString appendAttributedString:[[NSMutableAttributedString alloc] initWithString:@"票票  " attributes:@{NSForegroundColorAttributeName : HEXCOLOR(0x666666), NSFontAttributeName : [UIFont systemFontOfSize:16.0f]}]];
+    
+    NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
+    attachment.image = [UIImage imageNamed:@"提现-微信-选择方式箭头"];
+    [mAString appendAttributedString:[NSAttributedString attributedStringWithAttachment:attachment]];
+    
+    [_apprenticeAwardButton setAttributedTitle:mAString forState:UIControlStateNormal];
+
+    [self.view setNeedsLayout];
+}
+
+- (void)rightBarButtonPressed:(id)sender
+{
+    WebViewController *vc = [[WebViewController alloc] initWithUrl:kInviteHowUrl];
+    vc.hidesBottomBarWhenPushed = YES;
+    
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (UIButton *)apprenticeButton
@@ -164,6 +209,7 @@
         [_apprenticeButton setTitleColor:HEXCOLOR(0xe90139) forState:UIControlStateNormal];
         _apprenticeButton.backgroundColor = HEXCOLOR(0xffce3d);
         _apprenticeButton.layer.cornerRadius = 5;
+        [_apprenticeButton addTarget:self action:@selector(shared:) forControlEvents:UIControlEventTouchUpInside];
     }
     
     return _apprenticeButton;
@@ -173,25 +219,60 @@
 {
     if (!_apprenticeAwardButton)
     {
-        _apprenticeAwardButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        _apprenticeAwardButton = [[UIButton alloc] init];
         _apprenticeAwardButton.backgroundColor = [UIColor whiteColor];
         _apprenticeAwardButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
-        _apprenticeAwardButton.layer.borderColor = HEXCOLOR(0x666666).CGColor;
+        _apprenticeAwardButton.layer.borderColor = HEXCOLOR(0xaaaaaa).CGColor;
         _apprenticeAwardButton.layer.borderWidth = 1;
         _apprenticeAwardButton.contentEdgeInsets = UIEdgeInsetsMake(10, 20, 10, 20);
-        NSMutableAttributedString *mAString = [[NSMutableAttributedString alloc] initWithString:@"已获得收徒奖励" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:16.0f]}];
-        [mAString appendAttributedString:[[NSAttributedString alloc] initWithString:@"1.100023" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:16.0f]}]];
-        
-        NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
-        attachment.image = [UIImage imageNamed:@"提现-微信-选择方式箭头"];
-        
-        
-        [_apprenticeAwardButton setAttributedTitle:mAString forState:UIControlStateNormal];
-        
+        [_apprenticeAwardButton addTarget:self action:@selector(rewardButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     }
     
     return _apprenticeAwardButton;
 }
 
+#pragma mark - LongPressed copy
+
+- (void)showCopy
+{
+        [self becomeFirstResponder];
+        UIMenuController *menuController = [UIMenuController sharedMenuController];
+        menuController.arrowDirection = UIPopoverArrowDirectionDown;
+        [menuController setTargetRect:CGRectOffset(self.apprenticeInvitationCode.frame, 20, 0) inView:self.apprenticeExplainBg];
+        [menuController setMenuVisible:YES animated:YES];
+}
+
+- (BOOL)canBecomeFirstResponder
+{
+    return YES;
+}
+
+- (BOOL)canPerformAction:(SEL)action withSender:(id)sender
+{
+    if (action == @selector(copy:))
+    {
+        return YES;
+    }
+    
+    return NO;
+}
+
+- (void)copy:(id)sender
+{
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = self.homeInfo.invitationInfo.inviteCode;
+}
+
+- (void)shared:(id)sender
+{
+    [kAPPDelegate shareActionWithCode:self.homeInfo.invitationInfo];
+}
+
+- (void)rewardButtonPressed:(id)sender
+{
+    RewardViewController *vc = [[RewardViewController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 @end

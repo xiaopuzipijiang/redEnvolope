@@ -14,10 +14,13 @@
 #import "GrabRecord.h"
 #import "WalletInfo.h"
 #import "TrendInfo.h"
+#import "InvitationInfo.h"
 
 @interface ServiceManager ()
 
 @property (nonatomic, strong) NetWorkClient *networkClient;
+
+@property (nonatomic, strong) HomeInfo *homeInfo;
 
 @end
 
@@ -45,9 +48,24 @@
     return manager;
 }
 
+- (void)setUpHomeInfo:(NSDictionary *)responseObject
+{
+    HomeInfo *homeInfo = [HomeInfo modelWithJSON:[responseObject dictForKey:@"bonusInfo"]];
+    BalanceInfo *balanceInfo = [BalanceInfo modelWithJSON:[responseObject dictForKey:@"balanceInfo"]];
+    homeInfo.balanceInfo = balanceInfo;
+    InvitationInfo *invitationInfo = [InvitationInfo modelWithJSON:[responseObject dictForKey:@"inviteInfo"]];
+    homeInfo.invitationInfo = invitationInfo;
+    
+    self.homeInfo = homeInfo;
+}
+
 - (void)loginWithToken:(NSString *)token completionHandler:(DMHttpRequestCompletionObjectHandler)completionHandler
 {
-    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:token, @"code", nil];
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setSafeObject:token forKey:@"code"];
+    [params setSafeObject:[UIPasteboard generalPasteboard].string forKey:@"inviteCode"];
+    
+    
     [self.networkClient postWithPath:@"/api/user/thirdLogin" params:params completionHandler:^(BOOL success, id responseObject, NSString *errorMessage) {
         if (success)
         {
@@ -67,6 +85,7 @@
     [self.networkClient postWithPath:@"api/login/home" params:nil completionHandler:^(BOOL success, id responseObject, NSString *errorMessage) {
         if (success)
         {
+            [self setUpHomeInfo:responseObject];
             UserInfo *userInfo = [UserInfo modelWithJSON:[responseObject dictForKey:@"profileInfo"]];
             completionHandler(YES, userInfo, nil);
         }
@@ -80,14 +99,10 @@
 - (void)requestHomerInfoWithCompletionHandler:(DMHttpRequestCompletionObjectHandler)completionHandler
 {
     [self.networkClient postWithPath:@"api/login/home" params:nil completionHandler:^(BOOL success, id responseObject, NSString *errorMessage) {
-        
         if (success)
         {
-            HomeInfo *homeInfo = [HomeInfo modelWithJSON:[responseObject dictForKey:@"bonusInfo"]];
-            BalanceInfo *balanceInfo = [BalanceInfo modelWithJSON:[responseObject dictForKey:@"balanceInfo"]];
-            homeInfo.balanceInfo = balanceInfo;
-            
-            completionHandler(YES, homeInfo, errorMessage);
+            [self setUpHomeInfo:responseObject];
+            completionHandler(YES, self.homeInfo, errorMessage);
         }
         else
         {
@@ -102,8 +117,9 @@
         
         if (success)
         {
-            WalletInfo *walletInfo = [[WalletInfo alloc] init];
+            [self setUpHomeInfo:responseObject];
             
+            WalletInfo *walletInfo = [[WalletInfo alloc] init];
             BalanceInfo *balanceInfo = [BalanceInfo modelWithJSON:[responseObject dictForKey:@"balanceInfo"]];
             walletInfo.balance = balanceInfo;
             
@@ -116,13 +132,6 @@
         {
             completionHandler(NO, nil, errorMessage);
         }
-    }];
-}
-
-- (void)bigRequest:(DMHttpRequestCompletionObjectHandler)completionHandler
-{
-    [self.networkClient postWithPath:@"api/login/home" params:nil completionHandler:^(BOOL success, id responseObject, NSString *errorMessage) {
-        
     }];
 }
 
@@ -202,6 +211,40 @@
             NSArray *array = [NSArray modelArrayWithClass:[GrabRecord class] json:[responseObject arrayForKey:@"records"]];
             resultSet.hasMore = [responseObject boolForKey:@"hasMore"];
             [resultSet addItems:array];
+            completionHandler(YES, nil);
+        }
+        else
+        {
+            completionHandler(NO, errorMessage);
+        }
+    }];
+}
+
+- (void)requestWithdrawRecordListWithResult:(DMResultSet *)resultSet completionHandler:(DMHttpRequestCompletionHandler)completionHandler
+{
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@(resultSet.currentPage), @"page", nil];
+    
+    [self.networkClient postWithPath:@"/api/bonus/withdraw/list" params:params completionHandler:^(BOOL success, id responseObject, NSString *errorMessage) {
+        if (success)
+        {
+            NSArray *array = [NSArray modelArrayWithClass:[GrabRecord class] json:[responseObject arrayForKey:@"records"]];
+            resultSet.hasMore = [responseObject boolForKey:@"hasMore"];
+            [resultSet addItems:array];
+            completionHandler(YES, nil);
+        }
+        else
+        {
+            completionHandler(NO, errorMessage);
+        }
+    }];
+}
+
+- (void)requestWithdrawWithCount:(NSInteger)amount completionHandler:(DMHttpRequestCompletionHandler)completionHandler;
+{
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@(amount), @"money", nil];
+    [self.networkClient postWithPath:@"/api/bonus/withdraw" params:params completionHandler:^(BOOL success, id responseObject, NSString *errorMessage) {
+        if (success)
+        {
             completionHandler(YES, nil);
         }
         else

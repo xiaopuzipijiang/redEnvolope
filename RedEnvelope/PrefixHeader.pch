@@ -53,6 +53,11 @@
 #define DMStatusBarHeight       ([UIApplication sharedApplication].statusBarFrame.size.height)
 #define DMTabBarHeight (DMDeviceIsX ? 83 : 49)
 
+#define kInviteHowUrl  @"https://hongbao.kanqibao.com/invite/how"
+#define kAboutUsUrl    @"https://hongbao.kanqibao.com/app/about"
+#define kContactUsUrl  @"https://hongbao.kanqibao.com/app/contact"
+#define kFeedBackUrl   @"https://hongbao.kanqibao.com/app/feedback"
+
 #import "ServiceManager.h"
 #import "AppDelegate.h"
 #import "AFNetworking/AFNetworking.h"
@@ -81,5 +86,7 @@
 #import "RERefreshHeader.h"
 #import "RERefreshFooter.h"
 #import "UIImage+Stretch.h"
+#import "NSString+trim.h"
+#import "NSString+Check.h"
 
 #endif /* PrefixHeader_pch */

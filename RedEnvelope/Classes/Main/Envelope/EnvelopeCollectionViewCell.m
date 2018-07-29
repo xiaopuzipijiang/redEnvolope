@@ -67,13 +67,12 @@
 {
     self.coverImageView.image = [UIImage imageNamed:@"红包倒计时状态"];
     
-    self.deadLineLabel.hidden = NO;
-
     DMWEAKSELFDEFIND
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1 block:^(NSTimer * _Nonnull timer) {
         NSInteger offset = comingTime - [NSDate date].timeIntervalSince1970;
         if (offset >= 0)
         {
+            wSelf.deadLineLabel.hidden = NO;
             NSString *offsetString = [NSString stringWithFormat:@"%ld:%ld", offset / 60, offset % 60];
             wSelf.deadLineLabel.text = offsetString;
             [wSelf setNeedsLayout];

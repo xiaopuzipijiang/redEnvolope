@@ -13,6 +13,7 @@
 #import "RewardViewController.h"
 #import "ServiceManager.h"
 #import "UserInfo.h"
+#import "WebViewController.h"
 
 @interface MineHomeViewController ()
 
@@ -34,12 +35,6 @@
 #pragma clang diagnostic ignored "-Wundeclared-selector"
     [self.tableView performSelector:@selector(setTableHeaderBackgroundColor:) withObject:HEXCOLOR(0xfc5b5b) withObject:nil];
 #pragma clang diagnostic pop
-
-//    if (@available(iOS 11.0, *)) {
-//        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-//    } else {
-//        self.automaticallyAdjustsScrollViewInsets = NO;
-//    }
     
     self.bottomImageView = [[UIImageView alloc] init];
     self.bottomImageView.image = [UIImage imageNamed:@"底部彩条"];
@@ -125,14 +120,18 @@
         cell.textLabel.text = @"联系客服";
         cell.imageView.image = [UIImage imageNamed:@"联系客服"];
     } didSelectedBlock:^(MineHomeGeneralCell *cell, id object) {
-        
+        WebViewController *vc = [[WebViewController alloc] initWithUrl:kContactUsUrl];
+        vc.hidesBottomBarWhenPushed = YES;
+        [wSelf.navigationController pushViewController:vc animated:YES];
     }];
     
     [section3 addSubitemWithClass:[MineHomeGeneralCell class] object:nil configCellBlock:^(MineHomeGeneralCell *cell, id object) {
         cell.textLabel.text = @"问题反馈";
         cell.imageView.image = [UIImage imageNamed:@"问题反馈"];
     } didSelectedBlock:^(MineHomeGeneralCell *cell, id object) {
-        
+        WebViewController *vc = [[WebViewController alloc] initWithUrl:kFeedBackUrl];
+        vc.hidesBottomBarWhenPushed = YES;
+        [wSelf.navigationController pushViewController:vc animated:YES];
     }];
 
     [section3 addSubitemWithClass:[MineHomeGeneralCell class] object:nil configCellBlock:^(MineHomeGeneralCell *cell, id object) {
@@ -140,6 +139,9 @@
         cell.imageView.image = [UIImage imageNamed:@"关于"];
     } didSelectedBlock:^(MineHomeGeneralCell *cell, id object) {
         
+        WebViewController *vc = [[WebViewController alloc] initWithUrl:[kAboutUsUrl stringByAppendingFormat:@"?v=%@", [[NSBundle mainBundle].infoDictionary objectForKey:@"CFBundleShortVersionString"]]];
+        vc.hidesBottomBarWhenPushed = YES;
+        [wSelf.navigationController pushViewController:vc animated:YES];
     }];
     
     [self.viewDataSource addSubitem:section1];
