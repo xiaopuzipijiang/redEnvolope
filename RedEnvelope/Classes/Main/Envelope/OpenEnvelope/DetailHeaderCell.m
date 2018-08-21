@@ -53,7 +53,7 @@
         self.descLabel = [[UILabel alloc] init];
         self.descLabel.font = [UIFont systemFontOfSize:16.0f];
         self.descLabel.textColor = DM153GRAYCOLOR;
-        self.descLabel.text = @"已存入红包，可提现";
+        self.descLabel.text = @"已存入钱包，可提现";
         [self.contentView addSubview:self.descLabel];
         
         self.ticketButton = [[UIButton alloc] init];

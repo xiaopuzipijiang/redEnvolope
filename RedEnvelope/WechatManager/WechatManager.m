@@ -50,6 +50,12 @@
 
 - (void)shareWithImage:(UIImage *)image scene:(int)scene
 {
+    
+    if (![WXApi isWXAppInstalled])
+    {
+        [SVProgressHUD showErrorWithStatus:@"未安装微信"];
+    }
+    
     WXMediaMessage *message = [WXMediaMessage message];
     [message setThumbImage:image];
     

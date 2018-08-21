@@ -7,10 +7,10 @@
 //
 
 #import "DMTableViewCell.h"
-#import "GrabRecord.h"
+#import "WithdDrawRecord.h"
 
 @interface WithdDrawRecordCell : DMTableViewCell
 
-@property (nonatomic, strong) GrabRecord *record;
+@property (nonatomic, strong) WithdDrawRecord *record;
 
 @end

@@ -100,7 +100,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z3E-XJ-AIH">
-                            <rect key="frame" x="20" y="281" width="335" height="45"/>
+                            <rect key="frame" x="20" y="291" width="335" height="45"/>
                             <color key="backgroundColor" red="0.88627450980392153" green="0.43529411764705883" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="Sl4-Oy-TBO"/>
@@ -113,12 +113,6 @@
                                 <action selector="commitButtonPressed:" destination="-1" eventType="touchUpInside" id="gR7-fq-NYh"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提示金额小于1元时不可提现" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0JI-Nu-AaL">
-                            <rect key="frame" x="105.5" y="334" width="165.5" height="16"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <color key="textColor" red="0.88627450980392153" green="0.43529411764705883" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sb5-zM-J27">
                             <rect key="frame" x="56" y="110.5" width="17" height="32.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="27"/>
@@ -138,12 +132,18 @@
                                 <constraint firstAttribute="height" constant="0.5" id="uAR-aP-AFg"/>
                             </constraints>
                         </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提示金额小于1元时不可提现" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0JI-Nu-AaL">
+                            <rect key="frame" x="105" y="267" width="165.5" height="16"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" red="0.88627450980392153" green="0.43529411764705883" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <constraints>
                         <constraint firstItem="vox-8m-2B0" firstAttribute="top" secondItem="ZoF-cb-ENH" secondAttribute="bottom" constant="4" id="0ik-b1-qr9"/>
                         <constraint firstItem="UCu-dd-qha" firstAttribute="centerY" secondItem="vdC-pc-p7F" secondAttribute="centerY" id="2qU-6d-kty"/>
                         <constraint firstItem="sLr-CG-T0H" firstAttribute="leading" secondItem="v6Q-XY-Pwq" secondAttribute="leading" constant="15" id="668-ig-568"/>
-                        <constraint firstItem="z3E-XJ-AIH" firstAttribute="top" secondItem="bDF-7D-A3z" secondAttribute="bottom" constant="40" id="7oG-KD-jZs"/>
+                        <constraint firstItem="z3E-XJ-AIH" firstAttribute="top" secondItem="bDF-7D-A3z" secondAttribute="bottom" constant="50" id="7oG-KD-jZs"/>
                         <constraint firstItem="xEg-P6-vlY" firstAttribute="trailing" secondItem="4j8-uB-MmY" secondAttribute="trailing" id="8aG-vy-jgh"/>
                         <constraint firstItem="ZoF-cb-ENH" firstAttribute="bottom" secondItem="sb5-zM-J27" secondAttribute="bottom" constant="13" id="Dae-gk-v5v"/>
                         <constraint firstAttribute="trailing" secondItem="Ny4-Ei-RQg" secondAttribute="trailing" id="Dcu-ft-rvC"/>
@@ -155,23 +155,23 @@
                         <constraint firstItem="VXl-Mf-7b2" firstAttribute="top" secondItem="sLr-CG-T0H" secondAttribute="bottom" constant="5" id="PsO-jI-2Y0"/>
                         <constraint firstItem="4j8-uB-MmY" firstAttribute="trailing" secondItem="sLr-CG-T0H" secondAttribute="trailing" constant="-5" id="QpM-NK-cLz"/>
                         <constraint firstItem="xEg-P6-vlY" firstAttribute="trailing" secondItem="z3E-XJ-AIH" secondAttribute="trailing" id="SXJ-o3-vAD"/>
+                        <constraint firstAttribute="bottom" secondItem="z3E-XJ-AIH" secondAttribute="bottom" constant="321" id="SxR-1J-uPy"/>
                         <constraint firstItem="xEg-P6-vlY" firstAttribute="centerY" secondItem="vdC-pc-p7F" secondAttribute="centerY" id="VIK-r4-7iA"/>
                         <constraint firstItem="bDF-7D-A3z" firstAttribute="top" secondItem="vdC-pc-p7F" secondAttribute="bottom" constant="23" id="VIp-dQ-68y"/>
                         <constraint firstItem="vox-8m-2B0" firstAttribute="leading" secondItem="sLr-CG-T0H" secondAttribute="leading" id="Wuj-4D-7EC"/>
-                        <constraint firstAttribute="bottom" secondItem="0JI-Nu-AaL" secondAttribute="bottom" constant="295" id="XRj-Lv-iAE"/>
                         <constraint firstItem="z3E-XJ-AIH" firstAttribute="leading" secondItem="bDF-7D-A3z" secondAttribute="leading" id="Ygk-5P-QHY"/>
                         <constraint firstItem="ZoF-cb-ENH" firstAttribute="leading" secondItem="sb5-zM-J27" secondAttribute="trailing" constant="5" id="Ypu-5p-O0f"/>
                         <constraint firstItem="bDF-7D-A3z" firstAttribute="leading" secondItem="vdC-pc-p7F" secondAttribute="leading" id="aOX-5t-gap"/>
                         <constraint firstAttribute="trailing" secondItem="sLr-CG-T0H" secondAttribute="trailing" constant="15" id="abk-hK-EEp"/>
                         <constraint firstItem="ZoF-cb-ENH" firstAttribute="centerX" secondItem="v6Q-XY-Pwq" secondAttribute="centerX" id="aev-EA-RcZ"/>
                         <constraint firstItem="4j8-uB-MmY" firstAttribute="bottom" secondItem="VXl-Mf-7b2" secondAttribute="bottom" id="fyo-hz-sCy"/>
+                        <constraint firstItem="z3E-XJ-AIH" firstAttribute="top" secondItem="0JI-Nu-AaL" secondAttribute="bottom" constant="8" id="gG5-q9-gvv"/>
                         <constraint firstItem="Ny4-Ei-RQg" firstAttribute="bottom" secondItem="sLr-CG-T0H" secondAttribute="bottom" id="gVg-i8-yrH"/>
                         <constraint firstItem="Ny4-Ei-RQg" firstAttribute="leading" secondItem="v6Q-XY-Pwq" secondAttribute="leading" id="pRA-0d-sf2"/>
                         <constraint firstItem="UCu-dd-qha" firstAttribute="leading" secondItem="vdC-pc-p7F" secondAttribute="trailing" constant="8" id="qDd-Af-3nH"/>
                         <constraint firstItem="crF-4e-tsP" firstAttribute="baseline" secondItem="sLr-CG-T0H" secondAttribute="baseline" id="ssb-i8-9Cz"/>
                         <constraint firstItem="vdC-pc-p7F" firstAttribute="leading" secondItem="VXl-Mf-7b2" secondAttribute="leading" id="tHV-Su-UAy"/>
                         <constraint firstItem="vox-8m-2B0" firstAttribute="trailing" secondItem="sLr-CG-T0H" secondAttribute="trailing" id="v68-an-ag8"/>
-                        <constraint firstItem="0JI-Nu-AaL" firstAttribute="top" secondItem="z3E-XJ-AIH" secondAttribute="bottom" constant="8" id="x29-cZ-cdY"/>
                     </constraints>
                 </scrollView>
             </subviews>

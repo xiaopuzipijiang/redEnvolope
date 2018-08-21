@@ -65,6 +65,13 @@
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 {
+    if (webView.isLoading)
+    {
+        decisionHandler(WKNavigationActionPolicyAllow);
+        
+        return;
+    }
+    
     NSURLComponents *components = [[NSURLComponents alloc] initWithURL:navigationAction.request.URL resolvingAgainstBaseURL:NO];
     
     if ([components.scheme isEqualToString:@"hongbao"])
@@ -83,8 +90,12 @@
             }
         }
     }
+    else
+    {
+        [self.delegate detailRecommendCell:self navigate:navigationAction.request.URL.absoluteString];
+    }
     
-    decisionHandler(WKNavigationActionPolicyAllow);
+    decisionHandler(WKNavigationActionPolicyCancel);
 }
 
 @end

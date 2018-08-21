@@ -36,6 +36,7 @@
         
         self.ruleImageView = [[UIImageView alloc] init];
         self.ruleImageView.image = [UIImage imageNamed:@"票票规则"];
+        self.ruleImageView.contentMode = UIViewContentModeScaleAspectFit;
         [self.contentView addSubview:self.ruleImageView];
         
         [self.ruleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -46,7 +47,7 @@
         }];
         
         [self.ruleImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.ruleLabel.mas_top);
+            make.top.equalTo(self.ruleLabel.mas_bottom);
             make.left.equalTo(@0);
             make.right.equalTo(@0);
             make.height.equalTo(self.ruleImageView.mas_width).with.multipliedBy(828.0 / 750.0);

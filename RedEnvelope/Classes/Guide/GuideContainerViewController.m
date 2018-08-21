@@ -10,6 +10,7 @@
 #import "GuideItemViewController.h"
 #import "ServiceManager.h"
 #import "WechatManager.h"
+#import "WebViewController.h"
 
 #define kPageCount 3
 
@@ -48,7 +49,16 @@
     [self.view addSubview:self.protocolLabel];
     
     self.weixinLoginButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [self.weixinLoginButton setImage:DMSkinOriginalImage(@"微信登录") forState:UIControlStateNormal];
+    
+    if ([WXApi isWXAppInstalled])
+    {
+        [self.weixinLoginButton setImage:DMSkinOriginalImage(@"微信登录") forState:UIControlStateNormal];
+    }
+    else
+    {
+        [self.weixinLoginButton setImage:DMSkinOriginalImage(@"账号登录") forState:UIControlStateNormal];
+    }
+    
     [self.weixinLoginButton addTarget:self action:@selector(loginByWeiXin:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:self.weixinLoginButton];
@@ -80,8 +90,26 @@
 - (void)loginByWeiXin:(id)sender
 {
     [SVProgressHUD show];
-    [[WechatManager sharedManager] signInWithCompletionHandler:^(BOOL success, NSString* codeString, NSError *error) {
-        [[ServiceManager sharedManager] loginWithToken:codeString completionHandler:^(BOOL success, id object, NSString *errorMessage) {
+    
+    if ([WXApi isWXAppInstalled])
+    {
+        [[WechatManager sharedManager] signInWithCompletionHandler:^(BOOL success, NSString* codeString, NSError *error) {
+            [[ServiceManager sharedManager] loginWithToken:codeString completionHandler:^(BOOL success, id object, NSString *errorMessage) {
+                if (success)
+                {
+                    [SVProgressHUD dismiss];
+                    [kAPPDelegate showMainViewContorller];
+                }
+                else
+                {
+                    [SVProgressHUD showErrorWithStatus:errorMessage];
+                }
+            }];
+        }];
+    }
+    else
+    {
+        [[ServiceManager sharedManager] vistorLoginWithcompletionHandler:^(BOOL success, id object, NSString *errorMessage) {
             if (success)
             {
                 [SVProgressHUD dismiss];
@@ -92,7 +120,7 @@
                 [SVProgressHUD showErrorWithStatus:errorMessage];
             }
         }];
-    }];
+    }
 }
 
 - (nullable UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
@@ -105,7 +133,7 @@
 - (nullable UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
     GuideItemViewController *vc = (GuideItemViewController *)viewController;
-
+    
     return [self pageViewControllerWithIndex:[self nextPageIndex:vc.pageIndex]];
 }
 
@@ -175,7 +203,8 @@
                              color:[UIColor orangeColor]
                    backgroundColor:[UIColor colorWithWhite:0.000 alpha:0.220]
                          tapAction:^(UIView *containerView, NSAttributedString *text, NSRange range, CGRect rect) {
-                             
+                             WebViewController*vc = [[WebViewController alloc] initWithUrl:@"https://hongbao.kanqibao.com/app/protocol"];
+                             [self.navigationController pushViewController:vc animated:YES];
                          }];
         [one appendAttributedString:two];
         
@@ -184,6 +213,11 @@
     }
     
     return _protocolLabel;
+}
+
+- (DMNavigationBarStyle)navigationBarStyle
+{
+    return DMNavigationBarStyleHidden;
 }
 
 @end

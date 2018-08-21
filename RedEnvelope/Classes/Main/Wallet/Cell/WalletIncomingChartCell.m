@@ -30,7 +30,7 @@
 //        self.chart.backgroundColor = [UIColor yellowColor];
 //        self.chart.userInteractionEnabled = NO;
         self.backView = [[UIImageView alloc] init];
-        self.backView.backgroundColor = HEXCOLOR(0xb6b6b6);
+//        self.backView.backgroundColor = HEXCOLOR(0xb6b6b6);
         
         [self.contentView addSubview:self.backView];
 
@@ -84,25 +84,26 @@
     numberArray = [trendInfo.trendArray mutableCopy];
     
     XLineChartItem* item = [[XLineChartItem alloc] initWithDataNumberArray:numberArray
-                                              color:XJYWhite];
+                                              color:XJYPinkGrey];
     [itemArray addObject:item];
     
     XAreaLineChartConfiguration* configuration =
     [[XAreaLineChartConfiguration alloc] init];
-    configuration.isShowPoint = YES;
+//    configuration.isShowPoint = YES;
     configuration.lineMode = CurveLine;
     configuration.ordinateDenominator = 6;
-    configuration.isEnableNumberLabel = YES;
+//    configuration.isEnableNumberLabel = YES;
+    configuration.chartBackgroundColor = HEXCOLOR(0xfbfbfb);
+    CGFloat top = trendInfo.max + 0.000001;
     XLineChart* lineChart =
-    [[XLineChart alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 300)
+    [[XLineChart alloc] initWithFrame:CGRectMake(0, 10, [UIScreen mainScreen].bounds.size.width, 280)
                         dataItemArray:itemArray
                     dataDiscribeArray:[NSMutableArray arrayWithArray:trendInfo.dataArray]
-                            topNumber:@(trendInfo.max)
+                            topNumber:@(top)
                          bottomNumber:@(trendInfo.min)
                             graphMode:AreaLineGraph
-                   chartConfiguration:nil];
+                   chartConfiguration:configuration];
     lineChart.isAllowGesture = YES;
-//    lineChart.backgroundColor = [UIColor  greenColor];
     lineChart.tag = 110;
     lineChart.userInteractionEnabled = NO;
     [self.contentView addSubview:lineChart];

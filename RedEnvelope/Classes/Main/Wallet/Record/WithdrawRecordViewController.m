@@ -9,6 +9,7 @@
 #import "WithdrawRecordViewController.h"
 #import "WithdDrawRecordCell.h"
 #import "GrabRecord.h"
+#import "WithdDrawRecord.h"
 
 @interface WithdrawRecordViewController ()
 
@@ -78,9 +79,9 @@
     
     DMDataSourceItem *section = [[DMDataSourceItem alloc] init];
     
-    for (GrabRecord *record in self.resultSet.items)
+    for (WithdDrawRecord *record in self.resultSet.items)
     {
-        [section addSubitemWithClass:[WithdDrawRecordCell class] object:record configCellBlock:^(WithdDrawRecordCell *cell, GrabRecord *object) {
+        [section addSubitemWithClass:[WithdDrawRecordCell class] object:record configCellBlock:^(WithdDrawRecordCell *cell, WithdDrawRecord *object) {
             cell.record = record;
         }];
     }

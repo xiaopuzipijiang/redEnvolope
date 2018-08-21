@@ -73,7 +73,7 @@
         if (offset >= 0)
         {
             wSelf.deadLineLabel.hidden = NO;
-            NSString *offsetString = [NSString stringWithFormat:@"%ld:%ld", offset / 60, offset % 60];
+            NSString *offsetString = [NSString stringWithFormat:@"%zi:%zi", offset / 60, offset % 60];
             wSelf.deadLineLabel.text = offsetString;
             [wSelf setNeedsLayout];
         }

@@ -15,6 +15,7 @@ pod 'AFNetworking', '~> 3.0'
 pod 'PNChart'
 pod 'WechatOpenSDK'
 pod 'XJYChart'
+pod 'MiPushSDK'
 
 
 

@@ -9,7 +9,7 @@
 #import "WithdrawCashViewController.h"
 #import "WithdrawRecordViewController.h"
 
-@interface WithdrawCashViewController ()
+@interface WithdrawCashViewController () <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UITextField *amountTextField;
@@ -28,7 +28,8 @@
     
     self.navigationItem.title = @"提现";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"提现记录" style:UIBarButtonItemStylePlain target:self action:@selector(withdrawRecord:)];
-
+    self.navigationItem.rightBarButtonItem.tintColor = HEXCOLOR(0x333333);
+    
     self.scrollView.contentSize = CGSizeMake(self.view.width, self.view.height);
     
     self.scrollView.alwaysBounceVertical = YES;
@@ -43,6 +44,7 @@
     self.amountTextField.tintColor = [UIColor blackColor];
     self.amountTextField.adjustsFontSizeToFitWidth = NO;
     self.amountTextField.keyboardType = UIKeyboardTypeDecimalPad;
+    self.amountTextField.delegate = self;
     
     [self.commitButton setBackgroundImage:[UIImage imageWithColor:HEXCOLOR(0xe26f4f) size:CGSizeMake(10, 10)] forState:UIControlStateNormal];
     [self.commitButton setBackgroundImage:[UIImage imageWithColor:HEXCOLOR(0xdddddd) size:CGSizeMake(10, 10)] forState:UIControlStateDisabled];
@@ -77,6 +79,14 @@
     if (decimalNumber.floatValue < 1.0 || isnan(decimalNumber.floatValue))
     {
         self.noticeLabel.hidden = NO;
+        self.noticeLabel.text = @"提示金额小于1元时不可提现";
+        self.commitButton.enabled = NO;
+    }
+    
+    else if(decimalNumber.floatValue > self.balanceInfo.balance.floatValue)
+    {
+        self.noticeLabel.hidden = NO;
+        self.noticeLabel.text = @"输入金额超过余额";
         self.commitButton.enabled = NO;
     }
     else
@@ -87,7 +97,17 @@
 }
 
 - (IBAction)allButtonPressed:(id)sender {
-    self.amountTextField.text = [NSString stringWithFormat:@"%@", self.balanceInfo.balance];
+    NSDecimalNumber *decimalNumber = [[NSDecimalNumber alloc] initWithString:self.balanceInfo.balance];
+    NSDecimalNumberHandler *roundingBehavior = [NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSRoundDown
+                                                                                                      scale:2
+                                                                                           raiseOnExactness:NO
+                                                                                            raiseOnOverflow:NO
+                                                                                           raiseOnUnderflow:NO
+                                                                                        raiseOnDivideByZero:NO];
+    
+    NSDecimalNumber *resultDN = [decimalNumber decimalNumberByRoundingAccordingToBehavior:roundingBehavior];
+    
+    self.amountTextField.text = [NSString stringWithFormat:@"%@", resultDN];
     [self updatePiaoPiaoText:self.amountTextField.text];
 }
 
@@ -110,7 +130,15 @@
     [[ServiceManager sharedManager] requestWithdrawWithCount:amount completionHandler:^(BOOL success, NSString *errorMessage) {
         if (success)
         {
-            [SVProgressHUD showSuccessWithStatus:@"提现成功"];
+            [SVProgressHUD dismiss];
+            DMWEAKSELFDEFIND
+            NSString *alertString = [NSString stringWithFormat:@"您已成功提现%@元到微信，预计24小时以内到账，请耐心等待", countString];
+            PSTAlertController *alert = [PSTAlertController alertWithTitle:@"提现成功" message:alertString];
+            [alert addAction:[PSTAlertAction actionWithTitle:@"确定" handler:^(PSTAlertAction * _Nonnull action) {
+                [wSelf.navigationController popViewControllerAnimated:YES];
+            }]];
+            
+            [alert showWithSender:self controller:self animated:YES completion:nil];
         }
         else
         {
@@ -127,6 +155,33 @@
     
     [alter showWithSender:self controller:self animated:YES completion:nil];
     
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSString *amoumtString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    
+    if (amoumtString.length == 0)
+    {
+        return YES;
+    }
+    
+    if (![amoumtString isPureFloat])
+    {
+        return NO;
+    }
+    
+    NSArray *strings = [amoumtString componentsSeparatedByString:@"."];
+    if (strings.count == 2)
+    {
+        NSString *string = strings.lastObject;
+        if (string.length > 2)
+        {
+            return NO;
+        }
+    }
+    
+    return YES;
 }
 
 @end

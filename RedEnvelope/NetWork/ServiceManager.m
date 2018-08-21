@@ -15,6 +15,8 @@
 #import "WalletInfo.h"
 #import "TrendInfo.h"
 #import "InvitationInfo.h"
+#import "WithdDrawRecord.h"
+#import "AliADInfo.h"
 
 @interface ServiceManager ()
 
@@ -50,11 +52,7 @@
 
 - (void)setUpHomeInfo:(NSDictionary *)responseObject
 {
-    HomeInfo *homeInfo = [HomeInfo modelWithJSON:[responseObject dictForKey:@"bonusInfo"]];
-    BalanceInfo *balanceInfo = [BalanceInfo modelWithJSON:[responseObject dictForKey:@"balanceInfo"]];
-    homeInfo.balanceInfo = balanceInfo;
-    InvitationInfo *invitationInfo = [InvitationInfo modelWithJSON:[responseObject dictForKey:@"inviteInfo"]];
-    homeInfo.invitationInfo = invitationInfo;
+    HomeInfo *homeInfo = [HomeInfo modelWithJSON:responseObject];
     
     self.homeInfo = homeInfo;
 }
@@ -80,9 +78,42 @@
     }];
 }
 
+- (void)vistorLoginWithcompletionHandler:(DMHttpRequestCompletionObjectHandler)completionHandler
+{
+    [self.networkClient postWithPath:@"/api/user/login/new" params:nil completionHandler:^(BOOL success, id responseObject, NSString *errorMessage) {
+        if (success)
+        {
+            UserAccount *account = [UserAccount modelWithJSON:responseObject];
+            [account saveAccount];
+            completionHandler(YES, account, nil);
+        }
+        else
+        {
+            completionHandler(NO, nil, errorMessage);
+        }
+    }];
+}
+
+- (void)uploadToken:(NSString *)token completionHandler:(DMHttpRequestCompletionHandler)completionHandler
+{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setSafeObject:token forKey:@"token"];
+    
+    [self.networkClient postWithPath:@"/api/user/token/add" params:params completionHandler:^(BOOL success, id responseObject, NSString *errorMessage) {
+        if (success)
+        {
+            completionHandler(YES, nil);
+        }
+        else
+        {
+            completionHandler(NO, errorMessage);
+        }
+    }];
+}
+
 - (void)requestUserInfoWithCompletionHandler:(DMHttpRequestCompletionObjectHandler)completionHandler
 {
-    [self.networkClient postWithPath:@"api/login/home" params:nil completionHandler:^(BOOL success, id responseObject, NSString *errorMessage) {
+    [self.networkClient postWithPath:@"/api/login/home" params:nil completionHandler:^(BOOL success, id responseObject, NSString *errorMessage) {
         if (success)
         {
             [self setUpHomeInfo:responseObject];
@@ -98,7 +129,7 @@
 
 - (void)requestHomerInfoWithCompletionHandler:(DMHttpRequestCompletionObjectHandler)completionHandler
 {
-    [self.networkClient postWithPath:@"api/login/home" params:nil completionHandler:^(BOOL success, id responseObject, NSString *errorMessage) {
+    [self.networkClient postWithPath:@"/api/login/home" params:nil completionHandler:^(BOOL success, id responseObject, NSString *errorMessage) {
         if (success)
         {
             [self setUpHomeInfo:responseObject];
@@ -113,7 +144,7 @@
 
 - (void)requestWalletInfoWithCompletionHandler:(DMHttpRequestCompletionObjectHandler)completionHandler
 {
-    [self.networkClient postWithPath:@"api/login/home" params:nil completionHandler:^(BOOL success, id responseObject, NSString *errorMessage) {
+    [self.networkClient postWithPath:@"/api/login/home" params:nil completionHandler:^(BOOL success, id responseObject, NSString *errorMessage) {
         
         if (success)
         {
@@ -137,16 +168,12 @@
 
 - (void)requestPrenticeListWithResultSet:(REPrenticeResultSet *)resultSet completionHandler:(DMHttpRequestCompletionObjectHandler)completionHandler
 {
-    NSDictionary *params;
-    if (resultSet.lastId != 0)
-    {
-       params = [NSDictionary dictionaryWithObjectsAndKeys:@(resultSet.lastId), @"lastId", nil];
-    }
-    
-    [self.networkClient postWithPath:@"api/user/children" params:params completionHandler:^(BOOL success, id responseObject, NSString *errorMessage) {
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@(resultSet.currentPage), @"page", nil];
+
+    [self.networkClient postWithPath:@"/api/user/children" params:params completionHandler:^(BOOL success, id responseObject, NSString *errorMessage) {
         if (success)
         {
-            NSArray *userList = [NSArray modelArrayWithClass:[UserInfo class] json:[responseObject arrayForKey:@"users"]];
+            NSArray *userList = [NSArray modelArrayWithClass:[UserInfo class] json:[responseObject arrayForKey:@"records"]];
             resultSet.lastId = [responseObject integerForKey:@"lastId"];
             resultSet.hasMore = [responseObject boolForKey:@"hasMore"];
             [resultSet addItems:userList];
@@ -161,15 +188,11 @@
 
 - (void)requestDiscipleListWithResultSet:(REPrenticeResultSet *)resultSet completionHandler:(DMHttpRequestCompletionObjectHandler)completionHandler
 {
-    NSDictionary *params;
-    if (resultSet.lastId != 0)
-    {
-        params = [NSDictionary dictionaryWithObjectsAndKeys:@(resultSet.lastId), @"lastId", nil];
-    }
-    [self.networkClient postWithPath:@"api/user/grandchildren" params:params completionHandler:^(BOOL success, id responseObject, NSString *errorMessage) {
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@(resultSet.currentPage), @"page", nil];
+    [self.networkClient postWithPath:@"/api/user/grandchildren" params:params completionHandler:^(BOOL success, id responseObject, NSString *errorMessage) {
         if (success)
         {
-            NSArray *userList = [NSArray modelArrayWithClass:[UserInfo class] json:[responseObject arrayForKey:@"users"]];
+            NSArray *userList = [NSArray modelArrayWithClass:[UserInfo class] json:[responseObject arrayForKey:@"records"]];
             resultSet.lastId = [responseObject integerForKey:@"lastId"];
             resultSet.hasMore = [responseObject boolForKey:@"hasMore"];
             [resultSet addItems:userList];
@@ -227,7 +250,7 @@
     [self.networkClient postWithPath:@"/api/bonus/withdraw/list" params:params completionHandler:^(BOOL success, id responseObject, NSString *errorMessage) {
         if (success)
         {
-            NSArray *array = [NSArray modelArrayWithClass:[GrabRecord class] json:[responseObject arrayForKey:@"records"]];
+            NSArray *array = [NSArray modelArrayWithClass:[WithdDrawRecord class] json:[responseObject arrayForKey:@"bonusWithdraws"]];
             resultSet.hasMore = [responseObject boolForKey:@"hasMore"];
             [resultSet addItems:array];
             completionHandler(YES, nil);
@@ -266,6 +289,42 @@
         {
             completionHandler(NO, nil, errorMessage);
         }
+    }];
+}
+
+- (void)requestAliInfoCompletionHandler:(DMHttpRequestCompletionObjectHandler)completionHandler
+{
+    [self.networkClient postWithPath:@"/api/ali/pop" params:nil completionHandler:^(BOOL success, id responseObject, NSString *errorMessage) {
+        if (success)
+        {
+            AliADInfo *adInfo = [AliADInfo modelWithJSON:responseObject];
+            completionHandler(YES, adInfo, nil);
+        }
+        else
+        {
+            completionHandler(NO, nil, errorMessage);
+        }
+    }];
+}
+
+- (void)notifiyAliHasShowCompletionHandler:(DMHttpRequestCompletionHandler)completionHandler
+{
+    [self.networkClient postWithPath:@"/api/ali/show" params:nil completionHandler:^(BOOL success, id responseObject, NSString *errorMessage) {
+        if (success)
+        {
+            completionHandler(YES, nil);
+        }
+        else
+        {
+            completionHandler(NO, errorMessage);
+        }
+    }];
+}
+
+- (void)requestRecodLogWithPrarms:(NSDictionary *)params
+{
+    [self.networkClient postWithPath:@"/api/print/log" params:params completionHandler:^(BOOL success, id responseObject, NSString *errorMessage) {
+
     }];
 }
 

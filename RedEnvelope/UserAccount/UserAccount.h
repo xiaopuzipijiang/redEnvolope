@@ -19,4 +19,6 @@
 
 - (void)saveAccount;
 
+- (void)logout;
+
 @end

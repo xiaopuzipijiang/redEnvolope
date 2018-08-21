@@ -25,7 +25,7 @@
     if ([super initWithStyle:style reuseIdentifier:reuseIdentifier])
     {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-
+        self.bottomSeparatorInsets = UIEdgeInsetsZero;
         self.contentView.backgroundColor = HEXCOLOR(0xffffff);
 
         self.exchangePriceLabel = [[UILabel alloc] init];

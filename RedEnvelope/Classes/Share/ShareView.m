@@ -54,7 +54,7 @@
     
     self.invitationCodeLabel.text = [NSString stringWithFormat:@"邀请码 %@", self.invitationInfo.inviteCode];
     
-    UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, 0.0);
+    UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, MIN([UIScreen mainScreen].scale, 2));
     [self.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();

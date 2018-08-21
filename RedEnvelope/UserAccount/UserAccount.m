@@ -29,4 +29,11 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+- (void)logout
+{
+    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:kCurrentUserAccountStoreKey];
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 @end

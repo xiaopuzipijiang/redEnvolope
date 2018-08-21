@@ -15,8 +15,12 @@
 #import "InvitationInfo.h"
 #import "ShareView.h"
 #import "SaveImageViewController.h"
+#import "MiPushSDK.h"
+#import "ServiceManager.h"
+#import "HomeInfo.h"
+#import "WebViewController.h"
 
-@interface AppDelegate () 
+@interface AppDelegate () <MiPushSDKDelegate, UNUserNotificationCenterDelegate>
 
 @end
 
@@ -25,12 +29,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-    [WXApi registerApp:@"wx18bf772064f24985"];
     
     [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
     [SVProgressHUD setMinimumDismissTimeInterval:2];
     
+    [WXApi registerApp:@"wx18bf772064f24985"];
+    
+    [MiPushSDK registerMiPush:self];
+
     if ([UserAccount currentUserAccount])
     {
         [self showMainViewContorller];
@@ -46,8 +53,8 @@
 - (void)showGuide
 {
     GuideContainerViewController *vc = [[GuideContainerViewController alloc] init];
-    
-    self.window.rootViewController = vc;
+    DMNavigationViewController *nvc = [[DMNavigationViewController alloc] initWithRootViewController:vc];
+    self.window.rootViewController = nvc;
     
     [self.window makeKeyAndVisible];
 }
@@ -61,16 +68,41 @@
     [self.window makeKeyAndVisible];
 }
 
-- (void)shareActionWithCode:(InvitationInfo *)invitationInfo
+- (void)shareActionWithCode:(HomeInfo *)homeInfo
+{
+    NSURLComponents *components = [[NSURLComponents alloc] initWithURL:[NSURL URLWithString:homeInfo.morePack] resolvingAgainstBaseURL:NO];
+    
+    if ([components.scheme isEqualToString:@"hongbao"])
+    {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name = 'type'"];
+        NSURLQueryItem *type = (NSURLQueryItem *)[[components.queryItems filteredArrayUsingPredicate:predicate] firstObject];
+        
+        if ([type.value isEqualToString:@"webview"])
+        {
+            predicate = [NSPredicate predicateWithFormat:@"name = 'url'"];
+            NSURLQueryItem *url = (NSURLQueryItem *)[[components.queryItems filteredArrayUsingPredicate:predicate] firstObject];
+            WebViewController *vc = [[WebViewController alloc] initWithUrl:url.value];
+            vc.hidesBottomBarWhenPushed = YES;
+            DMNavigationViewController *nvc = [(DMTabBarViewController *)self.window.rootViewController selectedViewController];
+            if ([nvc isKindOfClass:[DMNavigationViewController class]])
+            {
+                [nvc pushViewController:vc animated:YES];
+            }
+        }
+        else if ([type.value isEqualToString:@"share"])
+        {
+            [self shareImageToWChat:homeInfo];
+        }
+    }
+}
+
+- (void)shareImageToWChat:(HomeInfo *)homeInfo
 {
     ShareView *shareView = [[ShareView alloc] initWithFrame:CGRectMake(0, 0, 250, 400)];
-    shareView.invitationInfo = invitationInfo;
-    
-    
-
+    shareView.invitationInfo = homeInfo.invitationInfo;
     
     [ShareActionSheetViewController showShareActionSheetWithCompletionHandler:^(NSInteger type) {
-
+        
         [SVProgressHUD show];
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
             
@@ -95,6 +127,27 @@
     }];
 }
 
+#pragma mark 注册push服务.
+- (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    [MiPushSDK bindDeviceToken:deviceToken];
+    
+    if (![UserAccount currentUserAccount]) return;
+    
+    [[ServiceManager sharedManager] uploadToken:deviceToken completionHandler:^(BOOL success, NSString *errorMessage) {
+        
+    }];
+}
+
+- (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)err
+{
+
+}
+
+- (void)miPushRequestErrWithSelector:(NSString *)selector error:(int)error data:(NSDictionary *)data
+{
+    
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

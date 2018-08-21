@@ -18,6 +18,18 @@
 		F20C8E39210C5C9900522E04 /* ShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = F20C8E38210C5C9900522E04 /* ShareView.m */; };
 		F20C8E3C210CC80600522E04 /* SaveImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F20C8E3B210CC80600522E04 /* SaveImageViewController.m */; };
 		F20C8E40210CCB2300522E04 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F20C8E3F210CCB2300522E04 /* Photos.framework */; };
+		F20C8E49210ECEC900522E04 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F20C8E48210ECEC800522E04 /* UserNotifications.framework */; };
+		F20C8E4B210ECEE400522E04 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F20C8E4A210ECEE400522E04 /* libresolv.tbd */; };
+		F20C8E4D210ECEEF00522E04 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F20C8E4C210ECEEF00522E04 /* libxml2.tbd */; };
+		F20C8E4F210ECEFF00522E04 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F20C8E4E210ECEFF00522E04 /* libz.tbd */; };
+		F20C8E51210ECF0800522E04 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F20C8E50210ECF0800522E04 /* SystemConfiguration.framework */; };
+		F20C8E53210ECF1200522E04 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F20C8E52210ECF1200522E04 /* MobileCoreServices.framework */; };
+		F20C8E55210ECF2000522E04 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F20C8E54210ECF2000522E04 /* CoreTelephony.framework */; };
+		F20C8E62211010FF00522E04 /* WithdDrawRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = F20C8E61211010FF00522E04 /* WithdDrawRecord.m */; };
+		F20C8E6521106AC700522E04 /* DMMineProfileLogoutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F20C8E6421106AC700522E04 /* DMMineProfileLogoutCell.m */; };
+		F20C8E682110723300522E04 /* RedEnvelopeListInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F20C8E672110723300522E04 /* RedEnvelopeListInfo.m */; };
+		F20C8E6B2110829A00522E04 /* AliADInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F20C8E6A2110829A00522E04 /* AliADInfo.m */; };
+		F20C8E6F211083B900522E04 /* AliADViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F20C8E6E211083B900522E04 /* AliADViewController.m */; };
 		F2203A2F21018A80004DA014 /* ServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F2203A2E21018A80004DA014 /* ServiceManager.m */; };
 		F2355A3B21087CD70013B17F /* GrabRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = F2355A3A21087CD70013B17F /* GrabRecord.m */; };
 		F2355A3E21097A980013B17F /* WalletInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F2355A3D21097A980013B17F /* WalletInfo.m */; };
@@ -156,6 +168,24 @@
 		F20C8E3B210CC80600522E04 /* SaveImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SaveImageViewController.m; sourceTree = "<group>"; };
 		F20C8E3D210CCAEF00522E04 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		F20C8E3F210CCB2300522E04 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		F20C8E48210ECEC800522E04 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		F20C8E4A210ECEE400522E04 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
+		F20C8E4C210ECEEF00522E04 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
+		F20C8E4E210ECEFF00522E04 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		F20C8E50210ECF0800522E04 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		F20C8E52210ECF1200522E04 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		F20C8E54210ECF2000522E04 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		F20C8E59210EDB1900522E04 /* RedEnvelope.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RedEnvelope.entitlements; sourceTree = "<group>"; };
+		F20C8E60211010FF00522E04 /* WithdDrawRecord.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WithdDrawRecord.h; sourceTree = "<group>"; };
+		F20C8E61211010FF00522E04 /* WithdDrawRecord.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WithdDrawRecord.m; sourceTree = "<group>"; };
+		F20C8E6321106AC600522E04 /* DMMineProfileLogoutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMMineProfileLogoutCell.h; sourceTree = "<group>"; };
+		F20C8E6421106AC700522E04 /* DMMineProfileLogoutCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMMineProfileLogoutCell.m; sourceTree = "<group>"; };
+		F20C8E662110723300522E04 /* RedEnvelopeListInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RedEnvelopeListInfo.h; sourceTree = "<group>"; };
+		F20C8E672110723300522E04 /* RedEnvelopeListInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RedEnvelopeListInfo.m; sourceTree = "<group>"; };
+		F20C8E692110829A00522E04 /* AliADInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AliADInfo.h; sourceTree = "<group>"; };
+		F20C8E6A2110829A00522E04 /* AliADInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AliADInfo.m; sourceTree = "<group>"; };
+		F20C8E6D211083B900522E04 /* AliADViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AliADViewController.h; sourceTree = "<group>"; };
+		F20C8E6E211083B900522E04 /* AliADViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AliADViewController.m; sourceTree = "<group>"; };
 		F2203A2D21018A80004DA014 /* ServiceManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ServiceManager.h; sourceTree = "<group>"; };
 		F2203A2E21018A80004DA014 /* ServiceManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ServiceManager.m; sourceTree = "<group>"; };
 		F2355A3921087CD70013B17F /* GrabRecord.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GrabRecord.h; sourceTree = "<group>"; };
@@ -382,6 +412,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F20C8E55210ECF2000522E04 /* CoreTelephony.framework in Frameworks */,
+				F20C8E53210ECF1200522E04 /* MobileCoreServices.framework in Frameworks */,
+				F20C8E51210ECF0800522E04 /* SystemConfiguration.framework in Frameworks */,
+				F20C8E4F210ECEFF00522E04 /* libz.tbd in Frameworks */,
+				F20C8E4D210ECEEF00522E04 /* libxml2.tbd in Frameworks */,
+				F20C8E4B210ECEE400522E04 /* libresolv.tbd in Frameworks */,
+				F20C8E49210ECEC900522E04 /* UserNotifications.framework in Frameworks */,
 				F20C8E40210CCB2300522E04 /* Photos.framework in Frameworks */,
 				5EDCA284C7276A506F2F337B /* libPods-RedEnvelope.a in Frameworks */,
 			);
@@ -393,6 +430,13 @@
 		A72365A306FD21D178F04585 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F20C8E54210ECF2000522E04 /* CoreTelephony.framework */,
+				F20C8E52210ECF1200522E04 /* MobileCoreServices.framework */,
+				F20C8E50210ECF0800522E04 /* SystemConfiguration.framework */,
+				F20C8E4E210ECEFF00522E04 /* libz.tbd */,
+				F20C8E4C210ECEEF00522E04 /* libxml2.tbd */,
+				F20C8E4A210ECEE400522E04 /* libresolv.tbd */,
+				F20C8E48210ECEC800522E04 /* UserNotifications.framework */,
 				F20C8E3F210CCB2300522E04 /* Photos.framework */,
 				F20C8E3D210CCAEF00522E04 /* AssetsLibrary.framework */,
 				27AFC4B15A41AF39FFE19FB9 /* libPods-RedEnvelope.a */,
@@ -418,6 +462,15 @@
 			path = WebView;
 			sourceTree = "<group>";
 		};
+		F20C8E6C2110839A00522E04 /* AliAD */ = {
+			isa = PBXGroup;
+			children = (
+				F20C8E6D211083B900522E04 /* AliADViewController.h */,
+				F20C8E6E211083B900522E04 /* AliADViewController.m */,
+			);
+			path = AliAD;
+			sourceTree = "<group>";
+		};
 		F2355A3F21097AA40013B17F /* model */ = {
 			isa = PBXGroup;
 			children = (
@@ -427,6 +480,8 @@
 				F20C8E222109CFE300522E04 /* TrendInfo.m */,
 				F20C8E242109CFF600522E04 /* TrendItem.h */,
 				F20C8E252109CFF600522E04 /* TrendItem.m */,
+				F20C8E60211010FF00522E04 /* WithdDrawRecord.h */,
+				F20C8E61211010FF00522E04 /* WithdDrawRecord.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -465,6 +520,7 @@
 		F2372CC920F5EA4100F3FA81 /* RedEnvelope */ = {
 			isa = PBXGroup;
 			children = (
+				F20C8E59210EDB1900522E04 /* RedEnvelope.entitlements */,
 				F28C389F210415C700D2F37A /* RERefresh */,
 				F239CE8C20FF0F98009BA4B2 /* WechatManager */,
 				F2A99DD620FB4EB700F936A3 /* vendors */,
@@ -530,6 +586,10 @@
 				F28C38AD2104528C00D2F37A /* BalanceInfo.m */,
 				F20C8E2E210B23EE00522E04 /* InvitationInfo.h */,
 				F20C8E2F210B23EE00522E04 /* InvitationInfo.m */,
+				F20C8E662110723300522E04 /* RedEnvelopeListInfo.h */,
+				F20C8E672110723300522E04 /* RedEnvelopeListInfo.m */,
+				F20C8E692110829A00522E04 /* AliADInfo.h */,
+				F20C8E6A2110829A00522E04 /* AliADInfo.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -689,6 +749,7 @@
 		F2A99D4120F7088200F936A3 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				F20C8E6C2110839A00522E04 /* AliAD */,
 				F2355A402109824D0013B17F /* Share */,
 				F2A99D9820F8A52800F936A3 /* Guide */,
 				F2A99D4320F7092700F936A3 /* Main */,
@@ -779,6 +840,8 @@
 				F2A99DB620F99C9F00F936A3 /* MineHomeProfileCell.m */,
 				F2A99DB820F99CBE00F936A3 /* MineHomeGeneralCell.h */,
 				F2A99DB920F99CBE00F936A3 /* MineHomeGeneralCell.m */,
+				F20C8E6321106AC600522E04 /* DMMineProfileLogoutCell.h */,
+				F20C8E6421106AC700522E04 /* DMMineProfileLogoutCell.m */,
 			);
 			path = Mine;
 			sourceTree = "<group>";
@@ -991,7 +1054,24 @@
 				TargetAttributes = {
 					F2372CC620F5EA4100F3FA81 = {
 						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 0;
+							};
+							com.apple.HomeKit = {
+								enabled = 0;
+							};
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.Siri = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -1093,6 +1173,7 @@
 				F2A99CFC20F6F2FD00F936A3 /* DMBaseViewController.m in Sources */,
 				F2A99E6320FDBDF000F936A3 /* GrabRecordViewController.m in Sources */,
 				F20C8E262109CFF600522E04 /* TrendItem.m in Sources */,
+				F20C8E6521106AC700522E04 /* DMMineProfileLogoutCell.m in Sources */,
 				F28C389E2104121200D2F37A /* PrenticeRewardCell.m in Sources */,
 				F2A99E1D20FB4EEA00F936A3 /* AAChartView.m in Sources */,
 				F2A99D0220F6F2FD00F936A3 /* DMTableViewController.m in Sources */,
@@ -1146,6 +1227,7 @@
 				F2A99E5C20FDB33E00F936A3 /* PSTAlertController.m in Sources */,
 				F2A99D3B20F6F7E500F936A3 /* MJDIYBackFooter.m in Sources */,
 				F2A99E3D20FB4EEA00F936A3 /* AAYAxis.m in Sources */,
+				F20C8E62211010FF00522E04 /* WithdDrawRecord.m in Sources */,
 				F2A99E2E20FB4EEA00F936A3 /* AALabels.m in Sources */,
 				F20C8E3C210CC80600522E04 /* SaveImageViewController.m in Sources */,
 				F2203A2F21018A80004DA014 /* ServiceManager.m in Sources */,
@@ -1156,14 +1238,17 @@
 				F28C38A2210416A900D2F37A /* RERefreshHeader.m in Sources */,
 				F2A99D9B20F8B30300F936A3 /* GuideItemViewController.m in Sources */,
 				F2A99E4620FC5C1200F936A3 /* RecommendHeaderCell.m in Sources */,
+				F20C8E682110723300522E04 /* RedEnvelopeListInfo.m in Sources */,
 				F2A99DA520F98B4A00F936A3 /* MineHomeViewController.m in Sources */,
 				F20C8E33210B7B1A00522E04 /* NSString+trim.m in Sources */,
 				F2A99E3620FB4EEA00F936A3 /* AASeries.m in Sources */,
 				F2A99E7420FDE4DC00F936A3 /* RewardHeadToolBar.m in Sources */,
 				F239CE8F20FF0FB0009BA4B2 /* WechatManager.m in Sources */,
+				F20C8E6F211083B900522E04 /* AliADViewController.m in Sources */,
 				F2A99D0120F6F2FD00F936A3 /* DMTableViewCell.m in Sources */,
 				F2A99E3220FB4EEA00F936A3 /* AAOptions3d.m in Sources */,
 				F2A99DD220FB320400F936A3 /* WalletIncomingChartCell.m in Sources */,
+				F20C8E6B2110829A00522E04 /* AliADInfo.m in Sources */,
 				F2A99D0820F6F33800F936A3 /* DMDataSourceItem.m in Sources */,
 				F2A99E3420FB4EEA00F936A3 /* AAPlotLinesElement.m in Sources */,
 				F2A99D3020F6F7E500F936A3 /* DMScrollTabBar.m in Sources */,
@@ -1324,17 +1409,35 @@
 			baseConfigurationReference = CF175D8011146237AED5A797 /* Pods-RedEnvelope.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = RedEnvelope/RedEnvelope.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = N6VJF76V4J;
 				GCC_PREFIX_HEADER = RedEnvelope/PrefixHeader.pch;
 				INFOPLIST_FILE = RedEnvelope/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/AFNetworking\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Colours\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/DZNEmptyDataSet\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FLEX\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/MJRefresh\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Masonry\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/PNChart\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SVProgressHUD\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/UICountingLabel\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/XJYChart\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/YYKit\"",
+					"\"${PODS_ROOT}/WechatOpenSDK/WechatSDK1.8.2\"",
+				);
+				MiSDKRun = debug;
 				PRODUCT_BUNDLE_IDENTIFIER = com.daily.RedEnvelope;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "f2ab0c24-a46b-4e99-b519-b456426fbf1e";
+				PROVISIONING_PROFILE_SPECIFIER = "测试推送开发环境";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1344,16 +1447,34 @@
 			baseConfigurationReference = 0677D949C85155BFD39C54FC /* Pods-RedEnvelope.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = RedEnvelope/RedEnvelope.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = N6VJF76V4J;
 				GCC_PREFIX_HEADER = RedEnvelope/PrefixHeader.pch;
 				INFOPLIST_FILE = RedEnvelope/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/AFNetworking\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Colours\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/DZNEmptyDataSet\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/MJRefresh\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Masonry\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/PNChart\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SVProgressHUD\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/UICountingLabel\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/XJYChart\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/YYKit\"",
+					"\"${PODS_ROOT}/WechatOpenSDK/WechatSDK1.8.2\"",
+				);
+				MiSDKRun = online;
 				PRODUCT_BUNDLE_IDENTIFIER = com.daily.RedEnvelope;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "f2ab0c24-a46b-4e99-b519-b456426fbf1e";
+				PROVISIONING_PROFILE_SPECIFIER = "测试推送开发环境";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

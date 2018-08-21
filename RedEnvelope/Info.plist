@@ -32,9 +32,24 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>1.0.4</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>weixin</string>
+		<string>alipays</string>
+		<string>wechat</string>
+		<string>alipay</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>MiSDKAppID</key>
+	<string>2882303761517843065
+</string>
+	<key>MiSDKAppKey</key>
+	<string>5681784399065
+</string>
+	<key>MiSDKRun</key>
+	<string>${MiSDKRun}</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>

@@ -24,9 +24,12 @@ typedef void(^DMHttpRequestCompletionObjectHandler)(BOOL success, id object, NSS
 + (instancetype)sharedManager;
 
 - (void)loginWithToken:(NSString *)token completionHandler:(DMHttpRequestCompletionObjectHandler)completionHandler;
+- (void)vistorLoginWithcompletionHandler:(DMHttpRequestCompletionObjectHandler)completionHandler;
+
 
 //用户信息
 - (void)requestUserInfoWithCompletionHandler:(DMHttpRequestCompletionObjectHandler)completionHandler;
+- (void)uploadToken:(NSString *)token completionHandler:(DMHttpRequestCompletionHandler)completionHandler;
 
 //首页信息
 - (void)requestHomerInfoWithCompletionHandler:(DMHttpRequestCompletionObjectHandler)completionHandler;
@@ -57,5 +60,12 @@ typedef void(^DMHttpRequestCompletionObjectHandler)(BOOL success, id object, NSS
 //提现记录
 - (void)requestWithdrawRecordListWithResult:(DMResultSet *)resultSet completionHandler:(DMHttpRequestCompletionHandler)completionHandler;
 
+//阿里相关
+- (void)requestAliInfoCompletionHandler:(DMHttpRequestCompletionObjectHandler)completionHandler;
+- (void)notifiyAliHasShowCompletionHandler:(DMHttpRequestCompletionHandler)completionHandler;
+
+//log
+
+- (void)requestRecodLogWithPrarms:(NSDictionary *)params;
 
 @end

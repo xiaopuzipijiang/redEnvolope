@@ -10,16 +10,16 @@
 #import "RedEnvelope.h"
 #import "BalanceInfo.h"
 #import "InvitationInfo.h"
+#import "RedEnvelopeListInfo.h"
 
 @interface HomeInfo : NSObject
 
-@property (nonatomic, assign) NSInteger slots;
-@property (nonatomic, assign) NSInteger nextTime;
-
-@property (nonatomic, strong) NSArray <RedEnvelope *> *redEnvelopList;
+@property (nonatomic, strong) RedEnvelopeListInfo *redEnvelopListInfo;
 
 @property (nonatomic, strong) BalanceInfo *balanceInfo;
 
 @property (nonatomic, strong) InvitationInfo *invitationInfo;
+
+@property (nonatomic, strong) NSString *morePack;
 
 @end

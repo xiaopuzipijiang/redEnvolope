@@ -11,11 +11,7 @@
 @implementation HomeInfo
 
 + (NSDictionary *)modelCustomPropertyMapper {
-    return @{@"redEnvelopList" : @"bonus"};
-}
-
-+ (NSDictionary *)modelContainerPropertyGenericClass {
-    return @{@"redEnvelopList" : [RedEnvelope class]};
+    return @{@"redEnvelopListInfo" : @"bonusInfo", @"invitationInfo" : @"inviteInfo"};
 }
 
 @end

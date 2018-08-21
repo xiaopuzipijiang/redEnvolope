@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class InvitationInfo;
+@class HomeInfo;
 
 #define kAPPDelegate  (AppDelegate *)([UIApplication sharedApplication].delegate)
 
@@ -20,7 +20,7 @@
 
 - (void)showGuide;
 
-- (void)shareActionWithCode:(InvitationInfo *)invitationInfo;
+- (void)shareActionWithCode:(HomeInfo *)homeInfo;
 
 @end
 

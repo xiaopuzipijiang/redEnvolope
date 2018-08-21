@@ -14,6 +14,7 @@
 #import "ServiceManager.h"
 #import "UserInfo.h"
 #import "WebViewController.h"
+#import "DMMineProfileLogoutCell.h"
 
 @interface MineHomeViewController ()
 
@@ -39,7 +40,8 @@
     self.bottomImageView = [[UIImageView alloc] init];
     self.bottomImageView.image = [UIImage imageNamed:@"底部彩条"];
     [self.view addSubview:self.bottomImageView];
-    
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
+
     [self reloadDataSource];
 }
 
@@ -75,7 +77,7 @@
 
 - (NSArray<Class> *)classesForRegiste
 {
-    return @[[MineHomeGeneralCell class], [MineHomeProfileCell class]];
+    return @[[MineHomeGeneralCell class], [MineHomeProfileCell class] , [DMMineProfileLogoutCell class]];
 }
 
 - (void)reloadDataSource
@@ -144,9 +146,18 @@
         [wSelf.navigationController pushViewController:vc animated:YES];
     }];
     
+    DMDataSourceItem *section4 = [[DMDataSourceItem alloc] init];
+    
+    [section4 addSubitemWithClass:[DMMineProfileLogoutCell class] object:nil configCellBlock:^(DMMineProfileLogoutCell *cell, id object) {
+    } didSelectedBlock:^(id cell, id object) {
+        [[UserAccount currentUserAccount] logout];
+        [kAPPDelegate showGuide];
+    }];
+    
     [self.viewDataSource addSubitem:section1];
     [self.viewDataSource addSubitem:section2];
     [self.viewDataSource addSubitem:section3];
+    [self.viewDataSource addSubitem:section4];
 
     [self.tableView reloadData];
 }
@@ -156,6 +167,11 @@
     if (section == 2)
     {
         return 10;
+    }
+    
+    if (section == 3)
+    {
+        return 40;
     }
     
     return CGFLOAT_MIN;

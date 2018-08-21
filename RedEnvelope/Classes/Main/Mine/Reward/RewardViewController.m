@@ -151,6 +151,7 @@ typedef NS_ENUM(NSInteger, RewardViewListType)
             case RewardViewListTypePrentice:
             {
                 [wSelf.prenticeResultSet removeAllItems];
+                wSelf.prenticeResultSet.currentPage = 1;
                 [[ServiceManager sharedManager] requestPrenticeListWithResultSet:wSelf.prenticeResultSet completionHandler:^(BOOL success, id object, NSString *errorMessage) {
                     wSelf.tableView.mj_footer.hidden = !wSelf.prenticeResultSet.hasMore;
                     [wSelf.tableView.mj_header endRefreshing];
@@ -161,6 +162,7 @@ typedef NS_ENUM(NSInteger, RewardViewListType)
             case RewardViewListTypePrenticePrentice:
             {
                 [wSelf.discipleResultSet removeAllItems];
+                wSelf.discipleResultSet.currentPage = 1;
                 [[ServiceManager sharedManager] requestDiscipleListWithResultSet:wSelf.discipleResultSet completionHandler:^(BOOL success, id object, NSString *errorMessage) {
                     wSelf.tableView.mj_footer.hidden = !wSelf.prenticeResultSet.hasMore;
                     [wSelf.tableView.mj_header endRefreshing];
@@ -183,6 +185,7 @@ typedef NS_ENUM(NSInteger, RewardViewListType)
             }
             case RewardViewListTypePrentice:
             {
+                wSelf.prenticeResultSet.currentPage += 1;
                 [[ServiceManager sharedManager] requestPrenticeListWithResultSet:self.prenticeResultSet completionHandler:^(BOOL success, id object, NSString *errorMessage) {
                     wSelf.tableView.mj_footer.hidden = !wSelf.prenticeResultSet.hasMore;
                     [wSelf.tableView.mj_footer endRefreshing];
@@ -192,7 +195,7 @@ typedef NS_ENUM(NSInteger, RewardViewListType)
             }
             case RewardViewListTypePrenticePrentice:
             {
-                [self.prenticeResultSet removeAllItems];
+                wSelf.discipleResultSet.currentPage += 1;
                 [[ServiceManager sharedManager] requestDiscipleListWithResultSet:self.discipleResultSet completionHandler:^(BOOL success, id object, NSString *errorMessage) {
                     wSelf.tableView.mj_footer.hidden = !wSelf.prenticeResultSet.hasMore;
                     [wSelf.tableView.mj_footer endRefreshing];

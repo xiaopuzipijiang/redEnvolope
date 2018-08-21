@@ -35,9 +35,15 @@
 #pragma clang diagnostic ignored "-Wundeclared-selector"
     [self.tableView performSelector:@selector(setTableHeaderBackgroundColor:) withObject:HEXCOLOR(0xd65a44) withObject:nil];
 #pragma clang diagnostic pop
+//    CGFloat offset;
+//    if (@available(iOS 11.0, *)) {
+//        offset = self.view.safeAreaInsets.top;
+//    } else {
+//        offset =
+//    }
     
-    self.customerBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 19, self.view.width, 44)];
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, -20, self.view.width, 20)];
+    self.customerBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, [UIApplication sharedApplication].statusBarFrame.size.height, self.view.width, 44)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, -[UIApplication sharedApplication].statusBarFrame.size.height, self.view.width, 20)];
     view.backgroundColor = HEXCOLOR(0xd65a44);
     [self.customerBar addSubview:view];
     

@@ -87,11 +87,17 @@
         self.iconView.top = 32;
         
         self.titleLabel.size = CGSizeMake(self.view.width, 100);
-        self.titleLabel.top = self.iconView.bottom + 20;
+        self.titleLabel.top = self.iconView.bottom;
         
         self.openButton.size = CGSizeMake(90, 90);
         self.openButton.integralCenterX = self.view.width / 2;
-        self.openButton.bottom = self.view.height - 105;
+        
+        CGFloat offset = 105;
+        if (SCREEN_WIDTH == 320)
+        {
+            offset = 70;
+        }
+        self.openButton.bottom = self.view.height - offset;
         
         [self.cancelButton sizeToFit];
         self.cancelButton.left = 10;

@@ -58,7 +58,6 @@
     
     [self.scrollView addSubview:self.apprenticeAwardButton];
     [self.scrollView addSubview:self.apprenticeButton];
-    self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 25, 0);
     
     self.bottomImageView = [[UIImageView alloc] init];
     self.bottomImageView.image = [UIImage imageNamed:@"底部彩条"];
@@ -122,7 +121,6 @@
     self.apprenticeInvitationCode.size = CGSizeMake(self.apprenticeExplainBg.width, 20);
     self.apprenticeInvitationCode.centerX = self.apprenticeExplainBg.width / 2;
     self.apprenticeInvitationCode.bottom = self.apprenticeExplainBg.height - 30;
-    
 
     [self.apprenticeAwardButton sizeToFit];
     self.apprenticeAwardButton.layer.cornerRadius = self.apprenticeAwardButton.height / 2;
@@ -137,10 +135,19 @@
         self.apprenticeAwardButton.bottom = self.view.height - 64 - 44 - self.bottomImageView.height - 20;
     }
     
+    self.apprenticeAwardButton.top = self.apprenticeExplainBg.bottom + 120;
+    
     self.apprenticeButton.size = CGSizeMake(self.view.width - 120, 60);
     self.apprenticeButton.integralCenterX = self.view.width / 2;
     self.apprenticeButton.bottom = self.apprenticeAwardButton.top - 20;
 
+    if (@available(iOS 11.0, *)) {
+        self.scrollView.contentSize = CGSizeMake(self.view.width, MAX(self.view.height, self.apprenticeButton.bottom + self.view.safeAreaInsets.bottom + 30 + 10));
+    }
+    else
+    {
+        self.scrollView.contentSize = CGSizeMake(self.view.width, MAX(self.view.height, self.apprenticeButton.bottom + 44 + 30 + 10));
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -265,7 +272,7 @@
 
 - (void)shared:(id)sender
 {
-    [kAPPDelegate shareActionWithCode:self.homeInfo.invitationInfo];
+    [kAPPDelegate shareActionWithCode:self.homeInfo];
 }
 
 - (void)rewardButtonPressed:(id)sender

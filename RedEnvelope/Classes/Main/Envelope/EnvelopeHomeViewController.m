@@ -14,8 +14,11 @@
 #import "ServiceManager.h"
 #import "HomeInfo.h"
 #import "ShareActionSheetViewController.h"
+#import "AliADViewController.h"
 
-#define kContentInsets UIEdgeInsetsMake(20, 40, 50, 40)
+#define kSpace (SCREEN_WIDTH == 320 ? 20 : 40)
+
+#define kContentInsets UIEdgeInsetsMake(20, kSpace, 50, kSpace)
 #define kMaxCount 9
 
 @interface EnvelopeHomeViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
@@ -41,7 +44,7 @@
     [self.collectionView registerClass:[EnvelopeRefreshReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footer"];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-    self.collectionView.contentInset = UIEdgeInsetsMake(0, 0, 20, 0);
+    self.collectionView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
     
     [self.view addSubview:self.collectionView];
     
@@ -57,6 +60,12 @@
     [super viewWillAppear:animated];
 
     [self loadData];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self checkAliInfo];
 }
 
 - (void)viewDidLayoutSubviews
@@ -108,6 +117,35 @@
     }];
 }
 
+- (void)checkAliInfo
+{
+    [[ServiceManager sharedManager] requestAliInfoCompletionHandler:^(BOOL success, AliADInfo *object, NSString *errorMessage) {
+        if (success)
+        {
+            if (object.zhiText.length > 0 &&  object.protocol.length > 0)
+            {
+                [self showAliAD:object];
+            }
+        }
+    }];
+}
+
+- (void)showAliAD:(AliADInfo *)info
+{
+    [AliADViewController showAliADViewController:info didPressedADBlock:^{
+        UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+        pasteboard.string = self.homeInfo.invitationInfo.inviteCode;
+
+        if (@available(iOS 10.0, *)) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:info.protocol] options:@{} completionHandler:^(BOOL success) {
+                
+            }];
+        } else {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:info.protocol]];
+        }
+    }];
+}
+
 #pragma mark - UICollectionViewDelegate / Datasource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -117,16 +155,16 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return MIN(self.homeInfo.redEnvelopList.count + 1, kMaxCount);
+    return MIN(self.homeInfo.redEnvelopListInfo.redEnvelopList.count + 1, kMaxCount);
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     EnvelopeCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     
-    if (self.homeInfo.redEnvelopList.count < kMaxCount && indexPath.row == (self.homeInfo.redEnvelopList.count))
+    if (self.homeInfo.redEnvelopListInfo.redEnvelopList.count < kMaxCount && indexPath.row == (self.homeInfo.redEnvelopListInfo.redEnvelopList.count))
     {
-        cell.comingTime = self.homeInfo.nextTime;
+        cell.comingTime = self.homeInfo.redEnvelopListInfo.nextTime;
     }
     
     return cell;
@@ -149,10 +187,7 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    CGFloat space = 40.0;
-    
-    CGFloat width = ceil((self.view.width - space * 4) / 3);
+    CGFloat width = floor((self.view.width - kSpace * 4) / 3);
     
     return CGSizeMake(width, ceil(width * 190 / 152));
 }
@@ -164,12 +199,12 @@
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-    return 40;
+    return kSpace;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
-    return 30;
+   return kSpace;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
@@ -179,14 +214,14 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.homeInfo.redEnvelopList.count < kMaxCount && indexPath.row == (self.homeInfo.redEnvelopList.count))
+    if (self.homeInfo.redEnvelopListInfo.redEnvelopList.count < kMaxCount && indexPath.row == (self.homeInfo.redEnvelopListInfo.redEnvelopList.count))
     {
         return;
     }
 
     DMWEAKSELFDEFIND
     
-    RedEnvelope *redEnvelope = [self.homeInfo.redEnvelopList objectAtIndex:indexPath.row];
+    RedEnvelope *redEnvelope = [self.homeInfo.redEnvelopListInfo.redEnvelopList objectAtIndex:indexPath.row];
     
     OpenEnvelopeViewController *vc = [[OpenEnvelopeViewController alloc] initWithRedEnvelope:redEnvelope CompletionHandler:^(BOOL success, id object) {
         
@@ -214,7 +249,7 @@
 
 - (void)shareEvent:(id)sender
 {
-    [kAPPDelegate shareActionWithCode:self.homeInfo.invitationInfo];
+    [kAPPDelegate shareActionWithCode:self.homeInfo];
 }
 
 #pragma mark - property

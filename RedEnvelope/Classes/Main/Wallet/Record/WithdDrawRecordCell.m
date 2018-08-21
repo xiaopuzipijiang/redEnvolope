@@ -64,13 +64,13 @@
     return self;
 }
 
-- (void)setRecord:(GrabRecord *)record
+- (void)setRecord:(WithdDrawRecord *)record
 {
     _record = record;
     
-    self.titleLabel.text = record.text;
-    self.amountLabel.text = record.amount;
-    self.timeLabel.text = record.time;
+    self.titleLabel.text = record.statusStr;
+    self.amountLabel.text = record.moneyStr;
+    self.timeLabel.text = record.createTime;
 }
 
 @end
